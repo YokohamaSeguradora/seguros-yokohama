@@ -2,12 +2,32 @@ package br.com.yokohama.seguros.model;
 
 import java.sql.Date;
 
-public class Automovel {
+public abstract class Automovel {
 	public static enum TipoAutomovel {
-	    BICICLETA,
-	    CAMINHAO,
-	    CARRO,
-	    MOTO
+	    BICICLETA("BIC"),
+	    CAMINHAO("CAM"),
+	    CARRO("CAR"),
+	    MOTO("MOT");
+		
+		private final String codigo;
+
+		TipoAutomovel(String codigo) {
+			this.codigo = codigo;
+		}
+
+		public String getCodigo() {
+			return this.codigo;
+		}
+		
+		// Método para converter uma String para o valor do Enum
+		public static TipoAutomovel fromCodigo(String codigo) {
+			for (TipoAutomovel tipoAutomovel : TipoAutomovel.values()) {
+				if (tipoAutomovel.getCodigo().equalsIgnoreCase(codigo)) {
+					return tipoAutomovel;
+				}
+			}
+			throw new IllegalArgumentException("Código de automóvel inválido: " + codigo);
+		}
 	}
 	
 	private long idAutomovel; // PK

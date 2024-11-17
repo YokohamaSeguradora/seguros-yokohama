@@ -2,10 +2,31 @@ package br.com.yokohama.seguros.model;
 
 public abstract class Seguro {
 	public static enum TipoSeguro {
-		BICICLETA,
-	    CAMINHAO,
-	    CARRO,
-	    MOTO
+		BICICLETA("BIC"),
+	    CAMINHAO("CAM"),
+	    CARRO("CAR"),
+	    MOTO("MOT");
+		
+		private final String codigo;
+		
+		TipoSeguro(String codigo) {
+			this.codigo = codigo;
+		}
+		
+		public String getCodigo() {
+			return this.codigo;
+		}
+
+
+		// Método para converter uma String para o valor do Enum
+		public static TipoSeguro fromCodigo(String codigo) {
+			for (TipoSeguro tipoSeguro : TipoSeguro.values()) {
+				if (tipoSeguro.getCodigo().equalsIgnoreCase(codigo)) {
+					return tipoSeguro;
+				}
+			}
+			throw new IllegalArgumentException("Código de seguro inválido: " + codigo);
+		}
 	}
 	
     private long idSeguro; // PK

@@ -2,8 +2,29 @@ package br.com.yokohama.seguros.model;
 
 public abstract class Usuario {
 	public static enum TipoUsuario {
-		CORRETOR,
-		SEGURADO;
+		CORRETOR("C"),
+		SEGURADO("S");
+		
+		private final String codigo;
+		
+		TipoUsuario(String codigo) {
+			this.codigo = codigo;
+		}
+		
+		public String getCodigo() {
+			return this.codigo;
+		}
+
+
+		// Método para converter uma String para o valor do Enum
+		public static TipoUsuario fromCodigo(String codigo) {
+			for (TipoUsuario tipoUsuario : TipoUsuario.values()) {
+				if (tipoUsuario.getCodigo().equalsIgnoreCase(codigo)) {
+					return tipoUsuario;
+				}
+			}
+			throw new IllegalArgumentException("Código de usuário inválido: " + codigo);
+		}
 	}
 	
     private long idUsuario; // PK
