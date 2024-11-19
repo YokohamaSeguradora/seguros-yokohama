@@ -1,6 +1,6 @@
 package br.com.yokohama.seguros.model;
 
-public abstract class Usuario {
+public class Usuario {
 	public static enum TipoUsuario {
 		CORRETOR("C"),
 		SEGURADO("S");
@@ -35,10 +35,28 @@ public abstract class Usuario {
     private String telefoneUsuario; // Único
     private String senhaUsuario;
     private String enderecoUsuario;
+	private String cnhSegurado; // Único
     
-    protected Usuario(TipoUsuario tipoUsuario) {
+    public Usuario(TipoUsuario tipoUsuario) {
     	this.tipoUsuario = tipoUsuario;
     }
+    
+    
+
+	public Usuario(TipoUsuario tipoUsuario, String nomeCompletoUsuario, String cpfUsuario, String emailUsuario,
+			String telefoneUsuario, String senhaUsuario, String enderecoUsuario, String cnhSegurado) {
+		super();
+		this.tipoUsuario = tipoUsuario;
+		this.nomeCompletoUsuario = nomeCompletoUsuario;
+		this.cpfUsuario = cpfUsuario;
+		this.emailUsuario = emailUsuario;
+		this.telefoneUsuario = telefoneUsuario;
+		this.senhaUsuario = senhaUsuario;
+		this.enderecoUsuario = enderecoUsuario;
+		this.cnhSegurado = cnhSegurado;
+	}
+
+
 
 	public long getIdUsuario() {
 		return idUsuario;
@@ -98,5 +116,13 @@ public abstract class Usuario {
 
 	public TipoUsuario getTipoUsuario() {
 		return tipoUsuario;
+	}
+
+	public String getCnhSegurado() {
+		return cnhSegurado;
+	}
+
+	public void setCnhSegurado(String cnhSegurado) {
+		this.cnhSegurado = cnhSegurado;
 	}
 }
