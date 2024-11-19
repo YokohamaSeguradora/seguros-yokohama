@@ -61,7 +61,7 @@ public class GeminiService {
 
     private String processarResposta(HttpResponse<String> resposta) throws IOException {
         if (resposta.statusCode() != 200) {
-            return "Erro: " + resposta.statusCode();
+            return "Tivemos um erro no sistema. Poderia refazer a sua pergunta, por favor?";
         }
 
         Pattern padrao = Pattern.compile("\"text\"\\s*:\\s*\"([^\"]+)\"");
