@@ -67,6 +67,7 @@ public class Register extends JFrame {
 		Footer.setBounds(0, 641, 1370, 108);
 		Footer.setAlignmentY(0.0f);
 		Footer.setAlignmentX(0.0f);
+		Footer.putClientProperty("JPanel.arc", 20);
 		Footer.setBackground(new Color(127, 11, 11));
 		
 		Telefone = new JTextField();
@@ -88,14 +89,14 @@ public class Register extends JFrame {
 		Logar = new JButton("Cadastrar-se");
 		Logar.setBounds(308, 457, 753, 40);
 		Logar.setBorderPainted(false);
-		Logar.setFont(new Font("Arial", Font.PLAIN, 20));
+		Logar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Logar.setForeground(new Color(255, 255, 255));
 		Logar.setBackground(new Color(127, 11, 11));
 		
 		JLabel logo = new JLabel("");
 		logo.setBounds(-15, 0, 273, 174);
 		logo.setBackground(new Color(255, 255, 255));
-		logo.setIcon(new ImageIcon("C:\\Users\\labsfiap\\seguros-yokohama\\src\\main\\resources\\images\\image.png"));
+		logo.setIcon(new ImageIcon("C:\\Users\\labsfiap\\Downloads\\image 2.png"));
 		
 		lblNewLabel = new JLabel("Email");
 		lblNewLabel.setBounds(308, 160, 44, 14);
