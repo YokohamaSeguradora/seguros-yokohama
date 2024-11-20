@@ -3,6 +3,7 @@ package br.com.yokohama.seguros.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,8 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import org.w3c.dom.events.MouseEvent;
+
 import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.ui.FlatButtonUI;
 
 public class Login extends JFrame {
 
@@ -23,6 +25,7 @@ public class Login extends JFrame {
 	private JLabel lblNewLabel;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton myButton;
 
 	/**
 	 * Launch the application.
@@ -47,10 +50,11 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1512, 982);
-		UIManager.put("Button.hoverForeground", Color.RED);
+		setSize(1366,768);		
+		//UIManager.put("Button.hoverForeground", Color.red);
 		UIManager.put("Button.arc", 25 );
 		UIManager.put("Button.hoverBackground", new Color(218, 76,76));
+		UIManager.put("TextComponent.arc", 20);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 0, 0, 0));
@@ -58,53 +62,71 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel fotter = new JPanel();
-		fotter.setBounds(0, 765, 1496, 178);
+		fotter.setBounds(0, 624, 1350, 105);
 		fotter.setBackground(new Color(127, 11, 11));
 		contentPane.setLayout(null);
 		contentPane.add(fotter);
 		
 		lblNewLabel_1 = new JLabel("Email");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(464, 293, 42, 25);
+		lblNewLabel_1.setBounds(399, 163, 42, 25);
 		contentPane.add(lblNewLabel_1);
 		
 		lblNewLabel = new JLabel("Password");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(464, 520, 71, 25);
+		lblNewLabel.setBounds(398, 255, 71, 25);
 		contentPane.add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(464, 329, 553, 37);
+		textField.setBounds(398, 199, 554, 37);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(464, 428, 553, 37);
+		textField_1.setBounds(398, 291, 553, 37);
 		contentPane.add(textField_1);
 		
 		JLabel loginLabel = new JLabel("Login");
 		loginLabel.setFont(new Font("Arial", Font.ITALIC, 40));
-		loginLabel.setBounds(690, 114, 115, 65);
+		loginLabel.setBounds(617, 50, 115, 65);
 		contentPane.add(loginLabel);
 		
-		JButton forgotPassword = new JButton("Forgot Password?");
-		forgotPassword.putClientProperty("JButton.hoverForeground", Color.red);
-		forgotPassword.setOpaque(false);
-		forgotPassword.setContentAreaFilled(false);
-		forgotPassword.setBorderPainted(false);
-		forgotPassword.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		forgotPassword.setBounds(449, 400, 119, 23);
-		contentPane.add(forgotPassword);
+		JButton forgotButton = new JButton("Forgot Password?");
+		forgotButton.addMouseListener(new MouseAdapter() {
+			
+			public void mouseExit(MouseEvent E) {
+				forgotButton.setForeground(Color.red);
+				UIManager.put("Button.hoverForeground", Color.red);
+
+			}
+			
+			public void mousetExit(MouseEvent E) {
+				forgotButton.setForeground(Color.white);
+				UIManager.put("Button.hoverForeground", Color.white);
+
+			}
+			
+		});
+			
 		
-		JButton myButton = new JButton("");
+		forgotButton.setOpaque(false);
+		forgotButton.setContentAreaFilled(false);
+		forgotButton.setBorderPainted(false);
+		forgotButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		forgotButton.setBounds(388, 395, 119, 23);
+		contentPane.add(forgotButton);
+		
+		JButton signInButton = new JButton("Sign In");
+		signInButton.setForeground(new Color(255, 255, 255));
+		signInButton.setBackground(new Color(127, 11, 11));
+		signInButton.setBounds(398, 351, 554, 33);
+		contentPane.add(signInButton);
+		
+		myButton = new JButton("");
 		myButton.setEnabled(false);
 		myButton.setBackground(Color.WHITE);
-		myButton.setBounds(429, 224, 637, 336);
+		myButton.setBounds(356, 151, 637, 336);
 		contentPane.add(myButton);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(662, 476, 89, 23);
-		contentPane.add(btnNewButton);
 	}
 }

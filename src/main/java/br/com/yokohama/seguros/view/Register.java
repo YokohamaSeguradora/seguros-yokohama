@@ -56,7 +56,7 @@ public class Register extends JFrame {
 	 */
 	public Register() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1512,982);
+		setSize(1366,768);
 		JPanel BackgroundAll = new JPanel();
 		BackgroundAll.setBackground(new Color(255, 255, 255));
 		BackgroundAll.setBorder(new EmptyBorder(0, 0, 0, 0));
