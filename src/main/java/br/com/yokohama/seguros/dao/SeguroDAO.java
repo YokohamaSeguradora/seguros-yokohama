@@ -104,4 +104,9 @@ public class SeguroDAO {
 		}
 		return seguro;
 	}
+
+    //Select by user
+    private Seguro selectByUser(){
+        
+    }
 }

@@ -1,6 +1,8 @@
 package br.com.yokohama.seguros.utils;
 
 import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.lowagie.text.Document;
@@ -10,6 +12,8 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
+import br.com.yokohama.seguros.connection.ConnectionFactory;
+import br.com.yokohama.seguros.dao.AutomovelDAO;
 import br.com.yokohama.seguros.model.Automovel;
 import br.com.yokohama.seguros.model.Seguro;
 import br.com.yokohama.seguros.model.Usuario;
@@ -85,15 +89,28 @@ public class SegurosPdf {
         }
     }
 
-    //Método que busca um automovel por ID e acessa os seus dados
-    private static Automovel buscarAutomovelPorId(long idAutomovel) {
+     private static Automovel buscarAutomovelPorId(long idAutomovel) {
+        Connection connection = null;
+        Automovel automovel = null;
 
-        Automovel automovel = new Automovel(Automovel.TipoAutomovel.CARRO) {
-            {
-                setModeloAutomovel("Modelo Exemplo");
-                setPlacaAutomovel("ABC-1234");
+        try {
+            // Obtém a conexão com o banco de dados
+            connection = new ConnectionFactory().conectar();
+            AutomovelDAO automovelDAO = new AutomovelDAO(connection);
+
+            automovel = automovelDAO.selectById(idAutomovel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close(); // Fecha a conexão
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        };
+        }
+
         return automovel;
     }
 }

@@ -11,6 +11,7 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
+import br.com.yokohama.seguros.dao.SeguroDAO;
 import br.com.yokohama.seguros.model.Seguro;
 import br.com.yokohama.seguros.model.Usuario;
 
@@ -78,39 +79,18 @@ public class CorretorPdf {
     }
 
     // Método que obtém todos os tipos de seguros do cliente
-    private static String obterTiposDeSeguros(Usuario cliente) {
-        // Acessar os seguros do cliente com banco de dados
-        List<Seguro> seguros = buscarSegurosPorUsuario(cliente.getIdUsuario());
+       private static String obterTiposDeSeguros(Usuario cliente) {
+        List<Seguro> seguros = SeguroDAO.selectByUser(cliente.getIdUsuario());  
         StringBuilder tiposSeguros = new StringBuilder();
 
         // Adicionando cada tipo de seguro do cliente 
         for (Seguro seguro : seguros) {
             if (tiposSeguros.length() > 0) {
-                tiposSeguros.append(", "); //Separando cada tipo por vírgula
+                tiposSeguros.append(", "); // Separando cada tipo por vírgula
             }
             tiposSeguros.append(seguro.getTipoSeguro().name());
         }
 
         return tiposSeguros.toString();
-    }
-
-
-    //Método que busca os seguros (Pode apagar depois, só para exemplo)
-    private static List<Seguro> buscarSegurosPorUsuario(long idUsuario) {
-        
-        List<Seguro> seguros = new ArrayList<>();
-        seguros.add(new Seguro(Seguro.TipoSeguro.CARRO) {
-            {
-                setIdSeguro(101);
-                setIdUsuario(idUsuario);
-            }
-        });
-        seguros.add(new Seguro(Seguro.TipoSeguro.MOTO) {
-            {
-                setIdSeguro(102);
-                setIdUsuario(idUsuario);
-            }
-        });
-        return seguros;
     }
 }
