@@ -105,8 +105,26 @@ public class SeguroDAO {
 		return seguro;
 	}
 
-    //Select by user
-    private Seguro selectByUser(){
-        
+    // selectByUser
+public List<Seguro> selectByUser(long idUsuario) {
+    List<Seguro> listaSeguros = new ArrayList<>();
+    Seguro seguro;
+    String sql = "select * from seguro where id_usuario=?";
+    try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setLong(1, idUsuario);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            seguro = new Seguro(TipoSeguro.fromCodigo(rs.getString("tipo_seguro")));
+            seguro.setIdSeguro(rs.getLong("id_seguro"));
+            seguro.setIdAutomovel(rs.getLong("id_automovel"));
+            seguro.setIdUsuario(rs.getLong("id_usuario"));
+            listaSeguros.add(seguro);
+        }
+        stmt.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return listaSeguros;
+}
 }

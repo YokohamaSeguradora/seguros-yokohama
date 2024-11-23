@@ -1,7 +1,7 @@
 package br.com.yokohama.seguros.utils;
 
 import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.sql.Connection;
 import java.util.List;
 
 import com.lowagie.text.Document;
@@ -11,6 +11,7 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
+import br.com.yokohama.seguros.connection.ConnectionFactory;
 import br.com.yokohama.seguros.dao.SeguroDAO;
 import br.com.yokohama.seguros.model.Seguro;
 import br.com.yokohama.seguros.model.Usuario;
@@ -38,8 +39,8 @@ public class CorretorPdf {
             // Informações do Corretor
             Font fontNormal = new Font(Font.HELVETICA, 12, Font.NORMAL);
             Paragraph corretorInfo = new Paragraph(
-                String.format("Corretor: %s\nID do Corretor: %d", corretor.getNomeCompletoUsuario(), corretor.getIdUsuario()),
-                fontNormal
+                    String.format("Corretor: %s\nID do Corretor: %d", corretor.getNomeCompletoUsuario(), corretor.getIdUsuario()),
+                    fontNormal
             );
             corretorInfo.setSpacingAfter(20);
             document.add(corretorInfo);
@@ -55,7 +56,7 @@ public class CorretorPdf {
 
             // Adicionando os clientes na tabela
             for (Usuario cliente : clientes) {
-                if (cliente.getTipoUsuario() == Usuario.TipoUsuario.SEGURADO) {  
+                if (cliente.getTipoUsuario() == Usuario.TipoUsuario.SEGURADO) {
                     tabela.addCell(cliente.getNomeCompletoUsuario());
                     tabela.addCell(String.valueOf(cliente.getIdUsuario()));
 
@@ -79,18 +80,31 @@ public class CorretorPdf {
     }
 
     // Método que obtém todos os tipos de seguros do cliente
-       private static String obterTiposDeSeguros(Usuario cliente) {
-        List<Seguro> seguros = SeguroDAO.selectByUser(cliente.getIdUsuario());  
-        StringBuilder tiposSeguros = new StringBuilder();
+    private static String obterTiposDeSeguros(Usuario cliente) {
 
-        // Adicionando cada tipo de seguro do cliente 
-        for (Seguro seguro : seguros) {
-            if (tiposSeguros.length() > 0) {
-                tiposSeguros.append(", "); // Separando cada tipo por vírgula
-            }
-            tiposSeguros.append(seguro.getTipoSeguro().name());
+        if (cliente == null) {
+            return "Cliente inválido";
         }
 
-        return tiposSeguros.toString();
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        Connection connection = connectionFactory.conectar();
+
+        if (connection == null) {
+            return "Erro de conexão com o banco de dados.";
+        }
+        SeguroDAO seguroDAO = new SeguroDAO(connection);
+
+        List<Seguro> seguros = seguroDAO.selectByUser(cliente.getIdUsuario());
+        if (seguros == null || seguros.isEmpty()) {
+            return "Nenhum seguro encontrado para este cliente.";
+        }
+
+        return seguros.stream()
+                .map(seguro -> seguro.getTipoSeguro().name())
+                .sorted() // Ordena alfabeticamente os tipos
+                .reduce((s1, s2) -> s1 + ", " + s2) 
+                .orElse("Nenhum tipo disponível.");
     }
+
 }
+
