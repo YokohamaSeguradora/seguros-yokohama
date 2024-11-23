@@ -189,7 +189,7 @@ public class AtualizaUsuario extends JFrame {
 		contentPane.add(yokohamaLogo);
 
 		JLabel yokoLabel = new JLabel("");
-		yokoLabel.setIcon(new ImageIcon("C:\\Users\\thibas\\Downloads\\yoko.png"));
+		yokoLabel.setIcon(new ImageIcon(carregaImagen("/images/yoko.png")));
 		yokoLabel.setBounds(1183, 496, 126, 118);
 		contentPane.add(yokoLabel);
 

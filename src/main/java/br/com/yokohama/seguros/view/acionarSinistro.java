@@ -18,12 +18,15 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import java.awt.List;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 import javax.swing.JComboBox;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 
@@ -36,8 +39,9 @@ public class acionarSinistro extends JFrame {
 
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
-		UIManager.put("Button.arc", 15);
+		UIManager.put("Button.arc", 25);
 		UIManager.put("CheckBox.background", Color.white);
+		UIManager.put("TextComponent.arc", 10);
 		UIManager.put("TitlePane.inactiveForeground", true);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,6 +55,17 @@ public class acionarSinistro extends JFrame {
 			}
 		});
 	}
+	
+	// Metodo para carregar imagens
+		public BufferedImage carregaImagen(String str) {
+			try {
+				return ImageIO.read(AtualizaAuto.class.getResource(str));
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
 
 	public acionarSinistro() {
 		setResizable(false);
@@ -65,7 +80,7 @@ public class acionarSinistro extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Kouto\\Downloads\\Bell Ringing 2.png"));
-		lblNewLabel_1.setBounds(793, 176, 35, 40);
+		lblNewLabel_1.setBounds(796, 176, 35, 40);
 		contentPane.add(lblNewLabel_1);
 		
 		loca = new JTextField();
@@ -164,15 +179,9 @@ public class acionarSinistro extends JFrame {
 		contentPane.add(sinistro);
 		
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon("C:\\Users\\Kouto\\Downloads\\logo.png"));
-		logo.setBounds(-18, 0, 166, 108);
+		logo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
+		logo.setBounds(10, -13, 186, 120);
 		contentPane.add(logo);
-		
-		JButton headerPage = new JButton("");
-		headerPage.setBackground(new Color(255, 255, 255));
-		headerPage.setEnabled(false);
-		headerPage.setBounds(142, 176, 1066, 40);
-		contentPane.add(headerPage);
 		
 		JButton main = new JButton("");
 		main.setEnabled(false);
@@ -181,13 +190,19 @@ public class acionarSinistro extends JFrame {
 		contentPane.add(main);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Kouto\\Downloads\\Bell Ringing 01.png"));
-		lblNewLabel.setBounds(1293, 21, 35, 40);
+		lblNewLabel.setIcon(new ImageIcon(carregaImagen("/images/Bell.png")));
+		lblNewLabel.setBounds(793, 176, 35, 40);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblAssit = new JLabel("Assitência 24Hrs");
 		lblAssit.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblAssit.setBounds(142, 154, 140, 23);
 		contentPane.add(lblAssit);
+		
+		JButton headerPage = new JButton("");
+		headerPage.setBackground(new Color(255, 255, 255));
+		headerPage.setEnabled(false);
+		headerPage.setBounds(142, 176, 1066, 40);
+		contentPane.add(headerPage);
 	}
 }

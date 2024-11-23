@@ -2,19 +2,17 @@ package br.com.yokohama.seguros.model;
 
 public class Usuario {
 	public static enum TipoUsuario {
-		CORRETOR("C"),
-		SEGURADO("S");
-		
+		CORRETOR("C"), SEGURADO("S");
+
 		private final String codigo;
-		
+
 		TipoUsuario(String codigo) {
 			this.codigo = codigo;
 		}
-		
+
 		public String getCodigo() {
 			return this.codigo;
 		}
-
 
 		// Método para converter uma String para o valor do Enum
 		public static TipoUsuario fromCodigo(String codigo) {
@@ -26,22 +24,20 @@ public class Usuario {
 			throw new IllegalArgumentException("Código de usuário inválido: " + codigo);
 		}
 	}
-	
-    private long idUsuario; // PK
-    private final TipoUsuario tipoUsuario;
-    private String nomeCompletoUsuario;
-    private String cpfUsuario; // Único
-    private String emailUsuario; // Único
-    private String telefoneUsuario; // Único
-    private String senhaUsuario;
-    private String enderecoUsuario;
+
+	private long idUsuario; // PK
+	private final TipoUsuario tipoUsuario;
+	private String nomeCompletoUsuario;
+	private String cpfUsuario; // Único
+	private String emailUsuario; // Único
+	private String telefoneUsuario; // Único
+	private String senhaUsuario;
+	private String enderecoUsuario;
 	private String cnhSegurado; // Único
-    
-    public Usuario(TipoUsuario tipoUsuario) {
-    	this.tipoUsuario = tipoUsuario;
-    }
-    
-    
+
+	public Usuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 
 	public Usuario(TipoUsuario tipoUsuario, String nomeCompletoUsuario, String cpfUsuario, String emailUsuario,
 			String telefoneUsuario, String senhaUsuario, String enderecoUsuario, String cnhSegurado) {
@@ -55,8 +51,6 @@ public class Usuario {
 		this.enderecoUsuario = enderecoUsuario;
 		this.cnhSegurado = cnhSegurado;
 	}
-
-
 
 	public long getIdUsuario() {
 		return idUsuario;

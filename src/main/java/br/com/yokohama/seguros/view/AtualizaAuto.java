@@ -37,7 +37,6 @@ public class AtualizaAuto extends JFrame {
 		UIManager.put("Button.arc", 25);
 		UIManager.put("Button.hoverBackground", new Color(218, 76, 76));
 		UIManager.put("TextComponent.arc", 20);
-		UIManager.put("Button.arc", 20);
 		UIManager.put("Button.hoverBackground", new Color(105, 7, 7));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -169,7 +168,7 @@ public class AtualizaAuto extends JFrame {
 		contentPane.add(yokohamaLogo);
 
 		JLabel yokoLabel = new JLabel("");
-		yokoLabel.setIcon(new ImageIcon("C:\\Users\\thibas\\Downloads\\yoko.png"));
+		yokoLabel.setIcon(new ImageIcon(carregaImagen("/images/yoko.png")));
 		yokoLabel.setBounds(1183, 496, 126, 118);
 		contentPane.add(yokoLabel);
 
