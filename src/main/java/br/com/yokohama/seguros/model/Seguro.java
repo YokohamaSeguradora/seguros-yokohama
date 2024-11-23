@@ -1,6 +1,6 @@
 package br.com.yokohama.seguros.model;
 
-public abstract class Seguro {
+public class Seguro {
 	public static enum TipoSeguro {
 		BICICLETA("BIC"),
 	    CAMINHAO("CAM"),
@@ -34,9 +34,15 @@ public abstract class Seguro {
     private long idUsuario; // FK
     private long idAutomovel; // FK
     
-    protected Seguro(TipoSeguro tipoSeguro) {
+    public Seguro(TipoSeguro tipoSeguro) {
     	this.tipoSeguro = tipoSeguro;
     }
+    
+	public Seguro(TipoSeguro tipoSeguro, long idUsuario, long idAutomovel) {
+		this.tipoSeguro = tipoSeguro;
+		this.idUsuario = idUsuario;
+		this.idAutomovel = idAutomovel;
+	}
 
 	public long getIdSeguro() {
 		return idSeguro;
