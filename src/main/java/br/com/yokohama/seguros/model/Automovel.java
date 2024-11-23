@@ -2,7 +2,7 @@ package br.com.yokohama.seguros.model;
 
 import java.sql.Date;
 
-public abstract class Automovel {
+public class Automovel {
 	public static enum TipoAutomovel {
 	    BICICLETA("BIC"),
 	    CAMINHAO("CAM"),
@@ -38,11 +38,22 @@ public abstract class Automovel {
     private Date dataModeloAutomovel;
     private Date dataFabricacaoAutomovel;
     private String cepPernoiteAutomovel;
-    private long idSeguro; // FK
     
-    protected Automovel(TipoAutomovel tipoAutomovel) {
+    public Automovel(TipoAutomovel tipoAutomovel) {
     	this.tipoAutomovel = tipoAutomovel;
     }
+
+	public Automovel(TipoAutomovel tipoAutomovel, String placaAutomovel, String renavamAutomovel,
+			String modeloAutomovel, Date dataModeloAutomovel, Date dataFabricacaoAutomovel,
+			String cepPernoiteAutomovel) {
+		this.tipoAutomovel = tipoAutomovel;
+		this.placaAutomovel = placaAutomovel;
+		this.renavamAutomovel = renavamAutomovel;
+		this.modeloAutomovel = modeloAutomovel;
+		this.dataModeloAutomovel = dataModeloAutomovel;
+		this.dataFabricacaoAutomovel = dataFabricacaoAutomovel;
+		this.cepPernoiteAutomovel = cepPernoiteAutomovel;
+	}
 
 	public long getIdAutomovel() {
 		return idAutomovel;
@@ -98,14 +109,6 @@ public abstract class Automovel {
 
 	public void setCepPernoiteAutomovel(String cepPernoiteAutomovel) {
 		this.cepPernoiteAutomovel = cepPernoiteAutomovel;
-	}
-
-	public long getIdSeguro() {
-		return idSeguro;
-	}
-
-	public void setIdSeguro(long idSeguro) {
-		this.idSeguro = idSeguro;
 	}
 
 	public TipoAutomovel getTipoAutomovel() {

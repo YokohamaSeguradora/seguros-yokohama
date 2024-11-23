@@ -4,26 +4,26 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.yokohama.seguros.connection.ConnectionFactory;
+import br.com.yokohama.seguros.controller.Criptografia;
 import br.com.yokohama.seguros.dao.UsuarioDAO;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
 
-public class Teste {
+public class TesteUsuario {
 
 	public static void main(String[] args) {
 
 		Connection connection = new ConnectionFactory().conectar();
 		UsuarioDAO daoUsuario = new UsuarioDAO(connection);
 
-		// 1. Teste de Inserção
+		// 1. Teste de inserção
 		System.out.println("Inserindo usuários...");
 		Usuario usuario1 = new Usuario(TipoUsuario.SEGURADO, "João da Silva", "12345678900", "joao.silva@example.com", "11987654321", "senhaSegura123", "Rua Exemplo, 123, Bairro Central", null);
-		//Usuario usuario2 = new Usuario(TipoUsuario.CORRETOR, "Maria Oliveira", "98765432100", "maria.oliveira@example.com", "21998765432", "senhaForte456", "Av. Principal, 456, Centro", "98765210");
-		Usuario usuario2 = new Usuario(TipoUsuario.CORRETOR, "Rodrigo", "98765432100", "maria.oliveira@example.com", "21998765432", "senhaForte456", "Av. Principal, 456, Centro", "98765210");
+		Criptografia criptografia = new Criptografia(usuario1.getSenhaUsuario(), Criptografia.SHA256);
+		String senhaCriptografada = criptografia.criptografar();
+		usuario1.setSenhaUsuario(senhaCriptografada);
+		System.out.println(senhaCriptografada);
 		daoUsuario.insert(usuario1);
-		daoUsuario.insert(usuario2);
-		System.out.println("Inserção concluída.\n");
-
 		// 2. Teste de Consulta
 		System.out.println("Consultando todos os usuarios:");
 		List<Usuario> lista = daoUsuario.selectAll();

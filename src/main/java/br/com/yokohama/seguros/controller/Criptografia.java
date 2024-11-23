@@ -3,13 +3,14 @@ package br.com.yokohama.seguros.controller;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
 
 public class Criptografia {
-    public static final String SHA256 = "SHA-256"; // Constante para algoritmo SHA-256
-    public static final String MD5 = "MD5";       // Constante para algoritmo MD5
+    public static final String SHA256 = "SHA-256"; // Algoritmo SHA-256
 
     private String informacao; // Informação a ser criptografada
-    private String padrao;     // Algoritmo de hash (ex.: SHA-256 ou MD5)
+    private String padrao;     // Algoritmo de hash (ex.: SHA-256)
 
     /**
      * Construtor para inicializar a classe com a informação e o padrão de criptografia.
@@ -41,28 +42,24 @@ public class Criptografia {
     }
 
     /**
-     * Método para criptografar a informação usando o algoritmo especificado no atributo `padrao`.
+     * Método para criptografar a informação usando o algoritmo especificado no atributo `padrao` com salt.
      *
      * @return String criptografada em hexadecimal (letras maiúsculas) ou mensagem de erro em caso de falha.
      */
     public String criptografar() {
-        // Validação para evitar erros
-        if (informacao == null || informacao.isEmpty()) {
-            return "A informação não pode ser nula ou vazia.";
-        }
 
-        if (padrao == null || padrao.isEmpty()) {
-            return "O padrão de criptografia não foi definido.";
-        }
+        // Gerar um salt aleatório para cada senha
+        String salt = gerarSalt();
+        String senhaComSalt = informacao + salt;
 
         StringBuilder hexString = new StringBuilder(); // String para armazenar o hash em hexadecimal
 
         try {
-            // Inicializa o MessageDigest com o algoritmo especificado
+            // Inicializa o MessageDigest com o algoritmo especificado (SHA-256)
             MessageDigest messageDigest = MessageDigest.getInstance(padrao);
 
-            // Gera o hash da informação em bytes
-            byte[] hash = messageDigest.digest(informacao.getBytes(StandardCharsets.UTF_8));
+            // Gera o hash da informação + salt em bytes
+            byte[] hash = messageDigest.digest(senhaComSalt.getBytes(StandardCharsets.UTF_8));
 
             // Converte cada byte do hash em hexadecimal
             for (byte b : hash) {
@@ -80,5 +77,17 @@ public class Criptografia {
 
         // Retorna a string criptografada em letras maiúsculas
         return hexString.toString().toUpperCase();
+    }
+
+    /**
+     * Gera um salt aleatório usando SecureRandom.
+     *
+     * @return Salt gerado em formato Base64.
+     */
+    private String gerarSalt() {
+        SecureRandom secureRandom = new SecureRandom();
+        byte[] saltBytes = new byte[16]; // Tamanho de 16 bytes para o salt
+        secureRandom.nextBytes(saltBytes);
+        return Base64.getEncoder().encodeToString(saltBytes); // Converte para Base64 para facilitar o armazenamento
     }
 }
