@@ -50,8 +50,7 @@ CREATE TABLE seguro (
     id_seguro     INTEGER NOT NULL,
     tipo_seguro   VARCHAR2(50 CHAR) NOT NULL,
     id_usuario    INTEGER NOT NULL,
-    id_automovel  INTEGER NOT NULL,
-    id_automovel1 INTEGER NOT NULL
+    id_automovel  INTEGER NOT NULL
 );
 
 COMMENT ON COLUMN seguro.tipo_seguro IS
@@ -71,7 +70,7 @@ CREATE TABLE usuario (
     cpf_usuario           CHAR(11 CHAR) NOT NULL,
     email_usuario         VARCHAR2(50 CHAR) NOT NULL,
     telefone_usuario      CHAR(11 CHAR) NOT NULL,
-    senha_usuario         VARCHAR2(50 CHAR) NOT NULL,
+    senha_usuario         VARCHAR2(100 CHAR) NOT NULL,
     endereco_usuario      VARCHAR2(50 CHAR) NOT NULL,
     cnh_segurado          CHAR(9 CHAR)
 );
@@ -89,8 +88,6 @@ ALTER TABLE usuario ADD CONSTRAINT usuario_telefone_usuario_un UNIQUE ( telefone
 
 ALTER TABLE usuario ADD CONSTRAINT usuario_cnh_segurado_un UNIQUE ( cnh_segurado );
 
-ALTER TABLE usuario ADD CONSTRAINT usuario_email_usuario_unv1 UNIQUE ( email_usuario );
-
 ALTER TABLE fatura
     ADD CONSTRAINT fatura_seguro_fk FOREIGN KEY ( id_seguro )
         REFERENCES seguro ( id_seguro );
@@ -103,6 +100,7 @@ ALTER TABLE seguro
     ADD CONSTRAINT seguro_usuario_fk FOREIGN KEY ( id_usuario )
         REFERENCES usuario ( id_usuario );
 
+
 CREATE SEQUENCE SEQ_ID_USUARIO START WITH 1 INCREMENT BY 1;
 
 CREATE OR REPLACE TRIGGER TR_INSERT_USUARIO
@@ -110,6 +108,30 @@ BEFORE INSERT ON USUARIO FOR EACH ROW
 BEGIN
 	SELECT SEQ_ID_USUARIO.nextval
 	INTO :NEW.id_usuario
+	FROM DUAL;
+END;
+/
+
+
+CREATE SEQUENCE SEQ_ID_SEGURO START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER TR_INSERT_SEGURO
+BEFORE INSERT ON SEGURO FOR EACH ROW
+BEGIN
+	SELECT SEQ_ID_SEGURO.nextval
+	INTO :NEW.id_seguro
+	FROM DUAL;
+END;
+/
+
+
+CREATE SEQUENCE SEQ_ID_AUTOMOVEL START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER TR_INSERT_AUTOMOVEL
+BEFORE INSERT ON AUTOMOVEL FOR EACH ROW
+BEGIN
+	SELECT SEQ_ID_AUTOMOVEL.nextval
+	INTO :NEW.id_automovel
 	FROM DUAL;
 END;
 /
