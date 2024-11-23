@@ -9,7 +9,7 @@ import br.com.yokohama.seguros.dao.UsuarioDAO;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
 
-public class Teste {
+public class TesteUsuario {
 
 	public static void main(String[] args) {
 
