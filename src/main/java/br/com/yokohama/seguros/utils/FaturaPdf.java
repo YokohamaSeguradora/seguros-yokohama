@@ -28,9 +28,8 @@ public class FaturaPdf {
             document.add(titulo);
 
             //              Informações Gerais 
-
             Font fontNormal = new Font(Font.HELVETICA, 12, Font.NORMAL);
-            PdfPTable tabela = new PdfPTable(2); 
+            PdfPTable tabela = new PdfPTable(2);
             tabela.setWidthPercentage(100);
             tabela.setSpacingBefore(10);
 
@@ -56,7 +55,7 @@ public class FaturaPdf {
             //                      Rodapé
             Paragraph rodape = new Paragraph("Obrigado por escolher nossos Serviços", fontNormal);
             Paragraph rodape2 = new Paragraph("Yokohama Seguros. Protegendo o que te move", fontNormal);
-            
+
             rodape.setAlignment(Element.ALIGN_CENTER);
             rodape.setSpacingBefore(20);
 

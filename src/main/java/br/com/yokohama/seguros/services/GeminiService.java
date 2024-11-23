@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class GeminiService {
+
     private static final String CHAVE_API = "AIzaSyDojOtyTaAAwenR5OgOcJVr7mT6mi38mAI";
     private static final String URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:streamGenerateContent";
     private static final ArrayList<String> historico = new ArrayList<>();
@@ -32,9 +33,9 @@ public class GeminiService {
 
     private boolean foraDoTopico(String entrada) {
         String[] palavrasChaveSeguros = {
-                "seguro", "apólice", "apolice", "sinistro", "cobertura",
-                "premio", "prêmio", "risco", "indenização", "indenizacao","Yoko", "yoko",
-                "nome"
+            "seguro", "apólice", "apolice", "sinistro", "cobertura",
+            "premio", "prêmio", "risco", "indenização", "indenizacao", "Yoko", "yoko",
+            "nome"
         };
 
         for (String palavra : palavrasChaveSeguros) {
@@ -70,7 +71,9 @@ public class GeminiService {
 
         try (BufferedReader leitor = new BufferedReader(new StringReader(resposta.body()))) {
             while ((linha = leitor.readLine()) != null) {
-                if (linha.isEmpty()) continue;
+                if (linha.isEmpty()) {
+                    continue;
+                }
                 Matcher matcher = padrao.matcher(linha.substring(5));
                 if (matcher.find()) {
                     respostaFinal.append(matcher.group(1)).append(" ");

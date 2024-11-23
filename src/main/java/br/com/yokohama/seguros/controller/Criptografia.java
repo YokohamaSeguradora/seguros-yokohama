@@ -7,13 +7,15 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 public class Criptografia {
+
     public static final String SHA256 = "SHA-256"; // Algoritmo SHA-256
 
     private String informacao; // Informação a ser criptografada
     private String padrao;     // Algoritmo de hash (ex.: SHA-256)
 
     /**
-     * Construtor para inicializar a classe com a informação e o padrão de criptografia.
+     * Construtor para inicializar a classe com a informação e o padrão de
+     * criptografia.
      *
      * @param informacao Texto a ser criptografado.
      * @param padrao Algoritmo de criptografia a ser utilizado.
@@ -42,9 +44,11 @@ public class Criptografia {
     }
 
     /**
-     * Método para criptografar a informação usando o algoritmo especificado no atributo `padrao` com salt.
+     * Método para criptografar a informação usando o algoritmo especificado no
+     * atributo `padrao` com salt.
      *
-     * @return String criptografada em hexadecimal (letras maiúsculas) ou mensagem de erro em caso de falha.
+     * @return String criptografada em hexadecimal (letras maiúsculas) ou
+     * mensagem de erro em caso de falha.
      */
     public String criptografar() {
 

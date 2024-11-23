@@ -1,8 +1,9 @@
 package br.com.yokohama.seguros.controller;
 
-import br.com.yokohama.seguros.services.GeminiService;
 import java.io.IOException;
 import java.util.Scanner;
+
+import br.com.yokohama.seguros.services.GeminiService;
 
 public class ChatbotController {
 
@@ -27,4 +28,3 @@ public class ChatbotController {
         }
     }
 }
-

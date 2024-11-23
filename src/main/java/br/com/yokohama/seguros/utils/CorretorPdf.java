@@ -102,9 +102,8 @@ public class CorretorPdf {
         return seguros.stream()
                 .map(seguro -> seguro.getTipoSeguro().name())
                 .sorted() // Ordena alfabeticamente os tipos
-                .reduce((s1, s2) -> s1 + ", " + s2) 
+                .reduce((s1, s2) -> s1 + ", " + s2)
                 .orElse("Nenhum tipo disponível.");
     }
 
 }
-

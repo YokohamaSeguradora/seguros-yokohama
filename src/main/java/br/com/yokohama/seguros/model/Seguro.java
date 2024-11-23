@@ -1,74 +1,74 @@
 package br.com.yokohama.seguros.model;
 
 public class Seguro {
-	public static enum TipoSeguro {
-		BICICLETA("BIC"),
-	    CAMINHAO("CAM"),
-	    CARRO("CAR"),
-	    MOTO("MOT");
-		
-		private final String codigo;
-		
-		TipoSeguro(String codigo) {
-			this.codigo = codigo;
-		}
-		
-		public String getCodigo() {
-			return this.codigo;
-		}
 
+    public static enum TipoSeguro {
+        BICICLETA("BIC"),
+        CAMINHAO("CAM"),
+        CARRO("CAR"),
+        MOTO("MOT");
 
-		// Método para converter uma String para o valor do Enum
-		public static TipoSeguro fromCodigo(String codigo) {
-			for (TipoSeguro tipoSeguro : TipoSeguro.values()) {
-				if (tipoSeguro.getCodigo().equalsIgnoreCase(codigo)) {
-					return tipoSeguro;
-				}
-			}
-			throw new IllegalArgumentException("Código de seguro inválido: " + codigo);
-		}
-	}
-	
+        private final String codigo;
+
+        TipoSeguro(String codigo) {
+            this.codigo = codigo;
+        }
+
+        public String getCodigo() {
+            return this.codigo;
+        }
+
+        // Método para converter uma String para o valor do Enum
+        public static TipoSeguro fromCodigo(String codigo) {
+            for (TipoSeguro tipoSeguro : TipoSeguro.values()) {
+                if (tipoSeguro.getCodigo().equalsIgnoreCase(codigo)) {
+                    return tipoSeguro;
+                }
+            }
+            throw new IllegalArgumentException("Código de seguro inválido: " + codigo);
+        }
+    }
+
     private long idSeguro; // PK
     private final TipoSeguro tipoSeguro;
     private long idUsuario; // FK
     private long idAutomovel; // FK
-    
+
     public Seguro(TipoSeguro tipoSeguro) {
-    	this.tipoSeguro = tipoSeguro;
+        this.tipoSeguro = tipoSeguro;
     }
-    
-	public Seguro(TipoSeguro tipoSeguro, long idUsuario, long idAutomovel) {
-		this.tipoSeguro = tipoSeguro;
-		this.idUsuario = idUsuario;
-		this.idAutomovel = idAutomovel;
-	}
 
-	public long getIdSeguro() {
-		return idSeguro;
-	}
+    public Seguro(TipoSeguro tipoSeguro, long idUsuario, long idAutomovel) {
+        this.tipoSeguro = tipoSeguro;
+        this.idUsuario = idUsuario;
+        this.idAutomovel = idAutomovel;
+    }
 
-	public void setIdSeguro(long idSeguro) {
-		this.idSeguro = idSeguro;
-	}
+    public long getIdSeguro() {
+        return idSeguro;
+    }
 
-	public long getIdUsuario() {
-		return idUsuario;
-	}
+    public void setIdSeguro(long idSeguro) {
+        this.idSeguro = idSeguro;
+    }
 
-	public void setIdUsuario(long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
+    public long getIdUsuario() {
+        return idUsuario;
+    }
 
-	public long getIdAutomovel() {
-		return idAutomovel;
-	}
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-	public void setIdAutomovel(long idAutomovel) {
-		this.idAutomovel = idAutomovel;
-	}
+    public long getIdAutomovel() {
+        return idAutomovel;
+    }
 
-	public TipoSeguro getTipoSeguro() {
-		return tipoSeguro;
-	}
+    public void setIdAutomovel(long idAutomovel) {
+        this.idAutomovel = idAutomovel;
+    }
+
+    public TipoSeguro getTipoSeguro() {
+        return tipoSeguro;
+    }
 }

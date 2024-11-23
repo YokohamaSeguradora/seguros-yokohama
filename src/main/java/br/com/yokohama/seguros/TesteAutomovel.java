@@ -19,13 +19,13 @@ public class TesteAutomovel {
         // 1. Teste de inserção
         System.out.println("Inserindo automóveis...");
         Automovel automovel1 = new Automovel(
-            TipoAutomovel.CARRO, // enum ou classe similar
-            "ABC1234", // placaAutomovel
-            "98765432101", // renavamAutomovel
-            "Honda Civic", // modeloAutomovel
-            new Date(2020, 1, 1), // dataModeloAutomovel (15/06/2022)
-            new Date(2020, 1, 1), // dataFabricacaoAutomovel (10/11/2021)
-            "01001000" // cepPernoiteAutomovel
+                TipoAutomovel.CARRO, // enum ou classe similar
+                "ABC1234", // placaAutomovel
+                "98765432101", // renavamAutomovel
+                "Honda Civic", // modeloAutomovel
+                new Date(2020, 1, 1), // dataModeloAutomovel (15/06/2022)
+                new Date(2020, 1, 1), // dataFabricacaoAutomovel (10/11/2021)
+                "01001000" // cepPernoiteAutomovel
         );
         daoAutomovel.insert(automovel1);
         System.out.println("Automóvel inserido com sucesso.");
@@ -67,7 +67,6 @@ public class TesteAutomovel {
 //        System.out.println("\nExcluindo automóvel:");
 //        daoAutomovel.delete(1); // troque o ID conforme necessário
 //        System.out.println("Automóvel excluído.");
-
         // 6. Consulta final para verificar exclusão
         System.out.println("\nConsultando todos os automóveis após exclusão:");
         lista = daoAutomovel.selectAll();

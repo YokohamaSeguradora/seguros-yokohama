@@ -41,14 +41,14 @@ public class SegurosPdf {
             // Informações do Cliente
             Font fontNormal = new Font(Font.HELVETICA, 12, Font.NORMAL);
             Paragraph clienteInfo = new Paragraph(
-                String.format("Cliente: %s\nID do Usuário: %d", cliente.getNomeCompletoUsuario(), cliente.getIdUsuario()),
-                fontNormal
+                    String.format("Cliente: %s\nID do Usuário: %d", cliente.getNomeCompletoUsuario(), cliente.getIdUsuario()),
+                    fontNormal
             );
             clienteInfo.setSpacingAfter(20);
             document.add(clienteInfo);
 
             // Tabela de Seguros
-            PdfPTable tabela = new PdfPTable(4); 
+            PdfPTable tabela = new PdfPTable(4);
             tabela.setWidthPercentage(100);
             tabela.setSpacingBefore(10);
 
@@ -62,7 +62,7 @@ public class SegurosPdf {
             for (Seguro seguro : seguros) {
                 tabela.addCell(String.valueOf(seguro.getIdSeguro()));
                 tabela.addCell(seguro.getTipoSeguro().toString());
-                
+
                 Automovel automovel = buscarAutomovelPorId(seguro.getIdAutomovel());
                 tabela.addCell(automovel.getModeloAutomovel());
                 tabela.addCell(automovel.getPlacaAutomovel());
@@ -73,7 +73,7 @@ public class SegurosPdf {
             //                      Rodapé
             Paragraph rodape = new Paragraph("Obrigado por escolher nossos Serviços", fontNormal);
             Paragraph rodape2 = new Paragraph("Yokohama Seguros. Protegendo o que te move", fontNormal);
-            
+
             rodape.setAlignment(Element.ALIGN_CENTER);
             rodape.setSpacingBefore(20);
 
@@ -89,7 +89,7 @@ public class SegurosPdf {
         }
     }
 
-     private static Automovel buscarAutomovelPorId(long idAutomovel) {
+    private static Automovel buscarAutomovelPorId(long idAutomovel) {
         Connection connection = null;
         Automovel automovel = null;
 

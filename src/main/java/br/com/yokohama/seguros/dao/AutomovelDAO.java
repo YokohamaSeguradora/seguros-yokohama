@@ -12,7 +12,8 @@ import br.com.yokohama.seguros.model.Automovel;
 import br.com.yokohama.seguros.model.Automovel.TipoAutomovel;
 
 public class AutomovelDAO {
-	private Connection connection;
+
+    private Connection connection;
 
     public AutomovelDAO(Connection connection) {
         this.connection = connection;
@@ -20,9 +21,9 @@ public class AutomovelDAO {
 
     // insert
     public void insert(Automovel automovel) {
-        String sql = "INSERT INTO automovel (tipo_automovel, placa_automovel, renavam_automovel, " +
-                     "modelo_automovel, data_modelo_automovel, data_fabricacao_automovel, cep_pernoite_automovel) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO automovel (tipo_automovel, placa_automovel, renavam_automovel, "
+                + "modelo_automovel, data_modelo_automovel, data_fabricacao_automovel, cep_pernoite_automovel) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, automovel.getTipoAutomovel().getCodigo());
@@ -54,9 +55,9 @@ public class AutomovelDAO {
 
     // update
     public void update(Automovel automovel) {
-        String sql = "UPDATE automovel SET tipo_automovel=?, placa_automovel=?, renavam_automovel=?, " +
-                     "modelo_automovel=?, data_modelo_automovel=?, data_fabricacao_automovel=?, " +
-                     "cep_pernoite_automovel=? WHERE id_automovel=?";
+        String sql = "UPDATE automovel SET tipo_automovel=?, placa_automovel=?, renavam_automovel=?, "
+                + "modelo_automovel=?, data_modelo_automovel=?, data_fabricacao_automovel=?, "
+                + "cep_pernoite_automovel=? WHERE id_automovel=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, automovel.getTipoAutomovel().getCodigo());
