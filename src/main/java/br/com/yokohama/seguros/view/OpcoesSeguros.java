@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-public class opcõesSeguros extends JFrame {
+public class OpcoesSeguros extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -31,7 +31,7 @@ public class opcõesSeguros extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					opcõesSeguros frame = new opcõesSeguros();
+					OpcoesSeguros frame = new OpcoesSeguros();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -51,7 +51,7 @@ public class opcõesSeguros extends JFrame {
 			return null;
 		}
 	}
-	public opcõesSeguros() {
+	public OpcoesSeguros() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1366, 768);

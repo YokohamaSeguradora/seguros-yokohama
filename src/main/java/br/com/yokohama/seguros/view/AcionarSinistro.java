@@ -30,7 +30,7 @@ import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 
-public class acionarSinistro extends JFrame {
+public class AcionarSinistro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -46,7 +46,7 @@ public class acionarSinistro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					acionarSinistro frame = new acionarSinistro();
+					AcionarSinistro frame = new AcionarSinistro();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -67,7 +67,7 @@ public class acionarSinistro extends JFrame {
 			}
 		}
 
-	public acionarSinistro() {
+	public AcionarSinistro() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1366, 768);
