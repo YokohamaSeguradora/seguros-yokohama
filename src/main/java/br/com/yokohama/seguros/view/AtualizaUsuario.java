@@ -17,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 public class AtualizaUsuario extends JFrame {
 

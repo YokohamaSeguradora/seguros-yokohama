@@ -18,8 +18,6 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import javax.swing.JSplitPane;
-import javax.swing.JSeparator;
 
 public class AtualizaAuto extends JFrame {
 
