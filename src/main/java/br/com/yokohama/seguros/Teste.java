@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.yokohama.seguros.connection.ConnectionFactory;
-import br.com.yokohama.seguros.controller.RelatorioPDF;
 import br.com.yokohama.seguros.dao.UsuarioDAO;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
@@ -69,7 +68,6 @@ public class Teste {
 			System.out.println("----");
 		}
 
-		new RelatorioPDF ("Hello world guys");
 	}
 
 }
