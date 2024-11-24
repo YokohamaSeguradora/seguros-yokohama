@@ -11,6 +11,28 @@ public class UsuarioController {
         this.usuarioDAO = usuarioDAO;
     }
 
+    public void criarUsuario(boolean isCorretor, String nomeCompleto, String cpf, String email, 
+                             String telefone, String senha, String endereco, String cnh) {
+        Usuario.TipoUsuario tipoUsuario = isCorretor 
+                                          ? Usuario.TipoUsuario.CORRETOR 
+                                          : Usuario.TipoUsuario.SEGURADO;
+
+        Usuario usuario = new Usuario(tipoUsuario);
+        usuario.setNomeCompletoUsuario(nomeCompleto);
+        usuario.setCpfUsuario(cpf);
+        usuario.setEmailUsuario(email);
+        usuario.setTelefoneUsuario(telefone);
+        usuario.setSenhaUsuario(senha);
+        usuario.setEnderecoUsuario(endereco);
+
+        // CNH é aplicável somente para segurados
+        if (tipoUsuario == Usuario.TipoUsuario.SEGURADO) {
+            usuario.setCnhSegurado(cnh);
+        }
+
+        usuarioDAO.insert(usuario);
+    }
+
     public Usuario buscarUsuarioPorId(int idUsuario) {
         return usuarioDAO.selectById(idUsuario);
     }
