@@ -123,6 +123,12 @@ public class Login extends JFrame {
 		signInButton.setBackground(new Color(127, 11, 11));
 		signInButton.setBounds(398, 351, 554, 33);
 		contentPane.add(signInButton);
+		signInButton.addActionListener(e -> {
+			// Simula o login e vai para a próxima tela
+			SimulaSeguroCliente simulaSeguro = new SimulaSeguroCliente();
+			simulaSeguro.setVisible(true);
+			dispose(); // Fecha a tela de login
+		});
 		
 		myButton = new JButton("");
 		myButton.setEnabled(false);

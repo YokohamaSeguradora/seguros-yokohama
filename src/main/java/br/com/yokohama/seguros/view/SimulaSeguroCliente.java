@@ -195,7 +195,7 @@ public class SimulaSeguroCliente extends JFrame {
 		fotter.setBounds(152, 137, 1045, 3);
 		contentPane.add(fotter);
 		
-		JLabel labelInsiraDados = new JLabel("Insira seus dados para inciar a cotação!");
+		JLabel labelInsiraDados = new JLabel("Insira seus dados para iniciar a cotação!");
 		labelInsiraDados.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		labelInsiraDados.setBounds(445, 147, 459, 29);
 		contentPane.add(labelInsiraDados);

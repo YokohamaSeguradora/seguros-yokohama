@@ -112,7 +112,7 @@ public class Register extends JFrame {
 		labelTelefone.setBounds(154, 383, 60, 14);
 
 		lblNewLabel_1 = new JLabel("Cadastro");
-		lblNewLabel_1.setBounds(578, 53, 194, 61);
+		lblNewLabel_1.setBounds(578, 53, 250, 61);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_1.setBackground(new Color(255, 255, 255));
 		BackgroundAll.setLayout(null);
