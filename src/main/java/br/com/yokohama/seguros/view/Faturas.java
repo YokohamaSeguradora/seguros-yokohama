@@ -1,0 +1,147 @@
+package br.com.yokohama.seguros.view;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
+import javax.swing.JButton;
+
+public class Faturas extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTable table;
+	private JLabel lblNewLabel;
+	private JPanel fotter;
+	private JLabel yokohamaLogo;
+	private JTextField digitaNome;
+	private JLabel labelLupa;
+	private JButton yokoButton;
+	private JLabel yokoLabel;
+	private JPanel fotter_1;
+
+	
+	public static void main(String[] args) {
+		FlatLightLaf.setup();
+		UIManager.put("Button.arc", 15);
+		UIManager.put("TextComponent.arc", 15);
+		UIManager.put("TableHeader.separatorColor", Color.OPAQUE);
+		UIManager.put("TableHeader.bottomSeparatorColor", Color.OPAQUE);
+		UIManager.put("Table.gridColor", Color.red);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Faturas frame = new Faturas();
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	// Metodo para carregar imagens
+	public BufferedImage carregaImagen(String str) {
+		try {
+			return ImageIO.read(AtualizaAuto.class.getResource(str));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
+	public Faturas() {
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1366, 768);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		yokoLabel = new JLabel("");
+		yokoLabel.setIcon(new ImageIcon(carregaImagen("/images/yoko.png")));
+		yokoLabel.setBounds(1214, 557, 126, 118);
+		contentPane.add(yokoLabel);
+		
+		labelLupa = new JLabel("");
+		labelLupa.setIcon(new ImageIcon("C:\\Users\\thibas\\Downloads\\search.png"));
+		labelLupa.setBounds(1269, 111, 32, 23);
+		contentPane.add(labelLupa);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(171, 152, 986, 536);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.setVisible(false);
+		table.setShowHorizontalLines(false);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+			},
+			new String[] {
+				"Nome do cliente", "Tipo seguro", "M\u00EAs", "Valor Fatura", "Fatura", "Estado"
+			}
+		));
+		table.setBackground(new Color(246, 246, 246));
+		scrollPane.setViewportView(table);
+		
+		lblNewLabel = new JLabel("Faturas");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNewLabel.setBounds(123, 76, 134, 51);
+		contentPane.add(lblNewLabel);
+		
+		fotter = new JPanel();
+		fotter.setBackground(new Color(127, 11, 11));
+		fotter.setBounds(123, 115, 81, 3);
+		contentPane.add(fotter);
+		
+		yokohamaLogo = new JLabel();
+		yokohamaLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
+		yokohamaLogo.setBounds(10, -16, 186, 120);
+		contentPane.add(yokohamaLogo);
+		
+		digitaNome = new JTextField();
+		digitaNome.setBackground(new Color(246, 246, 246));
+		digitaNome.setBounds(848, 108, 453, 27);
+		contentPane.add(digitaNome);
+		
+		yokoButton = new JButton("yoko");
+		yokoButton.setOpaque(false);
+		yokoButton.setContentAreaFilled(false);
+		yokoButton.setBorderPainted(false);
+		yokoButton.setBounds(1228, 568, 101, 97);
+		contentPane.add(yokoButton);
+		
+		fotter_1 = new JPanel();
+		fotter_1.setBackground(new Color(0, 0, 0));
+		fotter_1.setBounds(0, 83, 1366, 1);
+		contentPane.add(fotter_1);
+	}
+}
