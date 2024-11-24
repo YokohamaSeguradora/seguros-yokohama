@@ -8,6 +8,7 @@ import br.com.yokohama.seguros.dao.UsuarioDAO;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
 import br.com.yokohama.seguros.utils.Criptografia;
+import br.com.yokohama.seguros.utils.Criptografia.PadraoCriptografia;
 
 public class TesteUsuario {
 
@@ -18,8 +19,8 @@ public class TesteUsuario {
 
         // 1. Teste de inserção
         System.out.println("Inserindo usuários...");
-        Usuario usuario1 = new Usuario(TipoUsuario.SEGURADO, "João da Silva", "12345678900", "joao.silva@example.com", "11987654321", "senhaSegura123", "Rua Exemplo, 123, Bairro Central", null);
-        Criptografia criptografia = new Criptografia(usuario1.getSenhaUsuario(), Criptografia.SHA256);
+        Usuario usuario1 = new Usuario(TipoUsuario.SEGURADO, "João da Silva", "12345678900", "joao.silva@example.com", "11987654321", "senhaSegura123", "Rua Exemplo, 123, Bairro Central", "123456789");
+        Criptografia criptografia = new Criptografia(usuario1.getSenhaUsuario(), PadraoCriptografia.SHA256);
         String senhaCriptografada = criptografia.criptografar();
         usuario1.setSenhaUsuario(senhaCriptografada);
         System.out.println(senhaCriptografada);
