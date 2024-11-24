@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -24,7 +25,7 @@ public class Login extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField passwordField;
 	private JButton myButton;
 
 	/**
@@ -83,10 +84,10 @@ public class Login extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(398, 291, 553, 37);
-		contentPane.add(textField_1);
+		passwordField = new JPasswordField();
+		passwordField.setColumns(10);
+		passwordField.setBounds(398, 291, 553, 37);
+		contentPane.add(passwordField);
 		
 		JLabel loginLabel = new JLabel("Login");
 		loginLabel.setFont(new Font("Arial", Font.ITALIC, 40));
@@ -125,7 +126,7 @@ public class Login extends JFrame {
 		contentPane.add(signInButton);
 		signInButton.addActionListener(e -> {
 			// Verifica se os campos de email e senha estão preenchidos
-			if (textField.getText().trim().isEmpty() || textField_1.getText().trim().isEmpty()) {
+			if (textField.getText().trim().isEmpty() || passwordField.getPassword().length == 0)  {
 				javax.swing.JOptionPane.showMessageDialog(this,
 					"Por favor, preencha os campos de Email e Senha.",
 					"Erro de validação",

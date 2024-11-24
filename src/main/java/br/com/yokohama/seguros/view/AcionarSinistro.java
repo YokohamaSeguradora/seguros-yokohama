@@ -1,34 +1,26 @@
 package br.com.yokohama.seguros.view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-
-import com.formdev.flatlaf.FlatLightLaf;
-
-import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
-import javax.swing.JMenu;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import java.awt.List;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
-import javax.swing.JComboBox;
+
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+
+import com.formdev.flatlaf.FlatLightLaf;
 
 public class AcionarSinistro extends JFrame {
 
@@ -94,26 +86,26 @@ public class AcionarSinistro extends JFrame {
 		fundoBtnLoc.setBounds(268, 497, 208, 35);
 		contentPane.add(fundoBtnLoc);
 		
-		JComboBox tpSevico = new JComboBox();
-		tpSevico.setModel(new DefaultComboBoxModel(new String[] {"1 - Guincho", "2 - Policia", "3 - Samu", "4 - Bombeiros"}));
-		tpSevico.setBounds(314, 452, 118, 21);
-		contentPane.add(tpSevico);
+		JComboBox<String> tpServico = new JComboBox<>();
+		tpServico.setModel(new DefaultComboBoxModel<>(new String[] {"1 - Guincho", "2 - Policia", "3 - Samu", "4 - Bombeiros"}));
+		tpServico.setBounds(314, 452, 118, 21);
+		contentPane.add(tpServico);
 		
-		JButton fundoBtnTpSevico = new JButton("");
-		fundoBtnTpSevico.setEnabled(false);
-		fundoBtnTpSevico.setBackground(Color.WHITE);
-		fundoBtnTpSevico.setBounds(268, 445, 208, 35);
-		contentPane.add(fundoBtnTpSevico);
+		JButton fundoBtnTpServico = new JButton("");
+		fundoBtnTpServico.setEnabled(false);
+		fundoBtnTpServico.setBackground(Color.WHITE);
+		fundoBtnTpServico.setBounds(268, 445, 208, 35);
+		contentPane.add(fundoBtnTpServico);
 		
-		JComboBox grauIntensidade = new JComboBox();
-		grauIntensidade.setModel(new DefaultComboBoxModel(new String[] {"1 - Somente ajuda para rebocar veiculo", "2 - Ajuda para pessoas", "3 - Desvirar Carro", "4 - Apagar incendio"}));
+		JComboBox<String> grauIntensidade = new JComboBox<>();
+		grauIntensidade.setModel(new DefaultComboBoxModel<>(new String[] {"1 - Somente ajuda para rebocar veiculo", "2 - Ajuda para pessoas", "3 - Desvirar Carro", "4 - Apagar incendio"}));
 		grauIntensidade.setBounds(314, 397, 118, 21);
 		contentPane.add(grauIntensidade);
 		
-		JComboBox opcCusador = new JComboBox();
-		opcCusador.setModel(new DefaultComboBoxModel(new String[] {"1 - Batida", "2 - Furto", "3 - Capotamento", "4 - Incendio"}));
-		opcCusador.setBounds(314, 341, 118, 21);
-		contentPane.add(opcCusador);
+		JComboBox<String> opcCausador = new JComboBox<>();
+		opcCausador.setModel(new DefaultComboBoxModel<>(new String[] {"1 - Batida", "2 - Furto", "3 - Capotamento", "4 - Incendio"}));
+		opcCausador.setBounds(314, 341, 118, 21);
+		contentPane.add(opcCausador);
 		
 		JButton fundoBtnIntensidade = new JButton("");
 		fundoBtnIntensidade.setEnabled(false);
@@ -132,10 +124,10 @@ public class AcionarSinistro extends JFrame {
 		lblLocalizao.setBounds(268, 477, 215, 23);
 		contentPane.add(lblLocalizao);
 		
-		JLabel lblTipoDeSerivo = new JLabel("Tipo de serivço");
-		lblTipoDeSerivo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTipoDeSerivo.setBounds(268, 422, 215, 23);
-		contentPane.add(lblTipoDeSerivo);
+		JLabel lblTipoDeServico = new JLabel("Tipo de serviço");
+		lblTipoDeServico.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblTipoDeServico.setBounds(268, 422, 215, 23);
+		contentPane.add(lblTipoDeServico);
 		
 		JLabel loc = new JLabel("Grau de intensidade:");
 		loc.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -194,7 +186,7 @@ public class AcionarSinistro extends JFrame {
 		lblNewLabel.setBounds(793, 176, 35, 40);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblAssit = new JLabel("Assitência 24Hrs");
+		JLabel lblAssit = new JLabel("Assistência 24Hrs");
 		lblAssit.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblAssit.setBounds(142, 154, 140, 23);
 		contentPane.add(lblAssit);
@@ -204,5 +196,32 @@ public class AcionarSinistro extends JFrame {
 		headerPage.setEnabled(false);
 		headerPage.setBounds(142, 176, 1066, 40);
 		contentPane.add(headerPage);
+
+		// Botão para validar
+		JButton btnValidar = new JButton("Validar");
+		btnValidar.setBackground(Color.WHITE);
+		btnValidar.setBounds(314, 631, 118, 21); 
+		contentPane.add(btnValidar);
+
+		btnValidar.addActionListener(e -> {
+			// Verificando se algum campo obrigatório não foi preenchido ou selecionado
+			if (tpServico.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Por favor, selecione o tipo de serviço.", "Erro", JOptionPane.ERROR_MESSAGE);
+			} else if (grauIntensidade.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Por favor, selecione o grau de intensidade.", "Erro", JOptionPane.ERROR_MESSAGE);
+			} else if (opcCausador.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Por favor, selecione o evento causador.", "Erro", JOptionPane.ERROR_MESSAGE);
+			} else if (loca.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Por favor, insira a localização.", "Erro", JOptionPane.ERROR_MESSAGE);
+			} else if (!sim.isSelected() && !não.isSelected()) {
+				JOptionPane.showMessageDialog(null, "Por favor, indique se o responsável é um associado.", "Erro", JOptionPane.ERROR_MESSAGE);
+			} else {
+
+				//Tudo o que acontece após a validação correta
+				JOptionPane.showMessageDialog(null, "Validação concluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		
+
 	}
 }
