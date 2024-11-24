@@ -27,7 +27,6 @@ public class Faturas extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
 	private JLabel lblNewLabel;
 	private JPanel fotter;
 	private JLabel yokohamaLogo;
@@ -36,14 +35,16 @@ public class Faturas extends JFrame {
 	private JButton yokoButton;
 	private JLabel yokoLabel;
 	private JPanel fotter_1;
+	private JTable table;
 
 	
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
 		UIManager.put("Button.arc", 15);
 		UIManager.put("TextComponent.arc", 15);
-		UIManager.put("TableHeader.separatorColor", Color.OPAQUE);
-		UIManager.put("TableHeader.bottomSeparatorColor", Color.OPAQUE);
+		UIManager.put("TableHeader.background", new Color(246, 246, 246));
+		UIManager.put("TableHeader.separatorColor", new Color(246, 246, 246));
+		UIManager.put("TableHeader.bottomSeparatorColor", new Color(246, 246, 246));
 		UIManager.put("Table.gridColor", Color.red);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -91,25 +92,18 @@ public class Faturas extends JFrame {
 		contentPane.add(labelLupa);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(171, 152, 986, 536);
+		scrollPane.setBounds(169, 146, 986, 536);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setVisible(false);
-		table.setShowHorizontalLines(false);
+		table.setBackground(new Color(246, 246, 246));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"Nome do cliente", "Tipo seguro", "M\u00EAs", "Valor Fatura", "Fatura", "Estado"
+				"Nome cliente", "Tipo seguro", "M\u00EAs ", "Valor fatura", "Fatura", "Estado"
 			}
 		));
-		table.setBackground(new Color(246, 246, 246));
 		scrollPane.setViewportView(table);
 		
 		lblNewLabel = new JLabel("Faturas");
