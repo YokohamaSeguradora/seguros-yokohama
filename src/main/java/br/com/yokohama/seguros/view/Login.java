@@ -23,7 +23,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel;
-	private JTextField textField;
+	private JTextField campoEmail;
 	private JTextField textField_1;
 	private JButton myButton;
 
@@ -78,10 +78,10 @@ public class Login extends JFrame {
 		lblNewLabel.setBounds(398, 255, 71, 25);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(398, 199, 554, 37);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		campoEmail = new JTextField();
+		campoEmail.setBounds(398, 199, 554, 37);
+		contentPane.add(campoEmail);
+		campoEmail.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
