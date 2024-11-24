@@ -11,6 +11,8 @@ O Sementes do Brasil Tech é um projeto inovador no qual nosso grupo está parti
 
 A Yokohama busca trazer uma aplicação sobre seguros de automóveis inovadora e eficiente, com o intuito de facilitar o processo de contratação, gestão e renovação de seguros para veículos.
 
+Além disso desenvolvemos um site com links referente a documentação sobre o processo e o projeto: <a href="https://detalhes-projeto.vercel.app/"> Clique aqui</a>
+
 ## **:mag_right: Funcionalidades**
 
 - O sistema tem suporte a cadastro e login do usuário;
