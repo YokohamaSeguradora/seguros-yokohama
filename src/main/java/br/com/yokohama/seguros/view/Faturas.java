@@ -87,7 +87,7 @@ public class Faturas extends JFrame {
 		contentPane.add(yokoLabel);
 		
 		labelLupa = new JLabel("");
-		labelLupa.setIcon(new ImageIcon("C:\\Users\\thibas\\Downloads\\search.png"));
+		labelLupa.setIcon(new ImageIcon(carregaImagen("/images/searchResize.png")));
 		labelLupa.setBounds(1269, 111, 32, 23);
 		contentPane.add(labelLupa);
 		
