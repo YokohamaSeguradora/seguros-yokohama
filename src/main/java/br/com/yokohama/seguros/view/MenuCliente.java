@@ -130,7 +130,7 @@ public class MenuCliente extends JFrame {
 		botaoAcionarSeguro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				AcionarSinistro acionarSinistro = new AcionarSinistro();
+				AcionarSeguro acionarSinistro = new AcionarSeguro();
 				acionarSinistro.setVisible(true);
 			}
 		});

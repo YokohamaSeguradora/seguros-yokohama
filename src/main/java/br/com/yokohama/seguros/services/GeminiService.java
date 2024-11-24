@@ -35,7 +35,7 @@ public class GeminiService {
         String[] palavrasChaveSeguros = {
             "seguro", "apólice", "apolice", "sinistro", "cobertura",
             "premio", "prêmio", "risco", "indenização", "indenizacao", "Yoko", "yoko",
-            "nome"
+            "nome", "Tokio"
         };
 
         for (String palavra : palavrasChaveSeguros) {

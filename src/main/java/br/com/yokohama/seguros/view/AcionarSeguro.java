@@ -22,7 +22,7 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-public class AcionarSinistro extends JFrame {
+public class AcionarSeguro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -38,7 +38,7 @@ public class AcionarSinistro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AcionarSinistro frame = new AcionarSinistro();
+					AcionarSeguro frame = new AcionarSeguro();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -59,7 +59,7 @@ public class AcionarSinistro extends JFrame {
 			}
 		}
 
-	public AcionarSinistro() {
+	public AcionarSeguro() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1366, 768);
@@ -165,7 +165,7 @@ public class AcionarSinistro extends JFrame {
 		obsSinistro.setBounds(667, 255, 408, 277);
 		contentPane.add(obsSinistro);
 		
-		JLabel sinistro = new JLabel("Acionar sinistro");
+		JLabel sinistro = new JLabel("Acionar Seguro");
 		sinistro.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		sinistro.setBounds(556, 176, 238, 40);
 		contentPane.add(sinistro);
