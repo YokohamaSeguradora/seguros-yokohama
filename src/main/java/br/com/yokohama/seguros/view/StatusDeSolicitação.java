@@ -46,8 +46,10 @@ public class StatusDeSolicitação extends JFrame {
 			public void run() {
 				try {
 					StatusDeSolicitação frame = new StatusDeSolicitação();
-					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
+					frame.setSize(1366,768);
+					frame.setLocationRelativeTo(null);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -70,6 +72,7 @@ public class StatusDeSolicitação extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1366, 768);
+
 		setBackground(new Color(255, 255, 255));
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
