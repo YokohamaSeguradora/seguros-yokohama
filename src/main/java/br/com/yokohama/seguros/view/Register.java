@@ -20,11 +20,14 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import br.com.yokohama.seguros.controller.UsuarioController;
+import br.com.yokohama.seguros.dao.UsuarioDAO;
+
 public class Register extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField campoEmail;
-    private JButton botaoProximo;
+    private JButton botaoCadastrar;
     private JTextField campoSenha, campoCpf, campoTelefone, campoNome, campoEndereco, campoNomeSocial, campoCNH;
     private JCheckBox checkCorretor, checkSocial;
 
@@ -99,13 +102,13 @@ public class Register extends JFrame {
         });
         backgroundAll.add(checkCorretor);
 
-        // Botão de continuar
-        botaoProximo = new JButton("Continuar");
-        botaoProximo.setBounds(563, 554, 223, 40);
-        botaoProximo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        botaoProximo.setForeground(Color.WHITE);
-        botaoProximo.setBackground(new Color(127, 11, 11));
-        botaoProximo.addActionListener(e -> {
+        // Botão de cadastrar
+        botaoCadastrar = new JButton("Cadastrar");
+        botaoCadastrar.setBounds(563, 554, 223, 40);
+        botaoCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        botaoCadastrar.setForeground(Color.WHITE);
+        botaoCadastrar.setBackground(new Color(127, 11, 11));
+        botaoCadastrar.addActionListener(e -> {
             if (!validaCamposObrigatorios()) {
                 JOptionPane.showMessageDialog(this,
                         "Por favor, preencha todos os campos obrigatórios.",
@@ -113,13 +116,31 @@ public class Register extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            // Abrir a próxima página (SimulaSeguroCliente)
-            SimulaSeguroCliente simulaSeguro = new SimulaSeguroCliente();
-            simulaSeguro.setVisible(true);
+            
+            // Cadastrar usuário no banco de dados
+            UsuarioController usuarioController = new UsuarioController();
+            usuarioController.criarUsuario(
+            		checkCorretor.isSelected(),
+            		campoNome.getText(),
+            		campoCpf.getText(),
+            		campoEmail.getText(),
+            		campoTelefone.getText(),
+            		campoSenha.getText(),
+            		campoEndereco.getText(),
+            		campoCNH.getText()
+            );
+            
+            // Abrir a próxima página (MenuCliente ou MenuCorretor)
+            if (checkCorretor.isSelected()) {
+            	MenuCorretor menuCorretor = new MenuCorretor();
+            	menuCorretor.setVisible(true);
+            } else if (checkCorretor.isSelected() == false) {
+            	MenuCliente menuCliente = new MenuCliente();
+            	menuCliente.setVisible(true);
+            }
             dispose(); // Fecha a tela atual
         });
-        backgroundAll.add(botaoProximo);
+        backgroundAll.add(botaoCadastrar);
 
         // Logo
         JLabel logo = new JLabel();
@@ -148,6 +169,6 @@ public class Register extends JFrame {
                 && !campoNome.getText().trim().isEmpty()
                 && !campoEndereco.getText().trim().isEmpty()
                 && (!checkSocial.isSelected() || !campoNomeSocial.getText().trim().isEmpty())
-                && (!checkCorretor.isSelected() || !campoCNH.getText().trim().isEmpty());
+                && (checkCorretor.isSelected() || !campoCNH.getText().trim().isEmpty());
     }
 }
