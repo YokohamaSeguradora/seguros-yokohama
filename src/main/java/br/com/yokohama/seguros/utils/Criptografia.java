@@ -7,11 +7,23 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 public class Criptografia {
-
-    public static final String SHA256 = "SHA-256"; // Algoritmo SHA-256
+	
+	public static enum PadraoCriptografia {
+		SHA256("SHA-256");
+		
+		private final String codigo;
+		
+		PadraoCriptografia(String codigo) {
+			this.codigo = codigo;
+		}
+		
+		public String getCodigo() {
+			return this.codigo;
+		}
+	}
 
     private String informacao; // Informação a ser criptografada
-    private String padrao;     // Algoritmo de hash (ex.: SHA-256)
+    private PadraoCriptografia padrao;     // Algoritmo de hash (ex.: SHA-256)
 
     /**
      * Construtor para inicializar a classe com a informação e o padrão de
@@ -20,7 +32,7 @@ public class Criptografia {
      * @param informacao Texto a ser criptografado.
      * @param padrao Algoritmo de criptografia a ser utilizado.
      */
-    public Criptografia(String informacao, String padrao) {
+    public Criptografia(String informacao, PadraoCriptografia padrao) {
         this.informacao = informacao;
         this.padrao = padrao;
     }
@@ -30,7 +42,7 @@ public class Criptografia {
         return informacao;
     }
 
-    public String getPadrao() {
+    public PadraoCriptografia getPadrao() {
         return padrao;
     }
 
@@ -39,7 +51,7 @@ public class Criptografia {
         this.informacao = informacao;
     }
 
-    public void setPadrao(String padrao) {
+    public void setPadrao(PadraoCriptografia padrao) {
         this.padrao = padrao;
     }
 
@@ -60,7 +72,7 @@ public class Criptografia {
 
         try {
             // Inicializa o MessageDigest com o algoritmo especificado (SHA-256)
-            MessageDigest messageDigest = MessageDigest.getInstance(padrao);
+            MessageDigest messageDigest = MessageDigest.getInstance(padrao.getCodigo());
 
             // Gera o hash da informação + salt em bytes
             byte[] hash = messageDigest.digest(senhaComSalt.getBytes(StandardCharsets.UTF_8));
