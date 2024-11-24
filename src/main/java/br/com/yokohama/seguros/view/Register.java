@@ -21,7 +21,6 @@ import javax.swing.border.EmptyBorder;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import br.com.yokohama.seguros.controller.UsuarioController;
-import br.com.yokohama.seguros.dao.UsuarioDAO;
 
 public class Register extends JFrame {
 
