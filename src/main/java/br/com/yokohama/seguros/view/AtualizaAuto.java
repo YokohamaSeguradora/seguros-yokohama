@@ -73,6 +73,30 @@ public class AtualizaAuto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton botaoAlteraPlaca = new JButton("Alterar");
+		botaoAlteraPlaca.setForeground(Color.WHITE);
+		botaoAlteraPlaca.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botaoAlteraPlaca.setBorderPainted(false);
+		botaoAlteraPlaca.setBackground(new Color(127, 11, 11));
+		botaoAlteraPlaca.setBounds(639, 401, 101, 32);
+		contentPane.add(botaoAlteraPlaca);
+		
+		JButton botaoAlteraModelo = new JButton("Alterar");
+		botaoAlteraModelo.setForeground(Color.WHITE);
+		botaoAlteraModelo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botaoAlteraModelo.setBorderPainted(false);
+		botaoAlteraModelo.setBackground(new Color(127, 11, 11));
+		botaoAlteraModelo.setBounds(639, 288, 101, 32);
+		contentPane.add(botaoAlteraModelo);
+		
+		JButton botaoAlteraAno = new JButton("Alterar");
+		botaoAlteraAno.setForeground(Color.WHITE);
+		botaoAlteraAno.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botaoAlteraAno.setBorderPainted(false);
+		botaoAlteraAno.setBackground(new Color(127, 11, 11));
+		botaoAlteraAno.setBounds(639, 517, 101, 32);
+		contentPane.add(botaoAlteraAno);
+		
 		JLabel labelEscudo = new JLabel("");
 		labelEscudo.setIcon(new ImageIcon(carregaImagen("/images/escudo.png")));
 		labelEscudo.setBounds(324, 200, 27, 21);
@@ -133,13 +157,13 @@ public class AtualizaAuto extends JFrame {
 		labelAuto.setBounds(60, 92, 159, 46);
 		contentPane.add(labelAuto);
 
-		JButton botaoAlterar04 = new JButton("Alterar");
-		botaoAlterar04.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botaoAlterar04.setForeground(Color.WHITE);
-		botaoAlterar04.setBorderPainted(false);
-		botaoAlterar04.setBackground(new Color(127, 11, 11));
-		botaoAlterar04.setBounds(639, 633, 101, 32);
-		contentPane.add(botaoAlterar04);
+		JButton botaoAlteraCEP = new JButton("Alterar");
+		botaoAlteraCEP.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botaoAlteraCEP.setForeground(Color.WHITE);
+		botaoAlteraCEP.setBorderPainted(false);
+		botaoAlteraCEP.setBackground(new Color(127, 11, 11));
+		botaoAlteraCEP.setBounds(639, 631, 101, 32);
+		contentPane.add(botaoAlteraCEP);
 
 		JButton protegido = new JButton("");
 		protegido.setEnabled(false);
