@@ -1,6 +1,6 @@
 package br.com.yokohama.seguros;
 
-import br.com.yokohama.seguros.controller.ChatbotController;
+import br.com.yokohama.seguros.utils.ChatbotController;
 
 public class ChatBot {
 

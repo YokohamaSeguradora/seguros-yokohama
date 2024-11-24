@@ -1,4 +1,4 @@
-package br.com.yokohama.seguros.controller;
+package br.com.yokohama.seguros.utils;
 
 import java.io.IOException;
 import java.util.Scanner;
