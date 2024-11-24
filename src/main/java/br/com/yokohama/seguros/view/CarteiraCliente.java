@@ -108,6 +108,8 @@ public class CarteiraCliente extends JFrame {
 		table.setBackground(new Color(246, 246, 246));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{"Pendente", "123213", "32443534435", "auto", "carro\u00E7a"},
+				{"Concluido", "21344523", "12354365344234", "auto", null},
 			},
 			new String[] {
 				"Status", "Segurado", "CPF/CNPJ", "Tipo Seguro", "Veiculo"
