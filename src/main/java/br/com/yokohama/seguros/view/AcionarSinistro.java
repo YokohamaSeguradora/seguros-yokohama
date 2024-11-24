@@ -29,6 +29,7 @@ import javax.swing.JComboBox;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
 
 public class AcionarSinistro extends JFrame {
 
@@ -39,10 +40,12 @@ public class AcionarSinistro extends JFrame {
 
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
-		UIManager.put("Button.arc", 25);
+		UIManager.put("Button.arc", 20);
 		UIManager.put("CheckBox.background", Color.white);
 		UIManager.put("TextComponent.arc", 10);
 		UIManager.put("TitlePane.inactiveForeground", true);
+		UIManager.put("Button.hoverBackground", new Color(105, 7, 7));
+		UIManager.put("TextComponent.arc", 20);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -78,12 +81,19 @@ public class AcionarSinistro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton botaoNovo = new JButton("New button");
+		botaoNovo.setBackground(new Color(127, 11, 11));
+		botaoNovo.setBounds(314, 563, 118, 35);
+		contentPane.add(botaoNovo);
+		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Kouto\\Downloads\\Bell Ringing 2.png"));
 		lblNewLabel_1.setBounds(796, 176, 35, 40);
 		contentPane.add(lblNewLabel_1);
 		
 		loca = new JTextField();
+		loca.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		loca.setBackground(new Color(240, 240, 240));
 		loca.setBounds(314, 504, 118, 20);
 		contentPane.add(loca);
 		loca.setColumns(10);
@@ -95,6 +105,7 @@ public class AcionarSinistro extends JFrame {
 		contentPane.add(fundoBtnLoc);
 		
 		JComboBox tpSevico = new JComboBox();
+		tpSevico.setBackground(new Color(240, 240, 240));
 		tpSevico.setModel(new DefaultComboBoxModel(new String[] {"1 - Guincho", "2 - Policia", "3 - Samu", "4 - Bombeiros"}));
 		tpSevico.setBounds(314, 452, 118, 21);
 		contentPane.add(tpSevico);
@@ -106,11 +117,14 @@ public class AcionarSinistro extends JFrame {
 		contentPane.add(fundoBtnTpSevico);
 		
 		JComboBox grauIntensidade = new JComboBox();
+		grauIntensidade.setBackground(new Color(240, 240, 240));
 		grauIntensidade.setModel(new DefaultComboBoxModel(new String[] {"1 - Somente ajuda para rebocar veiculo", "2 - Ajuda para pessoas", "3 - Desvirar Carro", "4 - Apagar incendio"}));
 		grauIntensidade.setBounds(314, 397, 118, 21);
 		contentPane.add(grauIntensidade);
 		
 		JComboBox opcCusador = new JComboBox();
+		opcCusador.setBackground(new Color(240, 240, 240));
+		opcCusador.setOpaque(false);
 		opcCusador.setModel(new DefaultComboBoxModel(new String[] {"1 - Batida", "2 - Furto", "3 - Capotamento", "4 - Incendio"}));
 		opcCusador.setBounds(314, 341, 118, 21);
 		contentPane.add(opcCusador);
@@ -169,6 +183,7 @@ public class AcionarSinistro extends JFrame {
 		contentPane.add(associado);
 		
 		JTextArea obsSinistro = new JTextArea();
+		obsSinistro.setLineWrap(true);
 		obsSinistro.setText("Observações:");
 		obsSinistro.setBounds(667, 255, 408, 277);
 		contentPane.add(obsSinistro);
