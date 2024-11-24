@@ -1,5 +1,8 @@
 package br.com.yokohama.seguros.controller;
 
+import java.sql.Connection;
+
+import br.com.yokohama.seguros.connection.ConnectionFactory;
 import br.com.yokohama.seguros.dao.UsuarioDAO;
 import br.com.yokohama.seguros.model.Usuario;
 
@@ -7,7 +10,9 @@ public class UsuarioController {
 
     private final UsuarioDAO usuarioDAO;
 
-    public UsuarioController(UsuarioDAO usuarioDAO) {
+    public UsuarioController() {
+    	Connection connection = new ConnectionFactory().conectar();
+    	UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
         this.usuarioDAO = usuarioDAO;
     }
 
