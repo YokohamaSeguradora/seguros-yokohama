@@ -124,10 +124,18 @@ public class Login extends JFrame {
 		signInButton.setBounds(398, 351, 554, 33);
 		contentPane.add(signInButton);
 		signInButton.addActionListener(e -> {
-			// Simula o login e vai para a próxima tela
-			SimulaSeguroCliente simulaSeguro = new SimulaSeguroCliente();
-			simulaSeguro.setVisible(true);
-			dispose(); // Fecha a tela de login
+			// Verifica se os campos de email e senha estão preenchidos
+			if (textField.getText().trim().isEmpty() || textField_1.getText().trim().isEmpty()) {
+				javax.swing.JOptionPane.showMessageDialog(this,
+					"Por favor, preencha os campos de Email e Senha.",
+					"Erro de validação",
+					javax.swing.JOptionPane.ERROR_MESSAGE);
+			} else {
+				// Se os campos estão preenchidos, prossegue para a próxima tela
+				SimulaSeguroCliente simulaSeguro = new SimulaSeguroCliente();
+				simulaSeguro.setVisible(true);
+				dispose(); // Fecha a tela de login
+			}
 		});
 		
 		myButton = new JButton("");

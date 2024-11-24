@@ -98,6 +98,29 @@ public class Register extends JFrame {
 		BotaoProximo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		BotaoProximo.setForeground(new Color(255, 255, 255));
 		BotaoProximo.setBackground(new Color(127, 11, 11));
+		BotaoProximo.addActionListener(e -> {
+			// Verificação dos campos 
+			if (campoEmail.getText().trim().isEmpty() ||
+				campoSenha.getText().trim().isEmpty() ||
+				campoCpf.getText().trim().isEmpty() ||
+				campoTelefone.getText().trim().isEmpty() ||
+				campoNome.getText().trim().isEmpty() ||
+				campoEndereco.getText().trim().isEmpty() ||
+				(!checkCorretor.isSelected() && campoCNH.getText().trim().isEmpty())) {
+				
+				// Mostra mensagem de erro
+				javax.swing.JOptionPane.showMessageDialog(this, 
+					"Por favor, preencha todos os campos obrigatórios.", 
+					"Erro de validação", 
+					javax.swing.JOptionPane.ERROR_MESSAGE);
+			} else {
+				// Se todos os campos estão preenchidos, prossegue para a próxima tela
+				SimulaSeguroCliente simulaSeguro = new SimulaSeguroCliente();
+				simulaSeguro.setVisible(true);
+				dispose(); 
+			}
+		});
+		
 
 		labelEmail = new JLabel("Email");
 		labelEmail.setBounds(154, 160, 44, 14);

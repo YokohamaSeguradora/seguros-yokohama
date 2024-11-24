@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.yokohama.seguros.utils.Criptografia;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
 
@@ -16,6 +17,11 @@ public class UsuarioDAO {
 
     public UsuarioDAO(Connection connection) {
         this.connection = connection;
+    }
+
+    private String criptografarSenha(String senha) {
+        Criptografia criptografia = new Criptografia(senha, Criptografia.SHA256);
+        return criptografia.criptografar();
     }
 
     // insert
@@ -29,7 +35,7 @@ public class UsuarioDAO {
             stmt.setString(3, usuario.getCpfUsuario());
             stmt.setString(4, usuario.getEmailUsuario());
             stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setObject(6, usuario.getSenhaUsuario());
+            stmt.setObject(6, criptografarSenha(usuario.getSenhaUsuario()));
             stmt.setString(7, usuario.getEnderecoUsuario());
             stmt.setString(8, usuario.getCnhSegurado());
             stmt.execute();
@@ -56,13 +62,15 @@ public class UsuarioDAO {
     public void update(Usuario usuario) {
         String sql = "update usuario set tipo_usuario=?, nome_completo_usuario=?, cpf_usuario=?, email_usuario=?, telefone_usuario=?, senha_usuario=?, endereco_usuario=?, cnh_segurado=? where id_usuario=?";
         try {
+            // Criptografa a senha antes de atualizar
+           
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getTipoUsuario().getCodigo());
             stmt.setString(2, usuario.getNomeCompletoUsuario());
             stmt.setString(3, usuario.getCpfUsuario());
             stmt.setString(4, usuario.getEmailUsuario());
             stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setObject(6, usuario.getSenhaUsuario());
+            stmt.setObject(6, criptografarSenha(usuario.getSenhaUsuario()));
             stmt.setString(7, usuario.getEnderecoUsuario());
             stmt.setString(8, usuario.getCnhSegurado());
             stmt.setLong(9, usuario.getIdUsuario());

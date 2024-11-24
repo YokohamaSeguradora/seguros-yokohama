@@ -16,7 +16,10 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.ImageIcon;
+
+import br.com.yokohama.seguros.controller.UsuarioController;
 
 public class AtualizaUsuario extends JFrame {
 
@@ -25,6 +28,9 @@ public class AtualizaUsuario extends JFrame {
 	private JTextField campoCelular;
 	private JTextField campoEmail;
 	private JTextField campoEndereco;
+
+	private UsuarioController usuarioController;
+	
 
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
