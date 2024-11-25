@@ -15,11 +15,10 @@ public class UsuarioController {
 
     public UsuarioController() {
     	Connection connection = new ConnectionFactory().conectar();
-    	UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-        this.usuarioDAO = usuarioDAO;
+        this.usuarioDAO = new UsuarioDAO(connection);
     }
 
-    public void criarUsuario(boolean isCorretor, String nomeCompleto, String cpf, String email, 
+    public void criarUsuario(boolean isCorretor, String nomeCompleto, String nomeSocial, String cpf, String email,
                              String telefone, String senha, String endereco, String cnh) {
         Usuario.TipoUsuario tipoUsuario = isCorretor 
                                           ? Usuario.TipoUsuario.CORRETOR 
@@ -27,6 +26,7 @@ public class UsuarioController {
 
         Usuario usuario = new Usuario(tipoUsuario);
         usuario.setNomeCompletoUsuario(nomeCompleto);
+        usuario.setNomeSocialUsuario(nomeSocial);
         usuario.setCpfUsuario(cpf);
         usuario.setEmailUsuario(email);
         usuario.setTelefoneUsuario(telefone);

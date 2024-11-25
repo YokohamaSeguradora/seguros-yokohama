@@ -19,7 +19,7 @@ public class TesteUsuario {
 
         // 1. Teste de inserção
         System.out.println("Inserindo usuários...");
-        Usuario usuario1 = new Usuario(TipoUsuario.SEGURADO, "João da Silva", "12345678900", "joao.silva@example.com", "11987654321", "senhaSegura123", "Rua Exemplo, 123, Bairro Central", "123456789");
+        Usuario usuario1 = new Usuario(TipoUsuario.SEGURADO, "João da Silva", "nome social", "12345678900", "joao.silva@example.com", "11987654321", "senhaSegura123", "Rua Exemplo, 123, Bairro Central", "123456789");
         Criptografia criptografia = new Criptografia(usuario1.getSenhaUsuario(), PadraoCriptografia.SHA256);
         String senhaCriptografada = criptografia.criptografar();
         usuario1.setSenhaUsuario(senhaCriptografada);

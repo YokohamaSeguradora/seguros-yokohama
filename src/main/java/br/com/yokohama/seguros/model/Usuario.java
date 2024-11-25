@@ -30,6 +30,7 @@ public class Usuario {
     private long idUsuario; // PK
     private final TipoUsuario tipoUsuario;
     private String nomeCompletoUsuario;
+    private String nomeSocialUsuario;
     private String cpfUsuario; // Único
     private String emailUsuario; // Único
     private String telefoneUsuario; // Único
@@ -41,11 +42,10 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Usuario(TipoUsuario tipoUsuario, String nomeCompletoUsuario, String cpfUsuario, String emailUsuario,
-            String telefoneUsuario, String senhaUsuario, String enderecoUsuario, String cnhSegurado) {
-        super();
+    public Usuario(TipoUsuario tipoUsuario, String nomeCompletoUsuario, String nomeSocialUsuario, String cpfUsuario, String emailUsuario, String telefoneUsuario, String senhaUsuario, String enderecoUsuario, String cnhSegurado) {
         this.tipoUsuario = tipoUsuario;
         this.nomeCompletoUsuario = nomeCompletoUsuario;
+        this.nomeSocialUsuario = nomeSocialUsuario;
         this.cpfUsuario = cpfUsuario;
         this.emailUsuario = emailUsuario;
         this.telefoneUsuario = telefoneUsuario;
@@ -120,5 +120,13 @@ public class Usuario {
 
     public void setCnhSegurado(String cnhSegurado) {
         this.cnhSegurado = cnhSegurado;
+    }
+
+    public String getNomeSocialUsuario() {
+        return nomeSocialUsuario;
+    }
+
+    public void setNomeSocialUsuario(String nomeSocialUsuario) {
+        this.nomeSocialUsuario = nomeSocialUsuario;
     }
 }

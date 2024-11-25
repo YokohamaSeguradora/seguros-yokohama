@@ -67,6 +67,7 @@ CREATE TABLE usuario (
     id_usuario            INTEGER NOT NULL,
     tipo_usuario          VARCHAR2(50 CHAR) NOT NULL,
     nome_completo_usuario VARCHAR2(255 CHAR) NOT NULL,
+    nome_social_usuario   VARCHAR2(255 CHAR),
     cpf_usuario           CHAR(11 CHAR) NOT NULL,
     email_usuario         VARCHAR2(50 CHAR) NOT NULL,
     telefone_usuario      CHAR(11 CHAR) NOT NULL,

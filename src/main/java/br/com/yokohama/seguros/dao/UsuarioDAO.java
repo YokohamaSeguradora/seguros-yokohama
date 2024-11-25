@@ -36,18 +36,19 @@ public class UsuarioDAO {
         String senhaCriptografada = criptografia.criptografar();  // Criptografar a senha
 
         // SQL para inserir o usuário com o hash
-        String sql = "insert into usuario (tipo_usuario, nome_completo_usuario, cpf_usuario, email_usuario, telefone_usuario, senha_usuario, endereco_usuario, cnh_segurado) values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into usuario (tipo_usuario, nome_completo_usuario, nome_social_usuario, cpf_usuario, email_usuario, telefone_usuario, senha_usuario, endereco_usuario, cnh_segurado) values (?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getTipoUsuario().getCodigo());
             stmt.setString(2, usuario.getNomeCompletoUsuario());
-            stmt.setString(3, usuario.getCpfUsuario());
-            stmt.setString(4, usuario.getEmailUsuario());
-            stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setString(6, senhaCriptografada);  // Senha criptografada
-            stmt.setString(7, usuario.getEnderecoUsuario());
-            stmt.setString(8, usuario.getCnhSegurado());
+            stmt.setString(3, usuario.getNomeSocialUsuario());
+            stmt.setString(4, usuario.getCpfUsuario());
+            stmt.setString(5, usuario.getEmailUsuario());
+            stmt.setString(6, usuario.getTelefoneUsuario());
+            stmt.setString(7, senhaCriptografada);  // Senha criptografada
+            stmt.setString(8, usuario.getEnderecoUsuario());
+            stmt.setString(9, usuario.getCnhSegurado());
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,20 +70,21 @@ public class UsuarioDAO {
 
     // update
     public void update(Usuario usuario) {
-        String sql = "update usuario set tipo_usuario=?, nome_completo_usuario=?, cpf_usuario=?, email_usuario=?, telefone_usuario=?, senha_usuario=?, endereco_usuario=?, cnh_segurado=? where id_usuario=?";
+        String sql = "update usuario set tipo_usuario=?, nome_completo_usuario=?, nome_social_usuario=?, cpf_usuario=?, email_usuario=?, telefone_usuario=?, senha_usuario=?, endereco_usuario=?, cnh_segurado=? where id_usuario=?";
         try {
             // Criptografa a senha antes de atualizar
 
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getTipoUsuario().getCodigo());
             stmt.setString(2, usuario.getNomeCompletoUsuario());
-            stmt.setString(3, usuario.getCpfUsuario());
-            stmt.setString(4, usuario.getEmailUsuario());
-            stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setObject(6, criptografarSenha(usuario.getSenhaUsuario()));
-            stmt.setString(7, usuario.getEnderecoUsuario());
-            stmt.setString(8, usuario.getCnhSegurado());
-            stmt.setLong(9, usuario.getIdUsuario());
+            stmt.setString(3, usuario.getNomeSocialUsuario());
+            stmt.setString(4, usuario.getCpfUsuario());
+            stmt.setString(5, usuario.getEmailUsuario());
+            stmt.setString(6, usuario.getTelefoneUsuario());
+            stmt.setObject(7, criptografarSenha(usuario.getSenhaUsuario()));
+            stmt.setString(8, usuario.getEnderecoUsuario());
+            stmt.setString(9, usuario.getCnhSegurado());
+            stmt.setLong(10, usuario.getIdUsuario());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -102,6 +104,7 @@ public class UsuarioDAO {
                 usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
                 usuario.setIdUsuario(rs.getLong("id_usuario"));
                 usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setNomeSocialUsuario(rs.getString("nome_social_usuario"));
                 usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
                 usuario.setCpfUsuario(rs.getString("cpf_usuario"));
                 usuario.setEmailUsuario(rs.getString("email_usuario"));
@@ -129,6 +132,7 @@ public class UsuarioDAO {
                 usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
                 usuario.setIdUsuario(rs.getLong("id_usuario"));
                 usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setNomeSocialUsuario(rs.getString("nome_social_usuario"));
                 usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
                 usuario.setCpfUsuario(rs.getString("cpf_usuario"));
                 usuario.setEmailUsuario(rs.getString("email_usuario"));
@@ -154,6 +158,7 @@ public class UsuarioDAO {
                 usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
                 usuario.setIdUsuario(rs.getLong("id_usuario"));
                 usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setNomeSocialUsuario(rs.getString("nome_social_usuario"));
                 usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
                 usuario.setCpfUsuario(rs.getString("cpf_usuario"));
                 usuario.setEmailUsuario(rs.getString("email_usuario"));
@@ -183,6 +188,7 @@ public class UsuarioDAO {
                 usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
                 usuario.setIdUsuario(rs.getLong("id_usuario"));
                 usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setNomeSocialUsuario(rs.getString("nome_social_usuario"));
                 usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
                 usuario.setCpfUsuario(rs.getString("cpf_usuario"));
                 usuario.setEmailUsuario(rs.getString("email_usuario"));
@@ -212,6 +218,7 @@ public class UsuarioDAO {
                 usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
                 usuario.setIdUsuario(rs.getLong("id_usuario"));
                 usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setNomeSocialUsuario(rs.getString("nome_social_usuario"));
                 usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
                 usuario.setCpfUsuario(rs.getString("cpf_usuario"));
                 usuario.setEmailUsuario(rs.getString("email_usuario"));
@@ -241,6 +248,7 @@ public class UsuarioDAO {
                         Usuario usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
                         usuario.setIdUsuario(rs.getLong("id_usuario"));
                         usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                        usuario.setNomeSocialUsuario(rs.getString("nome_social_usuario"));
                         usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
                         usuario.setCpfUsuario(rs.getString("cpf_usuario"));
                         usuario.setEmailUsuario(rs.getString("email_usuario"));

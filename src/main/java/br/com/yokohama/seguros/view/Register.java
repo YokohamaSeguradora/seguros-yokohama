@@ -122,6 +122,7 @@ public class Register extends JFrame {
             usuarioController.criarUsuario(
             		checkCorretor.isSelected(),
             		campoNome.getText(),
+                    campoNomeSocial.getText(),
             		campoCpf.getText(),
             		campoEmail.getText(),
             		campoTelefone.getText(),
