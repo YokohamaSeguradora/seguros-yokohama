@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -25,9 +26,9 @@ import br.com.yokohama.seguros.controller.UsuarioController;
 public class Register extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private JTextField campoEmail;
     private JButton botaoCadastrar;
-    private JTextField campoSenha, campoCpf, campoTelefone, campoNome, campoEndereco, campoNomeSocial, campoCNH;
+    private JTextField campoCpf, campoTelefone, campoNome, campoEndereco, campoNomeSocial, campoCNH, campoEmail;
+    private JPasswordField campoSenha;
     private JCheckBox checkCorretor, checkSocial;
 
     public static void main(String[] args) {
@@ -69,14 +70,14 @@ public class Register extends JFrame {
         backgroundAll.add(lblCadastro);
 
         // Componentes de entrada
-        campoEmail = criaCampoTexto(backgroundAll, "Email", 154, 175);
-        campoSenha = criaCampoTexto(backgroundAll, "Senha", 154, 251);
-        campoCpf = criaCampoTexto(backgroundAll, "CPF", 154, 327);
-        campoTelefone = criaCampoTexto(backgroundAll, "Telefone", 154, 399);
-        campoNome = criaCampoTexto(backgroundAll, "Nome completo", 702, 175);
-        campoEndereco = criaCampoTexto(backgroundAll, "Endereço completo", 702, 399);
-        campoNomeSocial = criaCampoTexto(backgroundAll, "Nome social", 702, 251);
-        campoCNH = criaCampoTexto(backgroundAll, "CNH", 702, 327);
+        campoEmail = criaCampoTexto(backgroundAll, "Email", 154, 175, false);
+        campoSenha = (JPasswordField) criaCampoTexto(backgroundAll, "Senha", 154, 251, true); 
+        campoCpf = criaCampoTexto(backgroundAll, "CPF", 154, 327, false);
+        campoTelefone = criaCampoTexto(backgroundAll, "Telefone", 154, 399, false);
+        campoNome = criaCampoTexto(backgroundAll, "Nome completo", 702, 175, false);
+        campoEndereco = criaCampoTexto(backgroundAll, "Endereço completo", 702, 399,false);
+        campoNomeSocial = criaCampoTexto(backgroundAll, "Nome social", 702, 251,false );
+        campoCNH = criaCampoTexto(backgroundAll, "CNH", 702, 327,false);
 
         campoNomeSocial.setEnabled(false);
 
@@ -124,18 +125,18 @@ public class Register extends JFrame {
             		campoCpf.getText(),
             		campoEmail.getText(),
             		campoTelefone.getText(),
-            		campoSenha.getText(),
+            		new String(campoSenha.getPassword()),
             		campoEndereco.getText(),
             		campoCNH.getText()
             );
             
             // Abrir a próxima página (MenuCliente ou MenuCorretor)
             if (checkCorretor.isSelected()) {
-            	MenuCorretor menuCorretor = new MenuCorretor();
-            	menuCorretor.setVisible(true);
-            } else if (checkCorretor.isSelected() == false) {
-            	MenuCliente menuCliente = new MenuCliente();
-            	menuCliente.setVisible(true);
+                MenuCorretor menuCorretor = new MenuCorretor();
+                menuCorretor.setVisible(true);
+            } else {
+                MenuCliente menuCliente = new MenuCliente();
+                menuCliente.setVisible(true);
             }
             dispose(); // Fecha a tela atual
         });
@@ -148,21 +149,28 @@ public class Register extends JFrame {
         backgroundAll.add(logo);
     }
 
-    private JTextField criaCampoTexto(JPanel panel, String label, int x, int y) {
+    private JTextField criaCampoTexto(JPanel panel, String label, int x, int y, boolean isPasswordField) {
         JLabel lbl = new JLabel(label);
         lbl.setBounds(x, y - 15, 150, 14);
         panel.add(lbl);
-
-        JTextField textField = new JTextField();
-        textField.setBounds(x, y, 522, 40);
-        panel.add(textField);
-
-        return textField;
+    
+        // Se for um campo de senha, cria um JPasswordField
+        if (isPasswordField) {
+            JPasswordField passwordField = new JPasswordField();
+            passwordField.setBounds(x, y, 522, 40);
+            panel.add(passwordField);
+            return passwordField;  // Retorna o JPasswordField
+        } else {
+            JTextField textField = new JTextField();
+            textField.setBounds(x, y, 522, 40);
+            panel.add(textField);
+            return textField;  // Retorna o JTextField
+        }
     }
 
     private boolean validaCamposObrigatorios() {
         return !campoEmail.getText().trim().isEmpty()
-                && !campoSenha.getText().trim().isEmpty()
+                && campoSenha.getPassword().length > 0
                 && !campoCpf.getText().trim().isEmpty()
                 && !campoTelefone.getText().trim().isEmpty()
                 && !campoNome.getText().trim().isEmpty()
