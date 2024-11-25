@@ -17,7 +17,7 @@ public class TesteSeguro {
 
         // 1. Teste de inserção
         System.out.println("Inserindo seguros...");
-        Seguro seguro1 = new Seguro(TipoSeguro.CARRO, 381, 21);
+        Seguro seguro1 = new Seguro(TipoSeguro.CARRO, 582, 21);
         daoSeguro.insert(seguro1);
 
         // 2. Teste de Consulta
@@ -32,7 +32,7 @@ public class TesteSeguro {
 
         // Consulta por ID
         System.out.println("\nConsultando seguro por ID:");
-        Seguro seguroPorId = daoSeguro.selectById(2);
+        Seguro seguroPorId = daoSeguro.selectById(582);
         if (seguroPorId != null) {
             System.out.println("Seguro encontrado: " + seguroPorId.getIdSeguro());
         } else {

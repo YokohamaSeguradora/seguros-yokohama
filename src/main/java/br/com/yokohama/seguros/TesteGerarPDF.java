@@ -33,7 +33,7 @@ public class TesteGerarPDF {
             }
 
             // ================= PDF do Seguro do Usuário =================
-            long idUsuario = 1; // Tem que ser fornecido pelo usuário
+            long idUsuario = 582; // Tem que ser fornecido pelo usuário
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
             Usuario cliente = usuarioDAO.selectById(idUsuario);
 
