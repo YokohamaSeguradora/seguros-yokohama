@@ -342,6 +342,12 @@ public class MenuCliente extends JFrame {
 		iconeYoko.setIcon(new ImageIcon(carregaImagen("/images/yokoMenor.png")));
 
 		JButton botaoYoko = new JButton("");
+		botaoYoko.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChatBot chat = new ChatBot();
+				chat.setVisible(true);
+			}
+		});
 		botaoYoko.setBounds(1228, 624, 83, 68);
 		contentPane.add(botaoYoko);
 		botaoYoko.setOpaque(false);

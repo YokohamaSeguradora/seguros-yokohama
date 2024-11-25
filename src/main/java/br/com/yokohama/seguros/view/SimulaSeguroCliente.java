@@ -32,12 +32,14 @@ public class SimulaSeguroCliente extends JFrame {
 	private JTextField campoCelular;
 	private JTextField campoCPF;
 	private JTextField campoPerNoite;
+	private JTextField campoNomeSocial;
 
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
 		UIManager.put("Button.arc", 25);
 		UIManager.put("Button.hoverBackground", new Color(218, 76, 76));
 		UIManager.put("Button.arc", 15);
+		UIManager.put("TextComponent.arc", 20);
 		UIManager.put("Button.hoverBackground", new Color(105, 7, 7));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -64,6 +66,7 @@ public class SimulaSeguroCliente extends JFrame {
 	}
 
 	public SimulaSeguroCliente() {
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 768);
@@ -73,6 +76,58 @@ public class SimulaSeguroCliente extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		JButton botaoEscondido = new JButton("");
+		botaoEscondido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				campoNomeCompleto.setText("Carlos andrade");
+				campoEmail.setText("grupoyokohama@email.com");
+				campoCPF.setText("660.059.980-48");
+				campoCelular.setText("11-7878878778");
+				campoPerNoite.setText("04004-902");
+
+			}
+		});
+
+		JButton botaoNomeSocial = new JButton("Nome Social?");
+		JButton botaoRemover = new JButton("Remover");
+		botaoRemover.setVisible(false);
+
+		botaoNomeSocial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				campoNomeSocial.setVisible(true);
+				botaoRemover.setVisible(true);
+				botaoNomeSocial.setVisible(false);
+			}
+		});
+
+		botaoRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				campoNomeSocial.setVisible(false);
+				botaoNomeSocial.setVisible(true);
+				botaoRemover.setVisible(false);
+				campoNomeSocial.setText("");
+
+			}
+		});
+		botaoRemover.setIcon(new ImageIcon(carregaImagen("/images/menos.png")));
+		botaoRemover.setOpaque(false);
+		botaoRemover.setContentAreaFilled(false);
+		botaoRemover.setBorderPainted(false);
+		botaoRemover.setBounds(314, 280, 135, 20);
+		botaoRemover.setVisible(false);
+		contentPane.add(botaoRemover);
+		botaoNomeSocial.setIcon(new ImageIcon(carregaImagen("/images/mais.png")));
+		botaoNomeSocial.setOpaque(false);
+		botaoNomeSocial.setContentAreaFilled(false);
+		botaoNomeSocial.setBorderPainted(false);
+		botaoNomeSocial.setBounds(314, 280, 135, 20);
+		contentPane.add(botaoNomeSocial);
+		botaoEscondido.setOpaque(false);
+		botaoEscondido.setContentAreaFilled(false);
+		botaoEscondido.setBorderPainted(false);
+		botaoEscondido.setBounds(41, 4, 101, 97);
+		contentPane.add(botaoEscondido);
 
 		JLabel yokohamaLogo = new JLabel();
 		yokohamaLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
@@ -205,6 +260,12 @@ public class SimulaSeguroCliente extends JFrame {
 		contentPane.add(labelSouYoku);
 
 		JButton yokoButton = new JButton("yoko");
+		yokoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChatBot chat = new ChatBot();
+				chat.setVisible(true);
+			}
+		});
 		yokoButton.setOpaque(false);
 		yokoButton.setContentAreaFilled(false);
 		yokoButton.setBorderPainted(false);
@@ -214,6 +275,7 @@ public class SimulaSeguroCliente extends JFrame {
 		JButton botaoVoltar = new JButton("");
 		botaoVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				campoNomeSocial.setVisible(true);
 			}
 		});
 		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
@@ -222,5 +284,13 @@ public class SimulaSeguroCliente extends JFrame {
 		botaoVoltar.setBackground(new Color(127, 11, 11));
 		botaoVoltar.setBounds(-5, 135, 35, 111);
 		contentPane.add(botaoVoltar);
+
+		campoNomeSocial = new JTextField();
+		campoNomeSocial.setBackground(new Color(240, 240, 240));
+		campoNomeSocial.setBounds(248, 310, 201, 20);
+		campoNomeSocial.setVisible(false);
+		contentPane.add(campoNomeSocial);
+		campoNomeSocial.setColumns(10);
+
 	}
 }

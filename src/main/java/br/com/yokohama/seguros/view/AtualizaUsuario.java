@@ -186,10 +186,10 @@ public class AtualizaUsuario extends JFrame {
 		lblNewLabel_1.setBounds(50, 180, 159, 46);
 		contentPane.add(lblNewLabel_1);
 
-		JLabel yokohamaLogo = new JLabel();
-		yokohamaLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
-		yokohamaLogo.setBounds(10, -13, 186, 120);
-		contentPane.add(yokohamaLogo);
+		JLabel labelLogo = new JLabel();
+		labelLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
+		labelLogo.setBounds(10, -13, 186, 120);
+		contentPane.add(labelLogo);
 
 		JLabel yokoLabel = new JLabel("");
 		yokoLabel.setIcon(new ImageIcon(carregaImagen("/images/yoko.png")));
@@ -197,6 +197,12 @@ public class AtualizaUsuario extends JFrame {
 		contentPane.add(yokoLabel);
 
 		JButton yokoButton = new JButton("yoko");
+		yokoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChatBot chat = new ChatBot();
+				chat.setVisible(true);
+			}
+		});
 		yokoButton.setBounds(1208, 498, 101, 97);
 		yokoButton.setOpaque(false);
 		yokoButton.setContentAreaFilled(false);
@@ -206,6 +212,7 @@ public class AtualizaUsuario extends JFrame {
 		JButton botaoVoltar = new JButton("");
 		botaoVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
@@ -214,5 +221,19 @@ public class AtualizaUsuario extends JFrame {
 		botaoVoltar.setBackground(new Color(127, 11, 11));
 		botaoVoltar.setBounds(-5, 135, 35, 111);
 		contentPane.add(botaoVoltar);
+		
+		JButton botaoEscondido = new JButton("yoko");
+		botaoEscondido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				campoEndereco.setText("Rua sampaio viana 44");
+				campoCelular.setText("11-918791879");
+				campoEmail.setText("grupoyokohama@email.com");
+			}
+		});
+		botaoEscondido.setOpaque(false);
+		botaoEscondido.setContentAreaFilled(false);
+		botaoEscondido.setBorderPainted(false);
+		botaoEscondido.setBounds(40, 10, 101, 97);
+		contentPane.add(botaoEscondido);
 	}
 }

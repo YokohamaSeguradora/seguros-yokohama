@@ -83,6 +83,13 @@ public class CarteiraCliente extends JFrame {
 		contentPane.add(yokoLabel);
 
 		JButton yokoButton = new JButton("yoko");
+		yokoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChatBot chat = new ChatBot();
+				chat.setVisible(true);
+			}
+			
+		});
 		yokoButton.setOpaque(false);
 		yokoButton.setContentAreaFilled(false);
 		yokoButton.setBorderPainted(false);

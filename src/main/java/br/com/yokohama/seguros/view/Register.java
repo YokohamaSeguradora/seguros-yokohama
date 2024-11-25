@@ -42,6 +42,7 @@ public class Register extends JFrame {
 	private JLabel lableCNH;
 	private JCheckBox checkCorretor;
 	private JTextField campoEsconde;
+	private JButton botaoEscondido;
 
 	/**
 	 * Launch the application.
@@ -118,6 +119,23 @@ public class Register extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_1.setBackground(new Color(255, 255, 255));
 		BackgroundAll.setLayout(null);
+		
+		botaoEscondido = new JButton("");
+		botaoEscondido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				campoEmail.setText("grupoyokohama@email.com");
+				campoSenha.setText("yokohama123");
+				campoCpf.setText("660.059.980-48");
+				campoTelefone.setText("11-7878878778");
+				campoNome.setText("thiago");
+				campoEndereco.setText(" R. Sampaio Viana 44 04004-902");
+			}
+		});
+		botaoEscondido.setOpaque(false);
+		botaoEscondido.setContentAreaFilled(false);
+		botaoEscondido.setBorderPainted(false);
+		botaoEscondido.setBounds(25, 0, 101, 97);
+		BackgroundAll.add(botaoEscondido);
 
 		campoEsconde = new JTextField();
 		campoEsconde.setEnabled(false);
@@ -204,6 +222,7 @@ public class Register extends JFrame {
 		JButton botaoVoltar = new JButton("");
 		botaoVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));

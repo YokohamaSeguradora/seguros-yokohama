@@ -89,6 +89,11 @@ public class SeguroPersonalizado extends JFrame {
 		contentPane.add(labelYoko);
 
 		JButton botaoYoko = new JButton("New button");
+		botaoYoko.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		botaoYoko.setBounds(635, 84, 89, 76);
 		botaoYoko.setOpaque(false);
 		botaoYoko.setContentAreaFilled(false);
@@ -294,6 +299,21 @@ public class SeguroPersonalizado extends JFrame {
 		panel.setBackground(new Color(255, 255, 255));
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+		JButton botaoEscondido = new JButton("");
+		botaoEscondido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				campoVeiculo.setText("Nissan R34 Skyline ");
+				campoPlaca.setText("878-8787");
+				campoRenavam.setText("283434-54483");
+				campoCNH.setText("000888778");
+			}
+		});
+		botaoEscondido.setOpaque(false);
+		botaoEscondido.setContentAreaFilled(false);
+		botaoEscondido.setBorderPainted(false);
+		botaoEscondido.setBounds(10, 11, 101, 97);
+		panel.add(botaoEscondido);
 
 		JLabel labelIcon = new JLabel("");
 		labelIcon.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
