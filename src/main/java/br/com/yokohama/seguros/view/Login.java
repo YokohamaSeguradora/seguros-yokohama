@@ -161,6 +161,11 @@ public class Login extends JFrame {
 						menuCliente.setVisible(true);
 					}
 					dispose(); // Fecha a tela atual
+				} else {
+					javax.swing.JOptionPane.showMessageDialog(this,
+							"Email ou senha inválidos.",
+							"Erro de autenticação",
+							javax.swing.JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
