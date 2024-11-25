@@ -1,13 +1,21 @@
 package br.com.yokohama.seguros.controller;
 
+import java.sql.Connection;
+import java.util.function.Predicate;
+
+import br.com.yokohama.seguros.connection.ConnectionFactory;
 import br.com.yokohama.seguros.dao.UsuarioDAO;
 import br.com.yokohama.seguros.model.Usuario;
+import br.com.yokohama.seguros.utils.Criptografia;
+import br.com.yokohama.seguros.utils.Criptografia.PadraoCriptografia;
 
 public class UsuarioController {
 
     private final UsuarioDAO usuarioDAO;
 
-    public UsuarioController(UsuarioDAO usuarioDAO) {
+    public UsuarioController() {
+    	Connection connection = new ConnectionFactory().conectar();
+    	UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
         this.usuarioDAO = usuarioDAO;
     }
 
@@ -31,6 +39,15 @@ public class UsuarioController {
         }
 
         usuarioDAO.insert(usuario);
+    }
+    
+    public boolean isUsuarioCadastrado(String email, String senha) {
+    	return usuarioDAO.selectAll().stream()
+                .anyMatch(usuario -> {
+                    Criptografia criptografia = new Criptografia(senha, PadraoCriptografia.SHA256);
+                    return usuario.getEmailUsuario().equals(email)
+                            && usuario.getSenhaUsuario().equals(criptografia.criptografar());
+                });
     }
 
     public Usuario buscarUsuarioPorId(int idUsuario) {

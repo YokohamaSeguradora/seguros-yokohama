@@ -161,5 +161,35 @@ public class UsuarioDAO {
 
         return listaClientes;
     }
+    
+ // selectBySegurado
+    public List<Usuario> buscarTodosSegurados() {
+        List<Usuario> listaSegurados = new ArrayList<Usuario>();
+        Usuario usuario;
+        String sql = "select * from usuario where tipo_usuario = 'S' order by nome_completo_usuario";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
+                usuario.setIdUsuario(rs.getLong("id_usuario"));
+                usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
+                usuario.setCpfUsuario(rs.getString("cpf_usuario"));
+                usuario.setEmailUsuario(rs.getString("email_usuario"));
+                usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
+                usuario.setSenhaUsuario(rs.getString("senha_usuario"));
+                listaSegurados.add(usuario);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listaSegurados;
+    }
+
 
 }
