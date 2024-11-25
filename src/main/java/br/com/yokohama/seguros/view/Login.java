@@ -9,7 +9,6 @@ import java.sql.Connection;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import br.com.yokohama.seguros.controller.UsuarioController;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
 import org.w3c.dom.events.MouseEvent;
@@ -17,9 +16,7 @@ import org.w3c.dom.events.MouseEvent;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import br.com.yokohama.seguros.connection.ConnectionFactory;
-import br.com.yokohama.seguros.dao.AutomovelDAO;
 import br.com.yokohama.seguros.dao.UsuarioDAO;
-import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.utils.SessaoUsuario;
 
 public class Login extends JFrame {

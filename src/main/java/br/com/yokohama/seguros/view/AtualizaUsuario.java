@@ -66,7 +66,7 @@ public class AtualizaUsuario extends JFrame {
 
 	public AtualizaUsuario() {
 		String nomeUsuario = SessaoUsuario.getNomeUsuario();
-		String telefone = SessaoUsuario.getInstancia().getTelefoneUsuario();
+		String telefone = SessaoUsuario.getTelefoneUsuario();
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,7 +84,7 @@ public class AtualizaUsuario extends JFrame {
 		campoEndereco.setBounds(60, 335, 387, 41);
 		contentPane.add(campoEndereco);
 
-		JLabel labelNumeroUsuario = new JLabel("Telefone: " + SessaoUsuario.getTelefoneUsuario());
+		JLabel labelNumeroUsuario = new JLabel("Telefone: " + telefone);
 		labelNumeroUsuario.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		labelNumeroUsuario.setBounds(135, 245, 229, 14);
 		contentPane.add(labelNumeroUsuario);
