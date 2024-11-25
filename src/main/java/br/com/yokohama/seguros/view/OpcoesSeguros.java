@@ -13,12 +13,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
+import br.com.yokohama.seguros.model.Usuario;
+import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
+import br.com.yokohama.seguros.utils.SessaoUsuario;
 
 public class OpcoesSeguros extends JFrame {
 
@@ -177,10 +182,28 @@ public class OpcoesSeguros extends JFrame {
 		contentPane.add(btnNewButton);
 
 		JButton botaoVoltar = new JButton("");
-		botaoVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		botaoVoltar.addActionListener(e -> {
+            try {
+                // Obtendo o usuário logado da sessão
+                Usuario usuario = SessaoUsuario.getInstancia().getUsuarioLogado();
+
+                // Verificando o tipo do usuário para redirecionar para a tela correta
+                if (usuario != null) {
+                    if (usuario.getTipoUsuario() == TipoUsuario.CORRETOR) {
+                        MenuCorretor menuCorretor = new MenuCorretor();
+                        menuCorretor.setVisible(true);
+                    } else if (usuario.getTipoUsuario() == TipoUsuario.SEGURADO) {
+                        MenuCliente menuCliente = new MenuCliente();
+                        menuCliente.setVisible(true);
+                    }
+                    dispose(); // Fecha a tela atual
+                } else {
+                    JOptionPane.showMessageDialog(this, "Nenhum usuário logado!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Erro ao redirecionar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
 		botaoVoltar.setForeground(Color.WHITE);
 		botaoVoltar.setBorderPainted(false);
