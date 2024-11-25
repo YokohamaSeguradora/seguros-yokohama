@@ -76,10 +76,10 @@ public class AcionarSeguro extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JButton botaoNovo = new JButton("New button");
-        botaoNovo.setBackground(new Color(127, 11, 11));
-        botaoNovo.setBounds(314, 563, 118, 35);
-        contentPane.add(botaoNovo);
+        JButton btnValidar = new JButton("Acionar");
+        btnValidar.setBackground(new Color(127, 11, 11));
+        btnValidar.setBounds(314, 563, 118, 35);
+        contentPane.add(btnValidar);
 
         JLabel lblNewLabel_1 = new JLabel("");
         lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Kouto\\Downloads\\Bell Ringing 2.png"));
@@ -205,7 +205,7 @@ public class AcionarSeguro extends JFrame {
         contentPane.add(lblNewLabel);
         JLabel lblAssit = new JLabel("Assistência 24Hrs");
         lblAssit.setFont(new Font("Tahoma", Font.PLAIN, 19));
-        lblAssit.setBounds(142, 154, 140, 23);
+        lblAssit.setBounds(142, 154, 160, 23);
         contentPane.add(lblAssit);
 
         JButton headerPage = new JButton("");
@@ -246,11 +246,6 @@ public class AcionarSeguro extends JFrame {
         contentPane.add(botaoVoltar);
 
         // Botão para validar
-        JButton btnValidar = new JButton("Validar");
-        btnValidar.setBackground(Color.WHITE);
-        btnValidar.setBounds(314, 631, 118, 21);
-        contentPane.add(btnValidar);
-
         btnValidar.addActionListener(e -> {
             // Verificando se algum campo obrigatório não foi preenchido ou selecionado
             if (tpServico.getSelectedIndex() == -1) {
