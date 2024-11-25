@@ -107,6 +107,7 @@ public class UsuarioDAO {
                 usuario.setEmailUsuario(rs.getString("email_usuario"));
                 usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
                 usuario.setSenhaUsuario(rs.getString("senha_usuario"));
+                usuario.setCnhSegurado(rs.getString("cnh_segurado"));
                 listaUsuarios.add(usuario);
             }
             stmt.close();
@@ -133,6 +134,32 @@ public class UsuarioDAO {
                 usuario.setEmailUsuario(rs.getString("email_usuario"));
                 usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
                 usuario.setSenhaUsuario(rs.getString("senha_usuario"));
+                usuario.setCnhSegurado(rs.getString("cnh_segurado"));
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuario;
+    }
+
+    public Usuario selectByEmail(String email) {
+        Usuario usuario = null;
+        String sql = "select * from usuario where email_usuario=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
+                usuario.setIdUsuario(rs.getLong("id_usuario"));
+                usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
+                usuario.setCpfUsuario(rs.getString("cpf_usuario"));
+                usuario.setEmailUsuario(rs.getString("email_usuario"));
+                usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
+                usuario.setSenhaUsuario(rs.getString("senha_usuario"));
+                usuario.setCnhSegurado(rs.getString("cnh_segurado"));
             }
             stmt.close();
         } catch (SQLException e) {
