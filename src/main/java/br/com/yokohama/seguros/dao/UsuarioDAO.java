@@ -192,5 +192,29 @@ public class UsuarioDAO {
         return listaSegurados;
     }
 
+    public Usuario autenticarUsuario(String email, String senha) {
+        String sql = "SELECT * FROM usuario WHERE email_usuario = ? AND senha_usuario = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setObject(2, criptografarSenha(senha)); 
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Usuario usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
+                usuario.setIdUsuario(rs.getLong("id_usuario"));
+                usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
+                usuario.setCpfUsuario(rs.getString("cpf_usuario"));
+                usuario.setEmailUsuario(rs.getString("email_usuario"));
+                usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
+                return usuario;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Caso o usuario não for encontrado, retorna null
+    }
+    
+
 
 }
