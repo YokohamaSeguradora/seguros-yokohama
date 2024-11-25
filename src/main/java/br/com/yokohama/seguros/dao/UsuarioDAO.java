@@ -27,7 +27,20 @@ public class UsuarioDAO {
 
     // insert
     public void insert(Usuario usuario) {
-        String sql = "insert into usuario (tipo_usuario, nome_completo_usuario, cpf_usuario, email_usuario, telefone_usuario, senha_usuario, endereco_usuario, cnh_segurado) values (?,?,?,?,?,?,?,?)";
+
+        // Gerar o salt com a classe Criptografia
+        Criptografia criptografia = new Criptografia(usuario.getSenhaUsuario(), PadraoCriptografia.SHA256);
+        String salt = criptografia.gerarSalt();  // Gerar o salt utilizando o método gerarSalt
+
+        // Concatenar a senha com o salt
+        String senhaComSalt = usuario.getSenhaUsuario() + salt;
+
+        // Criptografar a senha com salt
+        Criptografia criptografiaComSalt = new Criptografia(senhaComSalt, PadraoCriptografia.SHA256);
+        String senhaCriptografada = criptografiaComSalt.criptografar();  // Criptografar a senha com o salt
+
+        // SQL para inserir o usuário com o hash e o salt
+        String sql = "insert into usuario (tipo_usuario, nome_completo_usuario, cpf_usuario, email_usuario, telefone_usuario, senha_usuario, salt_usuario, endereco_usuario, cnh_segurado) values (?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -36,9 +49,10 @@ public class UsuarioDAO {
             stmt.setString(3, usuario.getCpfUsuario());
             stmt.setString(4, usuario.getEmailUsuario());
             stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setObject(6, criptografarSenha(usuario.getSenhaUsuario()));
-            stmt.setString(7, usuario.getEnderecoUsuario());
-            stmt.setString(8, usuario.getCnhSegurado());
+            stmt.setString(6, senhaCriptografada);
+            stmt.setString(7, salt); // Armazenar o salt
+            stmt.setString(8, usuario.getEnderecoUsuario());
+            stmt.setString(9, usuario.getCnhSegurado());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -64,7 +78,7 @@ public class UsuarioDAO {
         String sql = "update usuario set tipo_usuario=?, nome_completo_usuario=?, cpf_usuario=?, email_usuario=?, telefone_usuario=?, senha_usuario=?, endereco_usuario=?, cnh_segurado=? where id_usuario=?";
         try {
             // Criptografa a senha antes de atualizar
-           
+
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getTipoUsuario().getCodigo());
             stmt.setString(2, usuario.getNomeCompletoUsuario());
@@ -162,8 +176,8 @@ public class UsuarioDAO {
 
         return listaClientes;
     }
-    
- // selectBySegurado
+
+    // selectBySegurado
     public List<Usuario> buscarTodosSegurados() {
         List<Usuario> listaSegurados = new ArrayList<Usuario>();
         Usuario usuario;
@@ -193,28 +207,37 @@ public class UsuarioDAO {
     }
 
     public Usuario autenticarUsuario(String email, String senha) {
-        String sql = "SELECT * FROM usuario WHERE email_usuario = ? AND senha_usuario = ?";
+        String sql = "SELECT * FROM usuario WHERE email_usuario = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, email);
-            stmt.setObject(2, criptografarSenha(senha)); 
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
-                Usuario usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
-                usuario.setIdUsuario(rs.getLong("id_usuario"));
-                usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
-                usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
-                usuario.setCpfUsuario(rs.getString("cpf_usuario"));
-                usuario.setEmailUsuario(rs.getString("email_usuario"));
-                usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
-                return usuario;
+                // Recupera o salt e o hash armazenado
+                String salt = rs.getString("salt_usuario");
+                String hashArmazenado = rs.getString("senha_usuario");
+
+                // Gera o hash da senha fornecida + salt
+                Criptografia criptografia = new Criptografia(senha + salt, PadraoCriptografia.SHA256);
+                String hashSenha = criptografia.criptografar();
+
+                // Verifica se o hash gerado é igual ao armazenado
+                if (hashSenha.equals(hashArmazenado)) {
+                    Usuario usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
+                    usuario.setIdUsuario(rs.getLong("id_usuario"));
+                    usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                    usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
+                    usuario.setCpfUsuario(rs.getString("cpf_usuario"));
+                    usuario.setEmailUsuario(rs.getString("email_usuario"));
+                    usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
+                    return usuario;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; // Caso o usuario não for encontrado, retorna null
+        return null;  // Caso o email não exista ou a senha seja incorreta
     }
-    
-
 
 }

@@ -100,7 +100,7 @@ public class Criptografia {
      *
      * @return Salt gerado em formato Base64.
      */
-    private String gerarSalt() {
+    public String gerarSalt() {
         SecureRandom secureRandom = new SecureRandom();
         byte[] saltBytes = new byte[16]; // Tamanho de 16 bytes para o salt
         secureRandom.nextBytes(saltBytes);
