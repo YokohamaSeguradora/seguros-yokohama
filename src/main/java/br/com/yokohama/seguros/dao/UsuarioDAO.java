@@ -27,38 +27,27 @@ public class UsuarioDAO {
 
     // insert
     public void insert(Usuario usuario) {
-
-        // Gerar o salt com a classe Criptografia
-        Criptografia criptografia = new Criptografia(usuario.getSenhaUsuario(), PadraoCriptografia.SHA256);
-        String salt = criptografia.gerarSalt();  // Gerar o salt utilizando o método gerarSalt
-
-        // Concatenar a senha com o salt
-        String senhaComSalt = usuario.getSenhaUsuario() + salt;
-
-        // Criptografar a senha com salt
-        Criptografia criptografiaComSalt = new Criptografia(senhaComSalt, PadraoCriptografia.SHA256);
-        String senhaCriptografada = criptografiaComSalt.criptografar();  // Criptografar a senha com o salt
-
-        // SQL para inserir o usuário com o hash e o salt
-        String sql = "insert into usuario (tipo_usuario, nome_completo_usuario, cpf_usuario, email_usuario, telefone_usuario, senha_usuario, salt_usuario, endereco_usuario, cnh_segurado) values (?,?,?,?,?,?,?,?,?)";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+        String sql = "INSERT INTO usuario (tipo_usuario, nome_completo_usuario, cpf_usuario, email_usuario, telefone_usuario, senha_usuario, endereco_usuario, cnh_segurado) VALUES (?,?,?,?,?,?,?,?)";
+    
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            // Criptografar a senha fornecida diretamente
+            Criptografia criptografia = new Criptografia(usuario.getSenhaUsuario(), PadraoCriptografia.SHA256);
+            String senhaCriptografada = criptografia.criptografar();
+    
             stmt.setString(1, usuario.getTipoUsuario().getCodigo());
             stmt.setString(2, usuario.getNomeCompletoUsuario());
             stmt.setString(3, usuario.getCpfUsuario());
             stmt.setString(4, usuario.getEmailUsuario());
             stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setString(6, senhaCriptografada);
-            stmt.setString(7, salt); // Armazenar o salt
-            stmt.setString(8, usuario.getEnderecoUsuario());
-            stmt.setString(9, usuario.getCnhSegurado());
+            stmt.setString(6, senhaCriptografada);  // Senha criptografada
+            stmt.setString(7, usuario.getEnderecoUsuario());
+            stmt.setString(8, usuario.getCnhSegurado());
             stmt.execute();
-            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
 
     // delete
     public void delete(long id) {
@@ -212,12 +201,11 @@ public class UsuarioDAO {
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    // Recupera o salt e o hash armazenado
-                    String salt = rs.getString("salt_usuario");
+                    // Recupera o hash armazenado (sem salt)
                     String hashArmazenado = rs.getString("senha_usuario");
     
-                    // Gera o hash da senha fornecida + salt
-                    Criptografia criptografia = new Criptografia(senha + salt, PadraoCriptografia.SHA256);
+                    // Gera o hash da senha fornecida
+                    Criptografia criptografia = new Criptografia(senha, PadraoCriptografia.SHA256);
                     String hashSenha = criptografia.criptografar();
     
                     // Verifica se o hash gerado é igual ao armazenado
@@ -238,6 +226,7 @@ public class UsuarioDAO {
         }
         return null;  // Caso o email não exista ou a senha seja incorreta
     }
+    
     
 
 }
