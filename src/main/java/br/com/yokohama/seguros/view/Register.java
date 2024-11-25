@@ -3,6 +3,8 @@ package br.com.yokohama.seguros.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -198,6 +200,18 @@ public class Register extends JFrame {
 		BackgroundAll.add(lableCNH);
 		campoEsconde.setVisible(true);
 		campoNomeSocial.setVisible(false);
+
+		JButton botaoVoltar = new JButton("");
+		botaoVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
+		botaoVoltar.setForeground(Color.WHITE);
+		botaoVoltar.setBorderPainted(false);
+		botaoVoltar.setBackground(new Color(127, 11, 11));
+		botaoVoltar.setBounds(-5, 135, 35, 111);
+		BackgroundAll.add(botaoVoltar);
 		// se Jcheck está assinalado o campoNomesocial é editavel se não está desativado
 		checkSocial.addActionListener(e -> {
 			if (checkSocial.isSelected()) {

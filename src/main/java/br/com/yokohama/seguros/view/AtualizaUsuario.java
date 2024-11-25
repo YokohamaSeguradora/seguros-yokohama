@@ -17,6 +17,9 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AtualizaUsuario extends JFrame {
 
@@ -199,5 +202,17 @@ public class AtualizaUsuario extends JFrame {
 		yokoButton.setContentAreaFilled(false);
 		yokoButton.setBorderPainted(false);
 		contentPane.add(yokoButton);
+		// Botao Voltar
+		JButton botaoVoltar = new JButton("");
+		botaoVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
+		botaoVoltar.setForeground(Color.WHITE);
+		botaoVoltar.setBorderPainted(false);
+		botaoVoltar.setBackground(new Color(127, 11, 11));
+		botaoVoltar.setBounds(-5, 135, 35, 111);
+		contentPane.add(botaoVoltar);
 	}
 }

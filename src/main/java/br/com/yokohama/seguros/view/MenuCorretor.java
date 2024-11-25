@@ -44,15 +44,16 @@ public class MenuCorretor extends JFrame {
 	}
 
 	// Metodo para carregar imagens
-		public BufferedImage carregaImagen(String str) {
-			try {
-				return ImageIO.read(AtualizaAuto.class.getResource(str));
+	public BufferedImage carregaImagen(String str) {
+		try {
+			return ImageIO.read(AtualizaAuto.class.getResource(str));
 
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
 		}
+	}
+
 	public MenuCorretor() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

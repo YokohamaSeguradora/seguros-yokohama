@@ -1,6 +1,5 @@
 package br.com.yokohama.seguros.view;
 
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -61,7 +60,7 @@ public class AtualizaAuto extends JFrame {
 			return null;
 		}
 	}
-	
+
 	public AtualizaAuto() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +71,7 @@ public class AtualizaAuto extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton botaoAlteraPlaca = new JButton("Alterar");
 		botaoAlteraPlaca.setForeground(Color.WHITE);
 		botaoAlteraPlaca.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -80,7 +79,7 @@ public class AtualizaAuto extends JFrame {
 		botaoAlteraPlaca.setBackground(new Color(127, 11, 11));
 		botaoAlteraPlaca.setBounds(639, 401, 101, 32);
 		contentPane.add(botaoAlteraPlaca);
-		
+
 		JButton botaoAlteraModelo = new JButton("Alterar");
 		botaoAlteraModelo.setForeground(Color.WHITE);
 		botaoAlteraModelo.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -88,7 +87,7 @@ public class AtualizaAuto extends JFrame {
 		botaoAlteraModelo.setBackground(new Color(127, 11, 11));
 		botaoAlteraModelo.setBounds(639, 288, 101, 32);
 		contentPane.add(botaoAlteraModelo);
-		
+
 		JButton botaoAlteraAno = new JButton("Alterar");
 		botaoAlteraAno.setForeground(Color.WHITE);
 		botaoAlteraAno.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -96,45 +95,45 @@ public class AtualizaAuto extends JFrame {
 		botaoAlteraAno.setBackground(new Color(127, 11, 11));
 		botaoAlteraAno.setBounds(639, 517, 101, 32);
 		contentPane.add(botaoAlteraAno);
-		
+
 		JLabel labelEscudo = new JLabel("");
 		labelEscudo.setIcon(new ImageIcon(carregaImagen("/images/escudo.png")));
 		labelEscudo.setBounds(324, 200, 27, 21);
 		contentPane.add(labelEscudo);
-		
+
 		JLabel labelMiniCarro = new JLabel("");
 		labelMiniCarro.setIcon(new ImageIcon(carregaImagen("/images/car.png")));
 		labelMiniCarro.setBounds(63, 170, 53, 46);
 		contentPane.add(labelMiniCarro);
-		
+
 		campoModelo = new JTextField();
 		campoModelo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		campoModelo.setColumns(10);
 		campoModelo.setBounds(60, 284, 387, 41);
 		contentPane.add(campoModelo);
-		
+
 		JLabel labelProtegido = new JLabel("ABC1234");
 		labelProtegido.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		labelProtegido.setBounds(253, 198, 112, 21);
 		contentPane.add(labelProtegido);
-		
+
 		JLabel labelTituloPlac = new JLabel("ABC1234");
 		labelTituloPlac.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		labelTituloPlac.setBounds(145, 198, 112, 21);
 		contentPane.add(labelTituloPlac);
-		
+
 		textField = new JTextField();
 		textField.setEnabled(false);
 		textField.setBounds(131, 158, 2, 70);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
+
 		campoPLaca = new JTextField();
 		campoPLaca.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		campoPLaca.setColumns(10);
 		campoPLaca.setBounds(60, 397, 387, 41);
 		contentPane.add(campoPLaca);
-		
+
 		campoAnoFab = new JTextField();
 		campoAnoFab.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		campoAnoFab.setColumns(10);
@@ -202,35 +201,43 @@ public class AtualizaAuto extends JFrame {
 		yokoButton.setContentAreaFilled(false);
 		yokoButton.setBorderPainted(false);
 		contentPane.add(yokoButton);
-		
+
 		JButton fundo05_1 = new JButton("");
 		fundo05_1.setEnabled(false);
 		fundo05_1.setBounds(40, 492, 721, 81);
 		contentPane.add(fundo05_1);
-		
+
 		JLabel labelFabric = new JLabel("Ano mod/fab:");
 		labelFabric.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelFabric.setBounds(50, 449, 169, 46);
 		contentPane.add(labelFabric);
-		
+
 		JButton fundo05_1_1 = new JButton("");
 		fundo05_1_1.setEnabled(false);
 		fundo05_1_1.setBounds(40, 376, 721, 81);
 		contentPane.add(fundo05_1_1);
-		
+
 		JLabel labelPlaca = new JLabel("Placa:");
 		labelPlaca.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelPlaca.setBounds(50, 336, 169, 46);
 		contentPane.add(labelPlaca);
-		
+
 		JButton fundo05_1_1_1 = new JButton("");
 		fundo05_1_1_1.setEnabled(false);
 		fundo05_1_1_1.setBounds(40, 262, 721, 81);
 		contentPane.add(fundo05_1_1_1);
-		
+
 		JLabel labelModel = new JLabel("Modelo:");
 		labelModel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelModel.setBounds(49, 223, 169, 46);
 		contentPane.add(labelModel);
+
+		JButton botaoVoltar = new JButton("");
+		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
+		botaoVoltar.setForeground(Color.WHITE);
+		botaoVoltar.setBorderPainted(false);
+		botaoVoltar.setBackground(new Color(127, 11, 11));
+		botaoVoltar.setBounds(-5, 135, 35, 111);
+		contentPane.add(botaoVoltar);
 	}
 }

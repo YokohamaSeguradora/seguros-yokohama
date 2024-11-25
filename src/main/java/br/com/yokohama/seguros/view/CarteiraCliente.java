@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -63,7 +65,7 @@ public class CarteiraCliente extends JFrame {
 			return null;
 		}
 	}
-	
+
 	public CarteiraCliente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,53 +76,60 @@ public class CarteiraCliente extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel yokoLabel = new JLabel("");
 		yokoLabel.setIcon(new ImageIcon(carregaImagen("/images/yoko.png")));
 		yokoLabel.setBounds(1129, 11, 126, 118);
 		contentPane.add(yokoLabel);
-		
+
 		JButton yokoButton = new JButton("yoko");
 		yokoButton.setOpaque(false);
 		yokoButton.setContentAreaFilled(false);
 		yokoButton.setBorderPainted(false);
 		yokoButton.setBounds(1138, 23, 101, 97);
 		contentPane.add(yokoButton);
-		
+
 		JLabel labelTexto = new JLabel("Carteira dos clientes");
 		labelTexto.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		labelTexto.setBounds(95, 127, 321, 50);
 		contentPane.add(labelTexto);
-		
+
 		JButton botaoEstetico = new JButton("");
 		botaoEstetico.setEnabled(false);
 		botaoEstetico.setBounds(68, 127, 1214, 50);
 		contentPane.add(botaoEstetico);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(8, 2));
 		scrollPane.setBounds(68, 202, 1214, 487);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setForeground(new Color(0, 0, 0));
 		table.setBackground(new Color(246, 246, 246));
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Pendente", "123213", "32443534435", "auto", "carro\u00E7a"},
-				{"Concluido", "21344523", "12354365344234", "auto", null},
-			},
-			new String[] {
-				"Status", "Segurado", "CPF/CNPJ", "Tipo Seguro", "Veiculo"
-			}
-		));
+				new Object[][] { { "Pendente", "123213", "32443534435", "auto", "carro\u00E7a" },
+						{ "Concluido", "21344523", "12354365344234", "auto", null }, },
+				new String[] { "Status", "Segurado", "CPF/CNPJ", "Tipo Seguro", "Veiculo" }));
 		scrollPane.setViewportView(table);
-		
+
 		JLabel yokohamaLogo = new JLabel();
 		yokohamaLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
 		yokohamaLogo.setBounds(10, -13, 186, 120);
 		contentPane.add(yokohamaLogo);
+
+		JButton botaoVoltar = new JButton("");
+		botaoVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
+		botaoVoltar.setForeground(Color.WHITE);
+		botaoVoltar.setBorderPainted(false);
+		botaoVoltar.setBackground(new Color(127, 11, 11));
+		botaoVoltar.setBounds(-5, 135, 35, 111);
+		contentPane.add(botaoVoltar);
 	}
 
 }

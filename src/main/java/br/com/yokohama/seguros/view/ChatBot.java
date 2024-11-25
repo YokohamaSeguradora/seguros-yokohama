@@ -127,15 +127,27 @@ public class ChatBot extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(carregaImagen("/images/yokoMedio.png")));
 		lblNewLabel.setBounds(610, -4, 129, 111);
 		contentPane.add(lblNewLabel);
-		
+
 		lblNewLabel_1 = new JLabel("A Yoko pode cometer erros. Por isso, é bom checar as respostas");
 		lblNewLabel_1.setBounds(508, 694, 357, 14);
 		contentPane.add(lblNewLabel_1);
-		
+
 		lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon(carregaImagen("/images/image3Nova.png")));
 		lblNewLabel_2.setBounds(10, -13, 104, 88);
 		contentPane.add(lblNewLabel_2);
+
+		JButton botaoVoltar = new JButton("");
+		botaoVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
+		botaoVoltar.setForeground(Color.WHITE);
+		botaoVoltar.setBorderPainted(false);
+		botaoVoltar.setBackground(new Color(127, 11, 11));
+		botaoVoltar.setBounds(-5, 135, 35, 111);
+		contentPane.add(botaoVoltar);
 
 	}
 
