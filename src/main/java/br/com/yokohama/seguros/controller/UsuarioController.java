@@ -45,6 +45,8 @@ public class UsuarioController {
     	return usuarioDAO.selectAll().stream()
                 .anyMatch(usuario -> {
                     Criptografia criptografia = new Criptografia(senha, PadraoCriptografia.SHA256);
+                    System.out.println(usuario.getSenhaUsuario());
+                    System.out.println(criptografia.criptografar());
                     return usuario.getEmailUsuario().equals(email)
                             && usuario.getSenhaUsuario().equals(criptografia.criptografar());
                 });
@@ -54,6 +56,9 @@ public class UsuarioController {
         return usuarioDAO.selectById(idUsuario);
     }
 
+    public Usuario buscarUsuarioPorEmail(String email) {
+        return usuarioDAO.selectByEmail(email);
+    }
     public void atualizarEndereco(int idUsuario, String novoEndereco) {
         if (novoEndereco == null || novoEndereco.trim().isEmpty()) {
             throw new IllegalArgumentException("O endereço não pode estar vazio.");

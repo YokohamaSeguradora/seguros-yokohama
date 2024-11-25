@@ -64,9 +64,7 @@ public class Criptografia {
      */
     public String criptografar() {
 
-        // Gerar um salt aleatório para cada senha
-        String salt = gerarSalt();
-        String senhaComSalt = informacao + salt;
+        String senha = informacao;
 
         StringBuilder hexString = new StringBuilder(); // String para armazenar o hash em hexadecimal
 
@@ -75,7 +73,7 @@ public class Criptografia {
             MessageDigest messageDigest = MessageDigest.getInstance(padrao.getCodigo());
 
             // Gera o hash da informação + salt em bytes
-            byte[] hash = messageDigest.digest(senhaComSalt.getBytes(StandardCharsets.UTF_8));
+            byte[] hash = messageDigest.digest(senha.getBytes(StandardCharsets.UTF_8));
 
             // Converte cada byte do hash em hexadecimal
             for (byte b : hash) {
@@ -93,17 +91,5 @@ public class Criptografia {
 
         // Retorna a string criptografada em letras maiúsculas
         return hexString.toString().toUpperCase();
-    }
-
-    /**
-     * Gera um salt aleatório usando SecureRandom.
-     *
-     * @return Salt gerado em formato Base64.
-     */
-    private String gerarSalt() {
-        SecureRandom secureRandom = new SecureRandom();
-        byte[] saltBytes = new byte[16]; // Tamanho de 16 bytes para o salt
-        secureRandom.nextBytes(saltBytes);
-        return Base64.getEncoder().encodeToString(saltBytes); // Converte para Base64 para facilitar o armazenamento
     }
 }
