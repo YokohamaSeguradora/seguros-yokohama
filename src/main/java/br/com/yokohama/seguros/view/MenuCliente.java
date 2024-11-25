@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import br.com.yokohama.seguros.utils.SessaoUsuario;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -57,6 +59,7 @@ public class MenuCliente extends JFrame {
 	}
 	
 	public MenuCliente() {
+		String nomeUsuario = SessaoUsuario.getNomeUsuario();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 768);
 		contentPane = new JPanel();
@@ -71,7 +74,7 @@ public class MenuCliente extends JFrame {
 		userIcone.setBounds(23, 38, 68, 64);
 		contentPane.add(userIcone);
 		
-		JLabel labelNome = new JLabel("Olá, Usuario!");
+		JLabel labelNome = new JLabel(String.format("Olá, %s", nomeUsuario));
 		labelNome.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		labelNome.setBounds(97, 70, 242, 24);
 		contentPane.add(labelNome);

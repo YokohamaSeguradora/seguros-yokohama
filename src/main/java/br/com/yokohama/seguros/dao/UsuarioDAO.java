@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.yokohama.seguros.utils.Criptografia;
 import br.com.yokohama.seguros.utils.Criptografia.PadraoCriptografia;
+import br.com.yokohama.seguros.utils.SessaoUsuario;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
 
@@ -52,7 +53,6 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
-    
 
     // delete
     public void delete(long id) {
@@ -233,14 +233,10 @@ public class UsuarioDAO {
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    // Recupera o hash armazenado (sem salt)
                     String hashArmazenado = rs.getString("senha_usuario");
-    
-                    // Gera o hash da senha fornecida
                     Criptografia criptografia = new Criptografia(senha, PadraoCriptografia.SHA256);
                     String hashSenha = criptografia.criptografar();
-    
-                    // Verifica se o hash gerado é igual ao armazenado
+
                     if (hashSenha.equals(hashArmazenado)) {
                         Usuario usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
                         usuario.setIdUsuario(rs.getLong("id_usuario"));
@@ -249,6 +245,9 @@ public class UsuarioDAO {
                         usuario.setCpfUsuario(rs.getString("cpf_usuario"));
                         usuario.setEmailUsuario(rs.getString("email_usuario"));
                         usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
+
+                        // Configura o usuário na sessão
+                        SessaoUsuario.getInstancia().setUsuario(usuario);
                         return usuario;
                     }
                 }
@@ -256,9 +255,7 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;  // Caso o email não exista ou a senha seja incorreta
+        return null; // Caso o email não exista ou a senha seja incorreta
     }
-    
-    
 
 }

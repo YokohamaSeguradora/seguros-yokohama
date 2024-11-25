@@ -20,6 +20,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.ImageIcon;
 
 import br.com.yokohama.seguros.controller.UsuarioController;
+import br.com.yokohama.seguros.utils.SessaoUsuario;
 
 public class AtualizaUsuario extends JFrame {
 
@@ -64,6 +65,9 @@ public class AtualizaUsuario extends JFrame {
 	}
 
 	public AtualizaUsuario() {
+		String nomeUsuario = SessaoUsuario.getNomeUsuario();
+		String telefone = SessaoUsuario.getInstancia().getTelefoneUsuario();
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(80, 80, 1366, 768);
@@ -80,12 +84,12 @@ public class AtualizaUsuario extends JFrame {
 		campoEndereco.setBounds(60, 335, 387, 41);
 		contentPane.add(campoEndereco);
 
-		JLabel labelNumeroUsuario = new JLabel("128371240902-27");
+		JLabel labelNumeroUsuario = new JLabel("Telefone: " + SessaoUsuario.getTelefoneUsuario());
 		labelNumeroUsuario.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		labelNumeroUsuario.setBounds(135, 245, 229, 14);
 		contentPane.add(labelNumeroUsuario);
 
-		JLabel labelNomeUsuario = new JLabel("Zé Ninguem da SIlva");
+		JLabel labelNomeUsuario = new JLabel(String.format("Olá, %s", nomeUsuario));
 		labelNomeUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelNomeUsuario.setBounds(135, 213, 317, 25);
 		contentPane.add(labelNomeUsuario);

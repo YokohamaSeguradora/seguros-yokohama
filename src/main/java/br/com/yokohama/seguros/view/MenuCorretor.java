@@ -20,6 +20,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import br.com.yokohama.seguros.utils.SessaoUsuario;
+
 public class MenuCorretor extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -54,6 +56,7 @@ public class MenuCorretor extends JFrame {
 			}
 		}
 	public MenuCorretor() {
+		String nomeUsuario = SessaoUsuario.getNomeUsuario();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 768);
@@ -69,7 +72,7 @@ public class MenuCorretor extends JFrame {
 		userIcone.setBounds(23, 38, 68, 64);
 		contentPane.add(userIcone);
 
-		JLabel labelNome = new JLabel("Olá, Corretor!");
+		JLabel labelNome = new JLabel(String.format("Olá, %s", nomeUsuario));
 		labelNome.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		labelNome.setBounds(97, 70, 242, 24);
 		contentPane.add(labelNome);
