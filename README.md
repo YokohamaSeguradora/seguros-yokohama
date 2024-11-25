@@ -79,8 +79,8 @@ Licensed under the [MIT License](./LICENSE)
   <a href="https://github.com/JulioEstrela"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
 
   - Kauã Silva<br><br>
-  <a href="" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
-  <a href="mailto:"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
+  <a href="https://www.linkedin.com/in/kau%C3%A3silvagomes?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
+  <a href="mailto:koutosilvag@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href="https://github.com/KSGKouto"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
   
   - Rodrigo Bettio Penha Júnior<br><br>
