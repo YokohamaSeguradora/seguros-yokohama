@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.yokohama.seguros.utils.Criptografia;
+import br.com.yokohama.seguros.utils.Criptografia.PadraoCriptografia;
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
 
@@ -20,7 +21,7 @@ public class UsuarioDAO {
     }
 
     private String criptografarSenha(String senha) {
-        Criptografia criptografia = new Criptografia(senha, Criptografia.SHA256);
+        Criptografia criptografia = new Criptografia(senha, PadraoCriptografia.SHA256);
         return criptografia.criptografar();
     }
 

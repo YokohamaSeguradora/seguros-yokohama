@@ -121,7 +121,7 @@ public class VisualizarCorretores extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "Avali\u00E7\u00E3o"
+				"Nome", "Avaliação"
 			}
 		));
 		scrollPane.setViewportView(table);

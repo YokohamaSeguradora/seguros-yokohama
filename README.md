@@ -70,7 +70,7 @@ Licensed under the [MIT License](./LICENSE)
 
   - João Victor Souza Gomes<br><br>
   <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-souza-gomes-132405321/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
-  <a href=""><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
+  <a href="joaovictorsgomes07@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href=""><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
   
   - Júlio Antunes Estrela<br><br>
@@ -84,8 +84,8 @@ Licensed under the [MIT License](./LICENSE)
   <a href="https://github.com/KSGKouto"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
   
   - Rodrigo Bettio Penha Júnior<br><br>
-  <a href="" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
-  <a href="mailto:"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
+  <a href="http://www.linkedin.com/in/rodrigobettio" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
+  <a href="mailto:rodrigo.bettio2005@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href="https://github.com/RodrigoBettio"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
   
   - Thiago Temoteo da Silva<br><br>
