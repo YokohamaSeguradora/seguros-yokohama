@@ -44,15 +44,15 @@ public class UsuarioDAO {
             stmt.setString(3, usuario.getCpfUsuario());
             stmt.setString(4, usuario.getEmailUsuario());
             stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setString(6, senhaCriptografada);
+            stmt.setString(6, senhaCriptografada);  // Senha criptografada
             stmt.setString(7, usuario.getEnderecoUsuario());
             stmt.setString(8, usuario.getCnhSegurado());
             stmt.execute();
-            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
 
     // delete
     public void delete(long id) {
@@ -202,31 +202,28 @@ public class UsuarioDAO {
 
     public Usuario autenticarUsuario(String email, String senha) {
         String sql = "SELECT * FROM usuario WHERE email_usuario = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                // Recupera o salt e o hash armazenado
-                String hashArmazenado = rs.getString("senha_usuario");
-
-                // Gera o hash da senha fornecida + salt
-                Criptografia criptografia = new Criptografia(senha, PadraoCriptografia.SHA256);
-                String hashSenha = criptografia.criptografar();
-
-                System.out.println(hashSenha);
-                System.out.println(hashArmazenado);
-                // Verifica se o hash gerado é igual ao armazenado
-                if (hashSenha.equals(hashArmazenado)) {
-                    Usuario usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
-                    usuario.setIdUsuario(rs.getLong("id_usuario"));
-                    usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
-                    usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
-                    usuario.setCpfUsuario(rs.getString("cpf_usuario"));
-                    usuario.setEmailUsuario(rs.getString("email_usuario"));
-                    usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
-                    return usuario;
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Recupera o hash armazenado (sem salt)
+                    String hashArmazenado = rs.getString("senha_usuario");
+    
+                    // Gera o hash da senha fornecida
+                    Criptografia criptografia = new Criptografia(senha, PadraoCriptografia.SHA256);
+                    String hashSenha = criptografia.criptografar();
+    
+                    // Verifica se o hash gerado é igual ao armazenado
+                    if (hashSenha.equals(hashArmazenado)) {
+                        Usuario usuario = new Usuario(TipoUsuario.fromCodigo(rs.getString("tipo_usuario")));
+                        usuario.setIdUsuario(rs.getLong("id_usuario"));
+                        usuario.setNomeCompletoUsuario(rs.getString("nome_completo_usuario"));
+                        usuario.setTelefoneUsuario(rs.getString("telefone_usuario"));
+                        usuario.setCpfUsuario(rs.getString("cpf_usuario"));
+                        usuario.setEmailUsuario(rs.getString("email_usuario"));
+                        usuario.setEnderecoUsuario(rs.getString("endereco_usuario"));
+                        return usuario;
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -234,5 +231,7 @@ public class UsuarioDAO {
         }
         return null;  // Caso o email não exista ou a senha seja incorreta
     }
+    
+    
 
 }
