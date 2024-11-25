@@ -68,6 +68,24 @@ public class MenuCorretor extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+				
+						JButton botaoYoko = new JButton("");
+						botaoYoko.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ChatBot chat = new ChatBot();
+								chat.setVisible(true);
+							}
+						});
+						botaoYoko.setBounds(1228, 624, 83, 68);
+						contentPane.add(botaoYoko);
+						botaoYoko.setOpaque(false);
+						botaoYoko.setContentAreaFilled(false);
+						botaoYoko.setBorderPainted(false);
+		
+				JLabel iconeYoko = new JLabel("");
+				iconeYoko.setBounds(1228, 624, 83, 68);
+				contentPane.add(iconeYoko);
+				iconeYoko.setIcon(new ImageIcon(carregaImagen("/images/yokoMenor.png")));
 
 		JLabel userIcone = new JLabel("New label");
 		userIcone.setIcon(new ImageIcon(carregaImagen("/images/userLogo.png")));
@@ -178,18 +196,6 @@ public class MenuCorretor extends JFrame {
 		Header.setEnabled(false);
 		Header.setBounds(295, 11, 1049, 48);
 		contentPane.add(Header);
-
-		JLabel iconeYoko = new JLabel("");
-		iconeYoko.setBounds(1228, 624, 83, 68);
-		contentPane.add(iconeYoko);
-		iconeYoko.setIcon(new ImageIcon(carregaImagen("/images/yokoMenor.png")));
-
-		JButton botaoYoko = new JButton("");
-		botaoYoko.setBounds(1228, 624, 83, 68);
-		contentPane.add(botaoYoko);
-		botaoYoko.setOpaque(false);
-		botaoYoko.setContentAreaFilled(false);
-		botaoYoko.setBorderPainted(false);
 		
 		JInternalFrame frameWarning = new JInternalFrame("New JInternalFrame");
 		frameWarning.getContentPane().setBackground(new Color(240, 240, 240));

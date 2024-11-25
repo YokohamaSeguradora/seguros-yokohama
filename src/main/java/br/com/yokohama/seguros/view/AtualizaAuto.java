@@ -18,6 +18,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import br.com.yokohama.seguros.model.Usuario;
 import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
@@ -29,13 +31,11 @@ public class AtualizaAuto extends JFrame {
 	private JTextField campoPerNoite;
 	private JPanel contentPane;
 	private JTextField campoAnoFab;
-	private JTextField campoPLaca;
+	private JTextField campoPlaca;
 	private JTextField textField;
 	private JTextField campoModelo;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
 		UIManager.put("Button.arc", 25);
@@ -133,11 +133,11 @@ public class AtualizaAuto extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		campoPLaca = new JTextField();
-		campoPLaca.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		campoPLaca.setColumns(10);
-		campoPLaca.setBounds(60, 397, 387, 41);
-		contentPane.add(campoPLaca);
+		campoPlaca = new JTextField();
+		campoPlaca.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		campoPlaca.setColumns(10);
+		campoPlaca.setBounds(60, 397, 387, 41);
+		contentPane.add(campoPlaca);
 
 		campoAnoFab = new JTextField();
 		campoAnoFab.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -200,13 +200,6 @@ public class AtualizaAuto extends JFrame {
 		yokoLabel.setBounds(1183, 496, 126, 118);
 		contentPane.add(yokoLabel);
 
-		JButton yokoButton = new JButton("yoko");
-		yokoButton.setBounds(1208, 498, 101, 97);
-		yokoButton.setOpaque(false);
-		yokoButton.setContentAreaFilled(false);
-		yokoButton.setBorderPainted(false);
-		contentPane.add(yokoButton);
-
 		JButton fundo05_1 = new JButton("");
 		fundo05_1.setEnabled(false);
 		fundo05_1.setBounds(40, 492, 721, 81);
@@ -266,5 +259,33 @@ public class AtualizaAuto extends JFrame {
 		botaoVoltar.setBackground(new Color(127, 11, 11));
 		botaoVoltar.setBounds(-5, 135, 35, 111);
 		contentPane.add(botaoVoltar);
+		
+				JButton yokoButton = new JButton("");
+				yokoButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ChatBot chat = new ChatBot();
+						chat.setVisible(true);
+					}
+				});
+				yokoButton.setBounds(1208, 498, 101, 97);
+				yokoButton.setOpaque(false);
+				yokoButton.setContentAreaFilled(false);
+				yokoButton.setBorderPainted(false);
+				contentPane.add(yokoButton);
+				
+				JButton botaoEscondido = new JButton("yoko");
+				botaoEscondido.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						campoModelo.setText("Skyline GT-R R34");
+						campoPlaca.setText("878-8787");
+						campoAnoFab.setText("1988");
+						campoPerNoite.setText("04004-902");
+					}
+				});
+				botaoEscondido.setOpaque(false);
+				botaoEscondido.setContentAreaFilled(false);
+				botaoEscondido.setBorderPainted(false);
+				botaoEscondido.setBounds(32, 10, 101, 97);
+				contentPane.add(botaoEscondido);
 	}
 }

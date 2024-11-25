@@ -1,25 +1,29 @@
 package br.com.yokohama.seguros.view;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import com.formdev.flatlaf.FlatLightLaf;
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.Font;
-import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import javax.swing.ImageIcon;
+
+import com.formdev.flatlaf.FlatLightLaf;
+
+import br.com.yokohama.seguros.model.Usuario;
+import br.com.yokohama.seguros.model.Usuario.TipoUsuario;
+import br.com.yokohama.seguros.utils.SessaoUsuario;
 
 public class SimulaSeguroCliente extends JFrame {
 
@@ -30,30 +34,35 @@ public class SimulaSeguroCliente extends JFrame {
     private JTextField campoCelular;
     private JTextField campoCPF;
     private JTextField campoPerNoite;
+    private JTextField campoNomeSocial;
+    private JLabel labelNomeSocial;
 
     public static void main(String[] args) {
         FlatLightLaf.setup();
-        UIManager.put("Button.arc", 25);
-        UIManager.put("Button.hoverBackground", new Color(218, 76, 76));
-        UIManager.put("Button.arc", 15);
-        UIManager.put("Button.hoverBackground", new Color(105, 7, 7));
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    SimulaSeguroCliente frame = new SimulaSeguroCliente();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        configurarUIManager();
+        EventQueue.invokeLater(() -> {
+            try {
+                SimulaSeguroCliente frame = new SimulaSeguroCliente();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
+    private static void configurarUIManager() {
+        UIManager.put("Button.arc", 25);
+        UIManager.put("Button.hoverBackground", new Color(218, 76, 76));
+        UIManager.put("Button.arc", 15);
+        UIManager.put("TextComponent.arc", 20);
+        UIManager.put("Button.hoverBackground", new Color(105, 7, 7));
+    }
+
     // Método para carregar imagens
-    public BufferedImage carregaImagen(String str) {
+    private BufferedImage carregaImagem(String caminho) {
         try {
-            return ImageIO.read(AtualizaUsuario.class.getResource(str));
+            return ImageIO.read(SimulaSeguroCliente.class.getResource(caminho));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -61,162 +70,163 @@ public class SimulaSeguroCliente extends JFrame {
     }
 
     public SimulaSeguroCliente() {
+        configurarJanela();
+        inicializarComponentes();
+    }
+
+    private void configurarJanela() {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1366, 768);
         contentPane = new JPanel();
-        contentPane.setBackground(new Color(255, 255, 255));
+        contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
         setContentPane(contentPane);
         contentPane.setLayout(null);
+    }
 
+    private void inicializarComponentes() {
+        adicionarLogos();
+        adicionarCamposTexto();
+        adicionarLabels();
+        adicionarBotoes();
+    }
+
+    private void adicionarLogos() {
         JLabel yokohamaLogo = new JLabel();
-        yokohamaLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
+        yokohamaLogo.setIcon(new ImageIcon(carregaImagem("/images/image3.png")));
         yokohamaLogo.setBounds(10, -13, 186, 120);
         contentPane.add(yokohamaLogo);
 
         JLabel iconeYoku = new JLabel("");
-        iconeYoku.setIcon(new ImageIcon(carregaImagen("/images/yoko.png")));
+        iconeYoku.setIcon(new ImageIcon(carregaImagem("/images/yoko.png")));
         iconeYoku.setBounds(607, 4, 135, 103);
         contentPane.add(iconeYoku);
-
-        campoPerNoite = new JTextField();
-        campoPerNoite.setOpaque(false);
-        campoPerNoite.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        campoPerNoite.setColumns(10);
-        campoPerNoite.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-        campoPerNoite.setBounds(730, 407, 189, 20);
-        contentPane.add(campoPerNoite);
-
-        campoCPF = new JTextField();
-        campoCPF.setOpaque(false);
-        campoCPF.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        campoCPF.setColumns(10);
-        campoCPF.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-        campoCPF.setBounds(360, 407, 189, 20);
-        contentPane.add(campoCPF);
-
-        campoCelular = new JTextField();
-        campoCelular.setOpaque(false);
-        campoCelular.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        campoCelular.setColumns(10);
-        campoCelular.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-        campoCelular.setBounds(911, 253, 189, 20);
-        contentPane.add(campoCelular);
-
-        campoEmail = new JTextField();
-        campoEmail.setOpaque(false);
-        campoEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        campoEmail.setColumns(10);
-        campoEmail.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-        campoEmail.setBounds(544, 253, 189, 20);
-        contentPane.add(campoEmail);
-
-        campoNomeCompleto = new JTextField();
-        campoNomeCompleto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        campoNomeCompleto.setOpaque(false);
-        campoNomeCompleto.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-        campoNomeCompleto.setBounds(179, 253, 189, 20);
-        contentPane.add(campoNomeCompleto);
-        campoNomeCompleto.setColumns(10);
-
-        JLabel lblCepPernoiteDo = new JLabel("CEP pernoite do veículo:");
-        lblCepPernoiteDo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblCepPernoiteDo.setBounds(730, 386, 210, 20);
-        contentPane.add(lblCepPernoiteDo);
-
-        JLabel labelCelular = new JLabel("Celular:");
-        labelCelular.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        labelCelular.setBounds(911, 231, 147, 20);
-        contentPane.add(labelCelular);
-
-        JLabel labelEmail = new JLabel("E-MAIL:");
-        labelEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        labelEmail.setBounds(544, 231, 147, 20);
-        contentPane.add(labelEmail);
-
-        JLabel labelCPF = new JLabel("CPF:");
-        labelCPF.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        labelCPF.setBounds(360, 386, 147, 20);
-        contentPane.add(labelCPF);
-
-        JLabel labelNome = new JLabel("Nome Completo:");
-        labelNome.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        labelNome.setBounds(179, 231, 147, 20);
-        contentPane.add(labelNome);
-
-        JButton btnNewButton = new JButton("");
-        btnNewButton.setEnabled(false);
-        btnNewButton.setBounds(534, 224, 282, 79);
-        contentPane.add(btnNewButton);
-
-        JButton btnNewButton_2 = new JButton("");
-        btnNewButton_2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnNewButton_2.setEnabled(false);
-        btnNewButton_2.setBounds(167, 224, 282, 79);
-        contentPane.add(btnNewButton_2);
-
-        JButton btnNewButton_3 = new JButton("");
-        btnNewButton_3.setEnabled(false);
-        btnNewButton_3.setBounds(901, 224, 282, 79);
-        contentPane.add(btnNewButton_3);
-
-        JButton btnNewButton_5 = new JButton("");
-        btnNewButton_5.setEnabled(false);
-        btnNewButton_5.setBounds(350, 378, 282, 79);
-        contentPane.add(btnNewButton_5);
-
-        JButton btnNewButton_5_1 = new JButton("");
-        btnNewButton_5_1.setEnabled(false);
-        btnNewButton_5_1.setBounds(718, 378, 282, 79);
-        contentPane.add(btnNewButton_5_1);
-
-        JButton botaoContinuar = new JButton("Continuar");
-        botaoContinuar.setBorderPainted(false);
-        botaoContinuar.setBackground(new Color(127, 11, 11));
-        botaoContinuar.setForeground(Color.white);
-        botaoContinuar.setBounds(607, 507, 135, 35);
-        botaoContinuar.addActionListener(e -> {
-            if (!validaCamposObrigatorios()) {
-                JOptionPane.showMessageDialog(this,
-                        "Por favor, preencha todos os campos obrigatórios.",
-                        "Erro de validação",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Continuar para a próxima ação
-            SimulaSeguroCliente simulaSeguro = new SimulaSeguroCliente();
-            simulaSeguro.setVisible(true);
-            dispose(); // Fecha a tela atual
-        });
-        contentPane.add(botaoContinuar);
-
-        JCheckBox checkBoxAceito = new JCheckBox("Aceito que a Yokohama seguros me envie mensagem!");
-        checkBoxAceito.setBounds(524, 474, 327, 23);
-        contentPane.add(checkBoxAceito);
-
-        JPanel fotter = new JPanel();
-        fotter.setBackground(new Color(127, 11, 11));
-        fotter.setBounds(152, 137, 1045, 3);
-        contentPane.add(fotter);
-
-        JPanel fotter_1 = new JPanel();
-        fotter_1.setBackground(new Color(127, 11, 11));
-        fotter_1.setBounds(152, 616, 1045, 3);
-        contentPane.add(fotter_1);
     }
 
-    // Método de validação para campos obrigatórios
-    private boolean validaCamposObrigatorios() {
-        return !campoNomeCompleto.getText().isEmpty() &&
-               !campoEmail.getText().isEmpty() &&
-               !campoCelular.getText().isEmpty() &&
-               !campoCPF.getText().isEmpty() &&
-               !campoPerNoite.getText().isEmpty();
+    private void adicionarCamposTexto() {
+        campoNomeCompleto = criarCampoTexto(179, 253, "Tahoma", 14);
+        campoEmail = criarCampoTexto(544, 253, "Tahoma", 14);
+        campoCelular = criarCampoTexto(911, 253, "Tahoma", 14);
+        campoCPF = criarCampoTexto(360, 407, "Tahoma", 14);
+        campoPerNoite = criarCampoTexto(730, 407, "Tahoma", 14);
+        campoNomeSocial = criarCampoTexto(248, 310, "Tahoma", 14);
+        campoNomeSocial.setVisible(false);
+        labelNomeSocial = new JLabel("Insira o Nome Social:");
+        labelNomeSocial.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        labelNomeSocial.setBounds(200, 285, 200, 20);
+        labelNomeSocial.setVisible(false); // Iniciar invisível
+        contentPane.add(labelNomeSocial);
+    }
+
+    private JTextField criarCampoTexto(int x, int y, String fonte, int tamanho) {
+        JTextField campo = new JTextField();
+        campo.setFont(new Font(fonte, Font.PLAIN, tamanho));
+        campo.setOpaque(false);
+        campo.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+        campo.setBounds(x, y, 189, 20);
+        contentPane.add(campo);
+        return campo;
+    }
+
+    private void adicionarLabels() {
+        adicionarLabel("Nome Completo:", 179, 231);
+        adicionarLabel("E-MAIL:", 544, 231);
+        adicionarLabel("Celular:", 911, 231);
+        adicionarLabel("CPF:", 360, 386);
+        adicionarLabel("CEP pernoite do veículo:", 730, 386);
+        JLabel labelMensagem = new JLabel("Insira seus dados para iniciar a cotação!");
+        labelMensagem.setFont(new Font("Tahoma", Font.PLAIN, 25));
+        labelMensagem.setBounds(445, 147, 459, 29);
+        contentPane.add(labelMensagem);
+    }
+
+    private void adicionarLabel(String texto, int x, int y) {
+        JLabel label = new JLabel(texto);
+        label.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        label.setBounds(x, y, 200, 20);
+        contentPane.add(label);
+    }
+
+    private void adicionarBotoes() {
+        JButton botaoNomeSocial = criarBotaoIcone("/images/mais.png", 314, 280, e -> {
+            campoNomeSocial.setVisible(true);
+            labelNomeSocial.setVisible(true);
+        });
+
+        JButton botaoRemoverNomeSocial = criarBotaoIcone("/images/menos.png", 314, 280, e -> {
+            campoNomeSocial.setVisible(false);
+            campoNomeSocial.setText("");
+            labelNomeSocial.setVisible(false);
+        });
+        botaoRemoverNomeSocial.setVisible(false);
+
+        botaoNomeSocial.addActionListener(e -> {
+            botaoNomeSocial.setVisible(false);
+            botaoRemoverNomeSocial.setVisible(true);
+        });
+
+        botaoRemoverNomeSocial.addActionListener(e -> {
+            botaoRemoverNomeSocial.setVisible(false);
+            botaoNomeSocial.setVisible(true);
+        });
+
+        JButton botaoContinuar = new JButton("Continuar");
+        botaoContinuar.setBounds(607, 507, 135, 35);
+        botaoContinuar.setBackground(new Color(127, 11, 11));
+        botaoContinuar.setForeground(Color.WHITE);
+        botaoContinuar.setBorderPainted(false);
+        botaoContinuar.addActionListener(e -> validarCamposObrigatorios());
+        contentPane.add(botaoContinuar);
+
+        JButton botaoVoltar = new JButton("");
+        botaoVoltar.addActionListener(e -> {
+            try {
+                // Obtendo o usuário logado da sessão
+                Usuario usuario = SessaoUsuario.getInstancia().getUsuarioLogado();
+
+                // Verificando o tipo do usuário para redirecionar para a tela correta
+                if (usuario != null) {
+                    if (usuario.getTipoUsuario() == TipoUsuario.CORRETOR) {
+                        MenuCorretor menuCorretor = new MenuCorretor();
+                        menuCorretor.setVisible(true);
+                    } else if (usuario.getTipoUsuario() == TipoUsuario.SEGURADO) {
+                        MenuCliente menuCliente = new MenuCliente();
+                        menuCliente.setVisible(true);
+                    }
+                    dispose(); // Fecha a tela atual
+                } else {
+                    JOptionPane.showMessageDialog(this, "Nenhum usuário logado!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Erro ao redirecionar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        botaoVoltar.setIcon(new ImageIcon(carregaImagem("/images/arrowBackMenor.png"))); // Usando método carregaImagem
+        botaoVoltar.setForeground(Color.WHITE);
+        botaoVoltar.setBorderPainted(false);
+        botaoVoltar.setBackground(new Color(127, 11, 11));
+        botaoVoltar.setBounds(-9, 135, 35, 111);
+        contentPane.add(botaoVoltar); // Adiciona o botão ao painel
+    }
+
+private JButton criarBotaoIcone(String caminhoIcone, int x, int y, ActionListener acao) {
+        JButton botao = new JButton();
+        botao.setIcon(new ImageIcon(carregaImagem(caminhoIcone)));
+        botao.setOpaque(false);
+        botao.setContentAreaFilled(false);
+        botao.setBorderPainted(false);
+        botao.setBounds(x, y, 135, 20);
+        botao.addActionListener(acao);
+        contentPane.add(botao);
+        return botao;
+    }
+
+    private void validarCamposObrigatorios() {
+        if (campoNomeCompleto.getText().isEmpty() || campoEmail.getText().isEmpty()
+                || campoCelular.getText().isEmpty() || campoCPF.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios!",
+                    "Erro de validação", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

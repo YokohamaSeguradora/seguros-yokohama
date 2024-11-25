@@ -1,20 +1,26 @@
 package br.com.yokohama.seguros.view;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
 import com.formdev.flatlaf.FlatLightLaf;
 
 import br.com.yokohama.seguros.model.Usuario;
@@ -132,6 +138,12 @@ public class VisualizarCorretores extends JFrame {
 
 		// Yoko Button
 		JButton yokoButton = new JButton("yoko");
+		yokoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChatBot chat = new ChatBot();
+				chat.setVisible(true);
+			}
+		});
 		yokoButton.setOpaque(false);
 		yokoButton.setContentAreaFilled(false);
 		yokoButton.setBorderPainted(false);

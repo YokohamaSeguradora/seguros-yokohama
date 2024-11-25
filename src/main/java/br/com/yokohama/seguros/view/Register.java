@@ -26,8 +26,8 @@ import br.com.yokohama.seguros.controller.UsuarioController;
 public class Register extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private JButton botaoCadastrar, BotaoProximo;
-    private JTextField campoEmail, campoCpf, campoTelefone, campoNome, campoEndereco, campoNomeSocial, campoCNH, campoEsconde;
+    private JButton botaoCadastrar;
+    private JTextField campoEmail, campoCpf, campoTelefone, campoNome, campoEndereco, campoNomeSocial, campoCNH;
     private JPasswordField campoSenha;
     private JCheckBox checkCorretor, checkSocial;
 
@@ -58,8 +58,9 @@ public class Register extends JFrame {
     public Register() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1366, 768);
+
         JPanel backgroundAll = new JPanel();
-        backgroundAll.setBackground(new Color(255, 255, 255));
+        backgroundAll.setBackground(Color.WHITE);
         backgroundAll.setBorder(new EmptyBorder(0, 0, 0, 0));
         setContentPane(backgroundAll);
         backgroundAll.setLayout(null);
@@ -71,23 +72,16 @@ public class Register extends JFrame {
 
         // Componentes de entrada
         campoEmail = criaCampoTexto(backgroundAll, "Email", 154, 175, false);
-        campoSenha = (JPasswordField) criaCampoTexto(backgroundAll, "Senha", 154, 251, true); 
+        campoSenha = (JPasswordField) criaCampoTexto(backgroundAll, "Senha", 154, 251, true);
         campoCpf = criaCampoTexto(backgroundAll, "CPF", 154, 327, false);
         campoTelefone = criaCampoTexto(backgroundAll, "Telefone", 154, 399, false);
         campoNome = criaCampoTexto(backgroundAll, "Nome completo", 702, 175, false);
         campoEndereco = criaCampoTexto(backgroundAll, "Endereço completo", 702, 399, false);
         campoNomeSocial = criaCampoTexto(backgroundAll, "Nome social", 702, 251, false);
         campoCNH = criaCampoTexto(backgroundAll, "CNH", 702, 327, false);
-        campoEsconde = new JTextField();
-        campoEsconde.setEnabled(false);
-        campoEsconde.setText("");
-        campoEsconde.setEditable(true);
-        campoEsconde.setColumns(10);
-        campoEsconde.setBounds(702, 251, 522, 40);
-        backgroundAll.add(campoEsconde);
         
         campoNomeSocial.setEnabled(false);
-        
+
         // Checkboxes
         checkSocial = new JCheckBox("Nome social?");
         checkSocial.setBounds(1130, 292, 150, 23);
@@ -115,39 +109,7 @@ public class Register extends JFrame {
         botaoCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 20));
         botaoCadastrar.setForeground(Color.WHITE);
         botaoCadastrar.setBackground(new Color(127, 11, 11));
-        botaoCadastrar.addActionListener(e -> {
-            if (!validaCamposObrigatorios()) {
-                JOptionPane.showMessageDialog(this,
-                        "Por favor, preencha todos os campos obrigatórios.",
-                        "Erro de validação",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            // Cadastrar usuário no banco de dados
-            UsuarioController usuarioController = new UsuarioController();
-            usuarioController.criarUsuario(
-                    checkCorretor.isSelected(),
-                    campoNome.getText(),
-                    campoNomeSocial.getText(),
-                    campoCpf.getText(),
-                    campoEmail.getText(),
-                    campoTelefone.getText(),
-                    new String(campoSenha.getPassword()),
-                    campoEndereco.getText(),
-                    campoCNH.getText()
-            );
-            
-            // Abrir a próxima página (MenuCliente ou MenuCorretor)
-            if (checkCorretor.isSelected()) {
-                MenuCorretor menuCorretor = new MenuCorretor();
-                menuCorretor.setVisible(true);
-            } else {
-                MenuCliente menuCliente = new MenuCliente();
-                menuCliente.setVisible(true);
-            }
-            dispose(); // Fecha a tela atual
-        });
+        botaoCadastrar.addActionListener(e -> cadastrarUsuario());
         backgroundAll.add(botaoCadastrar);
 
         // Logo
@@ -161,18 +123,17 @@ public class Register extends JFrame {
         JLabel lbl = new JLabel(label);
         lbl.setBounds(x, y - 15, 150, 14);
         panel.add(lbl);
-    
-        // Se for um campo de senha, cria um JPasswordField
+
         if (isPasswordField) {
             JPasswordField passwordField = new JPasswordField();
             passwordField.setBounds(x, y, 522, 40);
             panel.add(passwordField);
-            return passwordField;  // Retorna o JPasswordField
+            return passwordField;
         } else {
             JTextField textField = new JTextField();
             textField.setBounds(x, y, 522, 40);
             panel.add(textField);
-            return textField;  // Retorna o JTextField
+            return textField;
         }
     }
 
@@ -185,5 +146,37 @@ public class Register extends JFrame {
                 && !campoEndereco.getText().trim().isEmpty()
                 && (!checkSocial.isSelected() || !campoNomeSocial.getText().trim().isEmpty())
                 && (checkCorretor.isSelected() || !campoCNH.getText().trim().isEmpty());
+    }
+
+    private void cadastrarUsuario() {
+        if (!validaCamposObrigatorios()) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor, preencha todos os campos obrigatórios.",
+                    "Erro de validação",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        UsuarioController usuarioController = new UsuarioController();
+        usuarioController.criarUsuario(
+                checkCorretor.isSelected(),
+                campoNome.getText(),
+                campoNomeSocial.getText(),
+                campoCpf.getText(),
+                campoEmail.getText(),
+                campoTelefone.getText(),
+                new String(campoSenha.getPassword()),
+                campoEndereco.getText(),
+                campoCNH.getText()
+        );
+
+        if (checkCorretor.isSelected()) {
+            MenuCorretor menuCorretor = new MenuCorretor();
+            menuCorretor.setVisible(true);
+        } else {
+            MenuCliente menuCliente = new MenuCliente();
+            menuCliente.setVisible(true);
+        }
+        dispose();
     }
 }

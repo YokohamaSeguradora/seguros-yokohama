@@ -108,7 +108,7 @@ public class MenuCliente extends JFrame {
 		userIcone.setBounds(23, 38, 68, 64);
 		contentPane.add(userIcone);
 		
-		JLabel labelNome = new JLabel("Olá, Usuario!");
+		JLabel labelNome = new JLabel("Olá," + nomeUsuario );
 		labelNome.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		labelNome.setBounds(97, 70, 242, 24);
 		contentPane.add(labelNome);
@@ -346,6 +346,12 @@ public class MenuCliente extends JFrame {
 		iconeYoko.setIcon(new ImageIcon(carregaImagen("/images/yokoMenor.png")));
 
 		JButton botaoYoko = new JButton("");
+		botaoYoko.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChatBot chat = new ChatBot();
+				chat.setVisible(true);
+			}
+		});
 		botaoYoko.setBounds(1228, 624, 83, 68);
 		contentPane.add(botaoYoko);
 		botaoYoko.setOpaque(false);
