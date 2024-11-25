@@ -26,8 +26,8 @@ import br.com.yokohama.seguros.controller.UsuarioController;
 public class Register extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private JButton botaoCadastrar;
-    private JTextField campoCpf, campoTelefone, campoNome, campoEndereco, campoNomeSocial, campoCNH, campoEmail;
+    private JButton botaoCadastrar, BotaoProximo;
+    private JTextField campoEmail, campoCpf, campoTelefone, campoNome, campoEndereco, campoNomeSocial, campoCNH, campoEsconde;
     private JPasswordField campoSenha;
     private JCheckBox checkCorretor, checkSocial;
 
@@ -75,12 +75,19 @@ public class Register extends JFrame {
         campoCpf = criaCampoTexto(backgroundAll, "CPF", 154, 327, false);
         campoTelefone = criaCampoTexto(backgroundAll, "Telefone", 154, 399, false);
         campoNome = criaCampoTexto(backgroundAll, "Nome completo", 702, 175, false);
-        campoEndereco = criaCampoTexto(backgroundAll, "Endereço completo", 702, 399,false);
-        campoNomeSocial = criaCampoTexto(backgroundAll, "Nome social", 702, 251,false );
-        campoCNH = criaCampoTexto(backgroundAll, "CNH", 702, 327,false);
-
+        campoEndereco = criaCampoTexto(backgroundAll, "Endereço completo", 702, 399, false);
+        campoNomeSocial = criaCampoTexto(backgroundAll, "Nome social", 702, 251, false);
+        campoCNH = criaCampoTexto(backgroundAll, "CNH", 702, 327, false);
+        campoEsconde = new JTextField();
+        campoEsconde.setEnabled(false);
+        campoEsconde.setText("");
+        campoEsconde.setEditable(true);
+        campoEsconde.setColumns(10);
+        campoEsconde.setBounds(702, 251, 522, 40);
+        backgroundAll.add(campoEsconde);
+        
         campoNomeSocial.setEnabled(false);
-
+        
         // Checkboxes
         checkSocial = new JCheckBox("Nome social?");
         checkSocial.setBounds(1130, 292, 150, 23);
@@ -120,15 +127,15 @@ public class Register extends JFrame {
             // Cadastrar usuário no banco de dados
             UsuarioController usuarioController = new UsuarioController();
             usuarioController.criarUsuario(
-            		checkCorretor.isSelected(),
-            		campoNome.getText(),
+                    checkCorretor.isSelected(),
+                    campoNome.getText(),
                     campoNomeSocial.getText(),
-            		campoCpf.getText(),
-            		campoEmail.getText(),
-            		campoTelefone.getText(),
-            		new String(campoSenha.getPassword()),
-            		campoEndereco.getText(),
-            		campoCNH.getText()
+                    campoCpf.getText(),
+                    campoEmail.getText(),
+                    campoTelefone.getText(),
+                    new String(campoSenha.getPassword()),
+                    campoEndereco.getText(),
+                    campoCNH.getText()
             );
             
             // Abrir a próxima página (MenuCliente ou MenuCorretor)

@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -30,7 +31,7 @@ public class MenuCorretor extends JFrame {
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
 		UIManager.put("Button.arc", 20);
-		UIManager.put("Button.hoverForeground", Color.red);
+		UIManager.put("Button.hoverForeground", new Color(127,11,11));
 		UIManager.put("Button.Button.pressedForeground", Color.white);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,15 +47,16 @@ public class MenuCorretor extends JFrame {
 	}
 
 	// Metodo para carregar imagens
-		public BufferedImage carregaImagen(String str) {
-			try {
-				return ImageIO.read(AtualizaAuto.class.getResource(str));
+	public BufferedImage carregaImagen(String str) {
+		try {
+			return ImageIO.read(AtualizaAuto.class.getResource(str));
 
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
 		}
+	}
+
 	public MenuCorretor() {
 		String nomeUsuario = SessaoUsuario.getNomeUsuario();
 		setResizable(false);
@@ -188,5 +190,54 @@ public class MenuCorretor extends JFrame {
 		botaoYoko.setOpaque(false);
 		botaoYoko.setContentAreaFilled(false);
 		botaoYoko.setBorderPainted(false);
+		
+		JInternalFrame frameWarning = new JInternalFrame("New JInternalFrame");
+		frameWarning.getContentPane().setBackground(new Color(240, 240, 240));
+		frameWarning.setBounds(322, 105, 369, 208);
+		contentPane.add(frameWarning);
+		frameWarning.getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Fechar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(201, 110, 104, 23);
+		frameWarning.getContentPane().add(btnNewButton);
+
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameWarning.setVisible(false);
+			}
+		});
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setBounds(48, 110, 104, 23);
+		frameWarning.getContentPane().add(btnCancelar);
+
+		JLabel labelMensagem = new JLabel("você deseja fechar o programa ?");
+		labelMensagem.setForeground(new Color(255, 0, 0));
+		labelMensagem.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelMensagem.setBounds(56, 39, 241, 37);
+		frameWarning.getContentPane().add(labelMensagem);
+		frameWarning.setVisible(false);
+		
+
+		JButton botaoVoltar = new JButton(" ");
+		botaoVoltar.setHorizontalAlignment(SwingConstants.RIGHT);
+		botaoVoltar.setBounds(-36, 535, 98, 37);
+		panelMenu.add(botaoVoltar);
+		botaoVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameWarning.setVisible(true);
+			}
+		});
+		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/ligar.png")));
+		botaoVoltar.setForeground(Color.WHITE);
+		botaoVoltar.setBorderPainted(false);
+		botaoVoltar.setBackground(new Color(127, 11, 11));
+
 	}
 }

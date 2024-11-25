@@ -1,13 +1,10 @@
 package br.com.yokohama.seguros.view;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import com.formdev.flatlaf.FlatLightLaf;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -17,7 +14,6 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
@@ -54,11 +50,10 @@ public class SimulaSeguroCliente extends JFrame {
         });
     }
 
-    // Metodo para carregar imagens
+    // Método para carregar imagens
     public BufferedImage carregaImagen(String str) {
         try {
             return ImageIO.read(AtualizaUsuario.class.getResource(str));
-
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -210,31 +205,18 @@ public class SimulaSeguroCliente extends JFrame {
         fotter.setBounds(152, 137, 1045, 3);
         contentPane.add(fotter);
 
-        JLabel labelInsiraDados = new JLabel("Insira seus dados para iniciar a cotação!");
-        labelInsiraDados.setFont(new Font("Tahoma", Font.PLAIN, 25));
-        labelInsiraDados.setBounds(445, 147, 459, 29);
-        contentPane.add(labelInsiraDados);
-
-        JLabel labelSouYoku = new JLabel("Olá, Eu sou a Yoko e vou te ajudar na cotação do seu seguro!");
-        labelSouYoku.setFont(new Font("Tahoma", Font.PLAIN, 25));
-        labelSouYoku.setBounds(325, 100, 700, 29);
-        contentPane.add(labelSouYoku);
-
-        JButton yokoButton = new JButton("yoko");
-        yokoButton.setOpaque(false);
-        yokoButton.setContentAreaFilled(false);
-        yokoButton.setBorderPainted(false);
-        yokoButton.setBounds(624, 4, 101, 97);
-        contentPane.add(yokoButton);
-
+        JPanel fotter_1 = new JPanel();
+        fotter_1.setBackground(new Color(127, 11, 11));
+        fotter_1.setBounds(152, 616, 1045, 3);
+        contentPane.add(fotter_1);
     }
 
+    // Método de validação para campos obrigatórios
     private boolean validaCamposObrigatorios() {
-        return !campoNomeCompleto.getText().trim().isEmpty()
-                && !campoEmail.getText().trim().isEmpty()
-                && !campoCelular.getText().trim().isEmpty()
-                && !campoCPF.getText().trim().isEmpty()
-                && !campoPerNoite.getText().trim().isEmpty();
+        return !campoNomeCompleto.getText().isEmpty() &&
+               !campoEmail.getText().isEmpty() &&
+               !campoCelular.getText().isEmpty() &&
+               !campoCPF.getText().isEmpty() &&
+               !campoPerNoite.getText().isEmpty();
     }
-
 }

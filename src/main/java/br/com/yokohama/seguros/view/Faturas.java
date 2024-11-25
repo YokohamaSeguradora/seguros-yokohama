@@ -8,19 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-import javax.swing.border.MatteBorder;
 import javax.swing.JButton;
 
 public class Faturas extends JFrame {
@@ -37,7 +37,6 @@ public class Faturas extends JFrame {
 	private JPanel fotter_1;
 	private JTable table;
 
-	
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
 		UIManager.put("Button.arc", 15);
@@ -58,7 +57,7 @@ public class Faturas extends JFrame {
 			}
 		});
 	}
-	
+
 	// Metodo para carregar imagens
 	public BufferedImage carregaImagen(String str) {
 		try {
@@ -70,7 +69,6 @@ public class Faturas extends JFrame {
 		}
 	}
 
-	
 	public Faturas() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,62 +78,69 @@ public class Faturas extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		yokoLabel = new JLabel("");
 		yokoLabel.setIcon(new ImageIcon(carregaImagen("/images/yoko.png")));
 		yokoLabel.setBounds(1214, 557, 126, 118);
 		contentPane.add(yokoLabel);
-		
+
 		labelLupa = new JLabel("");
 		labelLupa.setIcon(new ImageIcon(carregaImagen("/images/searchResize.png")));
 		labelLupa.setBounds(1269, 111, 32, 23);
 		contentPane.add(labelLupa);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(169, 146, 986, 536);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		table.setBackground(new Color(246, 246, 246));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome cliente", "Tipo seguro", "M\u00EAs ", "Valor fatura", "Fatura", "Estado"
-			}
-		));
+		table.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "Nome cliente", "Tipo seguro", "M\u00EAs ", "Valor fatura", "Fatura", "Estado" }));
 		scrollPane.setViewportView(table);
-		
+
 		lblNewLabel = new JLabel("Faturas");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblNewLabel.setBounds(123, 76, 134, 51);
 		contentPane.add(lblNewLabel);
-		
+
 		fotter = new JPanel();
 		fotter.setBackground(new Color(127, 11, 11));
 		fotter.setBounds(123, 115, 81, 3);
 		contentPane.add(fotter);
-		
+
 		yokohamaLogo = new JLabel();
 		yokohamaLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
 		yokohamaLogo.setBounds(10, -16, 186, 120);
 		contentPane.add(yokohamaLogo);
-		
+
 		digitaNome = new JTextField();
 		digitaNome.setBackground(new Color(246, 246, 246));
 		digitaNome.setBounds(848, 108, 453, 27);
 		contentPane.add(digitaNome);
-		
+
 		yokoButton = new JButton("yoko");
 		yokoButton.setOpaque(false);
 		yokoButton.setContentAreaFilled(false);
 		yokoButton.setBorderPainted(false);
 		yokoButton.setBounds(1228, 568, 101, 97);
 		contentPane.add(yokoButton);
-		
+
 		fotter_1 = new JPanel();
 		fotter_1.setBackground(new Color(0, 0, 0));
 		fotter_1.setBounds(0, 83, 1366, 1);
 		contentPane.add(fotter_1);
+
+		JButton botaoVoltar = new JButton("");
+		botaoVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botaoVoltar.setIcon(new ImageIcon(carregaImagen("/images/arrowBack.png")));
+		botaoVoltar.setForeground(Color.WHITE);
+		botaoVoltar.setBorderPainted(false);
+		botaoVoltar.setBackground(new Color(127, 11, 11));
+		botaoVoltar.setBounds(-5, 135, 35, 111);
+		contentPane.add(botaoVoltar);
 	}
 }

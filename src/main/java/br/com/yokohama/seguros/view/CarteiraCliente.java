@@ -1,25 +1,23 @@
 package br.com.yokohama.seguros.view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.sql.Connection;
-
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +33,7 @@ public class CarteiraCliente extends JFrame {
     private JPanel contentPane;
     private JTable table;
     private final ListaClientesController controller;
-    
+
     public CarteiraCliente() {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,7 +89,7 @@ public class CarteiraCliente extends JFrame {
         yokohamaLogo.setIcon(new ImageIcon(carregaImagen("/images/image3.png")));
         yokohamaLogo.setBounds(10, -13, 186, 120);
         contentPane.add(yokohamaLogo);
-        
+
         // Criando a instância de UsuarioDAO
         UsuarioDAO usuarioDAO = new UsuarioDAO(new ConnectionFactory().conectar());
 
@@ -107,15 +105,13 @@ public class CarteiraCliente extends JFrame {
         UIManager.put("TableHeader.background", new Color(246, 246, 246));
         UIManager.put("TableHeader.separatorColor", new Color(246, 246, 246));
         UIManager.put("TableHeader.bottomSeparatorColor", new Color(246, 246, 246));
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    CarteiraCliente frame = new CarteiraCliente();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                CarteiraCliente frame = new CarteiraCliente();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -128,7 +124,7 @@ public class CarteiraCliente extends JFrame {
             return null;
         }
     }
-    
+
     private void centralizarColunas() {
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
         centralizado.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
@@ -138,18 +134,17 @@ public class CarteiraCliente extends JFrame {
             table.getColumnModel().getColumn(i).setCellRenderer(centralizado);
         }
     }
+
     private void inicia() {
         this.controller.atualizaTabela();
         centralizarColunas();
     }
 
-	public JTable getTable() {
-		return table;
-	}
+    public JTable getTable() {
+        return table;
+    }
 
-	public void setTable(JTable table) {
-		this.table = table;
-	}
-    
-    
+    public void setTable(JTable table) {
+        this.table = table;
+    }
 }
