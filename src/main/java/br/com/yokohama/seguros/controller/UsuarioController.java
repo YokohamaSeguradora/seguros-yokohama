@@ -18,7 +18,7 @@ public class UsuarioController {
         this.usuarioDAO = new UsuarioDAO(connection);
     }
 
-    public void criarUsuario(boolean isCorretor, String nomeCompleto, String nomeSocial, String cpf, String email,
+    public Usuario criarUsuario(boolean isCorretor, String nomeCompleto, String nomeSocial, String cpf, String email,
                              String telefone, String senha, String endereco, String cnh) {
         Usuario.TipoUsuario tipoUsuario = isCorretor 
                                           ? Usuario.TipoUsuario.CORRETOR 
@@ -39,6 +39,8 @@ public class UsuarioController {
         }
 
         usuarioDAO.insert(usuario);
+
+        return usuario;
     }
     
     public boolean isUsuarioCadastrado(String email, String senha) {

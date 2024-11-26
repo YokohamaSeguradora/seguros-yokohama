@@ -22,6 +22,8 @@ import javax.swing.border.EmptyBorder;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import br.com.yokohama.seguros.controller.UsuarioController;
+import br.com.yokohama.seguros.model.Usuario;
+import br.com.yokohama.seguros.utils.SessaoUsuario;
 
 public class Register extends JFrame {
 
@@ -79,7 +81,6 @@ public class Register extends JFrame {
         campoEndereco = criaCampoTexto(backgroundAll, "Endereço completo", 702, 399, false);
         campoNomeSocial = criaCampoTexto(backgroundAll, "Nome social", 702, 251, false);
         campoCNH = criaCampoTexto(backgroundAll, "CNH", 702, 327, false);
-        
         campoNomeSocial.setEnabled(false);
 
         // Checkboxes
@@ -158,7 +159,7 @@ public class Register extends JFrame {
         }
 
         UsuarioController usuarioController = new UsuarioController();
-        usuarioController.criarUsuario(
+        Usuario novoUsuario = usuarioController.criarUsuario(
                 checkCorretor.isSelected(),
                 campoNome.getText(),
                 campoNomeSocial.getText(),
@@ -169,6 +170,8 @@ public class Register extends JFrame {
                 campoEndereco.getText(),
                 campoCNH.getText()
         );
+
+        SessaoUsuario.getInstancia().setUsuario(novoUsuario);
 
         if (checkCorretor.isSelected()) {
             MenuCorretor menuCorretor = new MenuCorretor();
