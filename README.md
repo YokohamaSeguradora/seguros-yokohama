@@ -63,32 +63,42 @@ Contribuições são bem-vindas! Se você tiver sugestões ou melhorias, sinta-s
 Licensed under the [MIT License](./LICENSE)
 ## **✒️ Desenvolvedores**
 
-  - Gustavo Emiliano de Jesus dos Santos<br><br>
+Cada um de nós explorou um pouco de todos os processos. Abaixo se encontram os focos de cada um no projeto.
+
+---
+
+  - Gustavo Emiliano de Jesus dos Santos (Backend | Criptografia de Senha | Conexão View-Controller | PowerPoint)
+    <br><br>
   <a href="https://www.linkedin.com/in/gustavo-emiliano-936341294/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" ></a>
   <a href="mailto:gustavoemiliano2014@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href="https://github.com/GustavoEmiliano"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
 
-  - João Victor Souza Gomes<br><br>
+  - João Victor Souza Gomes (Diagramas | Prototipagem das Telas | Documentação)
+    <br><br>
   <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-souza-gomes-132405321/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
   <a href="joaovictorsgomes07@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href=""><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
   
-  - Júlio Antunes Estrela<br><br>
+  - Júlio Antunes Estrela (Backend | Estrutura do Projeto MVC | Design Patterns | Banco de Dados | Conexão View-Controller | Website - Detalhes do Projeto)
+    <br><br>
   <a href="https://www.linkedin.com/in/julioestrela/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
   <a href="mailto:julioantunesestrela13@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href="https://github.com/JulioEstrela"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
 
-  - Kauã Silva<br><br>
+  - Kauã Silva (Frontend | Java Swing | Prototipagem das Telas | Diagramas)
+    <br><br>
   <a href="https://www.linkedin.com/in/kau%C3%A3silvagomes?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
   <a href="mailto:koutosilvag@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href="https://github.com/KSGKouto"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
   
-  - Rodrigo Bettio Penha Júnior<br><br>
+  - Rodrigo Bettio Penha Júnior (Backend | Análise de Mercado | Chatbot Gemini | Conexão View-Controller | PowerPoint)
+    <br><br>
   <a href="http://www.linkedin.com/in/rodrigobettio" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
   <a href="mailto:rodrigo.bettio2005@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href="https://github.com/RodrigoBettio"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
   
-  - Thiago Temoteo da Silva<br><br>
+  - Thiago Temoteo da Silva (Frontend | Java Swing | Prototipagem das Telas | Levantamento de Requisitos | Diagramas)
+    <br><br>
   <a href="https://www.linkedin.com/in/thiago-temoteo-023a06281/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"></a>
   <a href="mailto:thiago.temoteo1@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" style="vertical-align:middle;"></a>
   <a href="https://github.com/thibasBigT"><img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="vertical-align:middle;"></a>
